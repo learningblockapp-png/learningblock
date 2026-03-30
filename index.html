@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Block — Learn first, earn screen time</title>
+<meta name="description" content="Learning Block locks your child's iPad until they complete a curriculum-aligned maths quiz. Learn first, earn screen time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cream:#FFF8EE;--dark:#2D2640;--yellow:#FFD94A;--purple:#A78BFA;--purple-dark:#6B52E0;--green:#4FCDA3;--card:#fff;--dot:rgba(255,217,74,0.35)}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,var(--dot) 2px,transparent 2px);background-size:48px 48px;pointer-events:none;z-index:0}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,248,238,0.92);backdrop-filter:blur(12px);border-bottom:2.5px solid var(--dark);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.5rem;color:var(--dark);text-decoration:none;cursor:pointer}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-weight:700;font-size:.95rem;color:var(--dark);text-decoration:none;opacity:.6;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.nav-cta{background:var(--yellow)!important;opacity:1!important;padding:.5rem 1.25rem;border-radius:50px;border:2.5px solid var(--dark);box-shadow:0 3px 0 var(--dark);transition:transform .15s,box-shadow .15s!important}
+.nav-cta:hover{transform:translateY(2px);box-shadow:0 1px 0 var(--dark)!important}
+section{position:relative;z-index:1}
+.hero{min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem 3rem;gap:1.75rem}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:2.5px solid var(--dark);border-radius:50px;padding:.4rem 1rem;font-weight:700;font-size:.85rem;box-shadow:0 3px 0 var(--dark);animation:fadeUp .6s ease both}
+.hero h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(3rem,8vw,5.5rem);line-height:1.05;max-width:800px;animation:fadeUp .6s .1s ease both}
+.hero h1 span{color:var(--purple-dark);position:relative;display:inline-block}
+.hero h1 span::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:8px;background:var(--yellow);border-radius:4px;z-index:-1}
+.hero-sub{font-size:1.15rem;font-weight:600;opacity:.65;max-width:500px;line-height:1.7;animation:fadeUp .6s .2s ease both}
+.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .6s .3s ease both}
+.btn-primary{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:.9rem 2rem;text-decoration:none;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--dark)}
+.btn-secondary{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:#fff;color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:.9rem 2rem;text-decoration:none;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s}
+.btn-secondary:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--dark)}
+.hero-mockup{animation:fadeUp .6s .4s ease both;width:100%;max-width:340px}
+.ipad-frame{background:var(--dark);border-radius:28px;padding:14px;box-shadow:0 24px 64px rgba(45,38,64,.3)}
+.ipad-screen{background:var(--cream);border-radius:16px;padding:1.5rem;min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;position:relative;overflow:hidden}
+.ipad-screen::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,217,74,.3) 2px,transparent 2px);background-size:24px 24px}
+.lock-emoji{font-size:2.8rem;position:relative;z-index:1}
+.ipad-title{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.3rem;position:relative;z-index:1}
+.ipad-sub{font-size:.78rem;font-weight:600;opacity:.6;text-align:center;position:relative;z-index:1;max-width:200px}
+.ipad-btn{background:var(--yellow);border:2.5px solid var(--dark);border-radius:12px;padding:.55rem 1.4rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.95rem;box-shadow:0 3px 0 var(--dark);position:relative;z-index:1;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.section-inner{max-width:1100px;margin:0 auto;padding:5rem 2rem}
+.section-label{font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-dark);margin-bottom:.6rem}
+.section-title{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(2rem,4vw,2.8rem);margin-bottom:2.5rem}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem}
+.step-card{background:#fff;border:2.5px solid var(--dark);border-radius:24px;padding:1.75rem;box-shadow:0 6px 0 var(--dark);transition:transform .2s,box-shadow .2s;opacity:0}
+.step-card:hover{transform:translateY(-3px);box-shadow:0 9px 0 var(--dark)}
+.step-number{width:38px;height:38px;background:var(--yellow);border:2.5px solid var(--dark);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;margin-bottom:1rem;box-shadow:0 3px 0 var(--dark)}
+.step-card h3{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.2rem;margin-bottom:.4rem}
+.step-card p{font-size:.9rem;font-weight:600;opacity:.62;line-height:1.65}
+.features-section{background:var(--dark);position:relative;overflow:hidden}
+.features-section::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(167,139,250,.12) 2px,transparent 2px);background-size:48px 48px}
+.features-section .section-inner{position:relative;z-index:1}
+.features-section .section-label{color:var(--yellow)}
+.features-section .section-title{color:#fff}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1rem}
+.feature-card{background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.1);border-radius:20px;padding:1.5rem;transition:background .2s,border-color .2s;opacity:0}
+.feature-card:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22)}
+.feature-icon{font-size:1.9rem;margin-bottom:.7rem;display:block}
+.feature-card h3{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;margin-bottom:.35rem}
+.feature-card p{font-size:.87rem;font-weight:600;color:rgba(255,255,255,.5);line-height:1.65}
+.year-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.year-card{background:#fff;border:2.5px solid var(--dark);border-radius:24px;padding:1.75rem;box-shadow:0 6px 0 var(--dark);opacity:0}
+.year-badge{display:inline-block;padding:.28rem .85rem;border-radius:50px;font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--dark);margin-bottom:.85rem}
+.year-badge.ks1{background:var(--yellow)}
+.year-badge.ks2l{background:var(--purple);color:#fff}
+.year-badge.ks2u{background:var(--green)}
+.year-card h3{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.25rem;margin-bottom:1rem}
+.topic-list{list-style:none;display:flex;flex-wrap:wrap;gap:.45rem}
+.topic-pill{background:var(--cream);border:2px solid var(--dark);border-radius:50px;padding:.22rem .7rem;font-size:.8rem;font-weight:700}
+.pricing-section{background:var(--dark);position:relative;overflow:hidden}
+.pricing-section::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,217,74,.07) 2px,transparent 2px);background-size:48px 48px}
+.pricing-section .section-inner{position:relative;z-index:1}
+.pricing-section .section-label{color:var(--yellow)}
+.pricing-section .section-title{color:#fff}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.25rem;align-items:center}
+.price-card{background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.12);border-radius:24px;padding:1.75rem;text-align:center;opacity:0}
+.price-card.featured{background:var(--yellow);border-color:var(--yellow);transform:scale(1.04);box-shadow:0 8px 32px rgba(255,217,74,.25)}
+.price-card.featured h3,.price-card.featured .price,.price-card.featured .price-sub{color:var(--dark)!important}
+.price-card h3{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.05rem;color:#fff;margin-bottom:.85rem}
+.recommended-badge{display:inline-block;background:var(--dark);color:var(--yellow);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.18rem .65rem;border-radius:50px;margin-bottom:.7rem}
+.price{font-family:'Fredoka',sans-serif;font-weight:700;font-size:2.2rem;color:#fff}
+.price-sub{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.5);margin-top:.2rem}
+.cta-section{padding:5rem 2rem;text-align:center;position:relative;z-index:1}
+.cta-card{background:#fff;border:2.5px solid var(--dark);border-radius:32px;padding:3.5rem 2rem;box-shadow:0 8px 0 var(--dark);max-width:600px;margin:0 auto}
+.cta-card .emoji{font-size:3.5rem;margin-bottom:1rem;display:block}
+.cta-card h2{font-family:'Fredoka',sans-serif;font-weight:700;font-size:2.1rem;margin-bottom:.75rem}
+.cta-card p{font-size:1rem;font-weight:600;opacity:.62;margin-bottom:2rem;line-height:1.65}
+footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;z-index:1}
+.footer-logo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.15rem;color:var(--dark);text-decoration:none;cursor:pointer}
+.footer-links{display:flex;gap:1.5rem;list-style:none}
+.footer-links a{font-size:.87rem;font-weight:700;color:var(--dark);opacity:.5;text-decoration:none;transition:opacity .2s;cursor:pointer}
+.footer-links a:hover{opacity:1}
+.footer-copy{font-size:.8rem;font-weight:600;opacity:.38}
+.privacy-page{display:none;max-width:740px;margin:0 auto;padding:4rem 2rem 5rem;position:relative;z-index:1}
+.back-btn{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;font-size:.88rem;color:var(--dark);background:#fff;border:2px solid var(--dark);border-radius:50px;padding:.4rem 1rem;box-shadow:0 3px 0 var(--dark);margin-bottom:2.5rem;cursor:pointer;transition:transform .15s,box-shadow .15s;font-family:'Nunito',sans-serif}
+.back-btn:hover{transform:translateY(2px);box-shadow:0 1px 0 var(--dark)}
+.privacy-page h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:2.4rem;margin-bottom:.4rem}
+.privacy-updated{font-size:.87rem;font-weight:600;opacity:.48;display:block;margin-bottom:2.5rem}
+.privacy-page h2{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.35rem;margin:2rem 0 .65rem}
+.privacy-page p{font-size:.95rem;font-weight:600;line-height:1.8;opacity:.72;margin-bottom:.75rem}
+.privacy-page ul{padding-left:1.5rem;margin:.5rem 0 .75rem}
+.privacy-page li{font-size:.95rem;font-weight:600;line-height:1.8;opacity:.72}
+.privacy-page a{color:var(--purple-dark)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:640px){.nav-links{display:none}footer{flex-direction:column;align-items:flex-start}.pricing-grid{grid-template-columns:1fr 1fr}.price-card.featured{transform:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo" onclick="showMain()">🔐 Learning Block</span>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#curriculum">Curriculum</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#" class="nav-cta">Download</a></li>
+  </ul>
+</nav>
+
+<div id="main-content">
+
+  <section class="hero">
+    <div class="hero-badge">🇬🇧 UK National Curriculum aligned · iPad</div>
+    <h1>Learn first,<br><span>earn screen time</span></h1>
+    <p class="hero-sub">Learning Block locks your child's iPad until they complete a maths quiz. No quiz, no screen time — it's that simple.</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn-primary">📱 Download on the App Store</a>
+      <a href="#how" class="btn-secondary">How it works</a>
+    </div>
+    <div class="hero-mockup">
+      <div class="ipad-frame">
+        <div class="ipad-screen">
+          <span class="lock-emoji">🦄</span>
+          <div class="ipad-title">Learning Block</div>
+          <div class="ipad-sub">Answer your maths quiz to unlock your iPad</div>
+          <div class="ipad-btn">Let's Go! 🚀</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="section-inner">
+      <div class="section-label">How it works</div>
+      <h2 class="section-title">Four simple steps</h2>
+      <div class="steps">
+        <div class="step-card"><div class="step-number">1</div><h3>Set it up</h3><p>Choose your child's year group, select which topics to include, and set how many questions they need to answer.</p></div>
+        <div class="step-card"><div class="step-number">2</div><h3>iPad gets locked</h3><p>Set a daily lock time or lock it manually. When locked, your child sees the Learning Block screen — no way around it.</p></div>
+        <div class="step-card"><div class="step-number">3</div><h3>Complete the quiz</h3><p>Your child works through curriculum-aligned maths questions. Get them all right and the iPad unlocks. No shortcuts.</p></div>
+        <div class="step-card"><div class="step-number">4</div><h3>Track progress</h3><p>See accuracy per topic, daily streaks, stars earned, and 24 trophies to collect. Watch their confidence grow.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="features-section">
+    <div class="section-inner">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">Everything you need</h2>
+      <div class="features-grid">
+        <div class="feature-card"><span class="feature-icon">🔐</span><h3>PIN-protected settings</h3><p>Children cannot access or change any settings. Everything is locked behind a parent PIN.</p></div>
+        <div class="feature-card"><span class="feature-icon">📚</span><h3>Curriculum-aligned</h3><p>Questions generated from the UK National Curriculum for KS1 and KS2 — different every time.</p></div>
+        <div class="feature-card"><span class="feature-icon">🕐</span><h3>Visual questions</h3><p>Clock faces, shapes, angles, fractions, and number lines — not just text on a screen.</p></div>
+        <div class="feature-card"><span class="feature-icon">✏️</span><h3>Show workings</h3><p>Drawing pad and column maths panel so children can work things out properly, not just guess.</p></div>
+        <div class="feature-card"><span class="feature-icon">⭐</span><h3>Stars &amp; trophies</h3><p>24 trophies across 6 categories give children real goals to work towards every day.</p></div>
+        <div class="feature-card"><span class="feature-icon">📊</span><h3>Progress tracking</h3><p>Per-topic accuracy, streaks, and a monthly calendar showing every day they've played.</p></div>
+        <div class="feature-card"><span class="feature-icon">⏰</span><h3>Scheduled locking</h3><p>Set a daily lock time or a repeating interval. Lock manually any time from Parent Settings.</p></div>
+        <div class="feature-card"><span class="feature-icon">🧒</span><h3>Personalised</h3><p>Your child picks their name and emoji avatar. The app greets them by name every time.</p></div>
+        <div class="feature-card"><span class="feature-icon">🚫</span><h3>No ads, ever</h3><p>No adverts, no distractions, no social features. Just maths, learning, and screen time earned.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="curriculum">
+    <div class="section-inner">
+      <div class="section-label">Curriculum</div>
+      <h2 class="section-title">Matched to your child's year group</h2>
+      <div class="year-cards">
+        <div class="year-card">
+          <span class="year-badge ks1">KS1 · Year 1–2</span>
+          <h3>Ages 5–7</h3>
+          <ul class="topic-list">
+            <li class="topic-pill">➕ Addition</li><li class="topic-pill">➖ Subtraction</li><li class="topic-pill">✖️ Multiplication</li><li class="topic-pill">➗ Division</li><li class="topic-pill">½ Fractions</li><li class="topic-pill">🔷 Shapes</li><li class="topic-pill">🕐 Time</li><li class="topic-pill">🔢 Place Value</li>
+          </ul>
+        </div>
+        <div class="year-card">
+          <span class="year-badge ks2l">Lower KS2 · Year 2–3</span>
+          <h3>Ages 7–9</h3>
+          <ul class="topic-list">
+            <li class="topic-pill">➕ Addition</li><li class="topic-pill">➖ Subtraction</li><li class="topic-pill">✖️ Multiplication</li><li class="topic-pill">➗ Division</li><li class="topic-pill">½ Fractions</li><li class="topic-pill">· Decimals</li><li class="topic-pill">🔷 Shapes</li><li class="topic-pill">🕐 Time</li><li class="topic-pill">🔢 Place Value</li>
+          </ul>
+        </div>
+        <div class="year-card">
+          <span class="year-badge ks2u">Upper KS2 · Year 4–5</span>
+          <h3>Ages 9–11</h3>
+          <ul class="topic-list">
+            <li class="topic-pill">➕ Addition</li><li class="topic-pill">➖ Subtraction</li><li class="topic-pill">✖️ Multiplication</li><li class="topic-pill">➗ Division</li><li class="topic-pill">½ Fractions</li><li class="topic-pill">% Percentages</li><li class="topic-pill">· Decimals</li><li class="topic-pill">📐 Area &amp; Perimeter</li><li class="topic-pill">📏 Angles</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="pricing-section">
+    <div class="section-inner">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Simple, transparent pricing</h2>
+      <div class="pricing-grid">
+        <div class="price-card"><h3>Free</h3><div class="price">£0</div><div class="price-sub">Forever free</div></div>
+        <div class="price-card"><h3>Monthly</h3><div class="price">£2.99</div><div class="price-sub">per month</div></div>
+        <div class="price-card featured"><div class="recommended-badge">⭐ Recommended</div><h3>Annual</h3><div class="price">£14.99</div><div class="price-sub">per year · 7-day free trial</div></div>
+        <div class="price-card"><h3>Lifetime</h3><div class="price">£39.99</div><div class="price-sub">one-time purchase</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-card">
+      <span class="emoji">🦄</span>
+      <h2>Ready to try Learning Block?</h2>
+      <p>Join parents making screen time conditional on learning time. Available now on iPad.</p>
+      <a href="#" class="btn-primary">📱 Download on the App Store</a>
+    </div>
+  </section>
+
+</div>
+
+<div id="privacy-content" class="privacy-page">
+  <button class="back-btn" onclick="showMain()">← Back to Learning Block</button>
+  <h1>Privacy Policy</h1>
+  <span class="privacy-updated">Last updated: March 2026</span>
+  <p>Learning Block ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we handle information when you use the Learning Block app.</p>
+  <h2>Information We Collect</h2>
+  <p>Learning Block is designed with privacy at its core. We do not collect, transmit, or store any personal information on external servers. All data generated by the app is stored locally on your device and never leaves it.</p>
+  <h2>What Is Stored Locally</h2>
+  <ul>
+    <li>Your child's name and chosen emoji avatar</li>
+    <li>Quiz results and topic accuracy</li>
+    <li>Streaks, stars, and trophy progress</li>
+    <li>Parent settings including PIN, year group, and topic selections</li>
+    <li>Lock schedule preferences</li>
+  </ul>
+  <p>This data is stored on-device only and is permanently deleted if you uninstall the app or use the Reset Progress feature in Parent Settings.</p>
+  <h2>Children's Privacy</h2>
+  <p>Learning Block is designed for use by children under parental supervision. We do not knowingly collect any personal information from children. The app does not require an account, does not connect to the internet for any purpose, and does not include advertising, analytics, or tracking of any kind.</p>
+  <h2>Third-Party Services</h2>
+  <p>Learning Block does not use any third-party analytics, advertising networks, or tracking services. The app operates entirely offline.</p>
+  <h2>In-App Purchases</h2>
+  <p>If you purchase a subscription or lifetime licence, the transaction is processed entirely by Apple through the App Store. We do not receive or store any payment information. Apple's privacy policy governs these transactions and can be found at <a href="https://www.apple.com/legal/privacy/" target="_blank">apple.com/legal/privacy</a>.</p>
+  <h2>Data Security</h2>
+  <p>Since all data is stored locally on your device, the security of your data depends on your device security. We recommend using a device passcode and keeping iOS up to date.</p>
+  <h2>Your Rights</h2>
+  <p>You can delete all data stored by Learning Block at any time by using the Reset Progress option in Parent Settings, or by uninstalling the app from your device.</p>
+  <h2>Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+  <h2>Contact</h2>
+  <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:hello@learningblock.app">hello@learningblock.app</a>.</p>
+</div>
+
+<footer>
+  <span class="footer-logo" onclick="showMain()">🔐 Learning Block</span>
+  <ul class="footer-links">
+    <li><a onclick="showPrivacy()">Privacy Policy</a></li>
+    <li><a href="mailto:hello@learningblock.app">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Learning Block. All rights reserved.</span>
+</footer>
+
+<script>
+function showPrivacy(){document.getElementById('main-content').style.display='none';document.getElementById('privacy-content').style.display='block';window.scrollTo(0,0)}
+function showMain(){document.getElementById('main-content').style.display='block';document.getElementById('privacy-content').style.display='none';window.scrollTo(0,0)}
+if(window.location.hash==='#privacy')showPrivacy();
+const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.animation='fadeUp .45s ease both';e.target.style.opacity='1'},i*60);obs.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.step-card,.feature-card,.year-card,.price-card').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
