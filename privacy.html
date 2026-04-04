@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --cream: #fff7ee;
       --purple: #2e2640;
@@ -20,334 +19,58 @@
       --green: #4fcca0;
       --dot: rgba(255, 217, 74, 0.35);
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: var(--cream);
-      color: var(--purple);
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: radial-gradient(circle, var(--dot) 2px, transparent 2px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 16px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(255, 247, 238, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 2.5px solid var(--purple);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--purple);
-      text-decoration: none;
-    }
-
-    .nav-logo .lock-icon {
-      width: 36px; height: 36px;
-      background: var(--yellow);
-      border: 2.5px solid var(--purple);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-      box-shadow: 2px 3px 0 var(--purple);
-    }
-
-    .nav-back {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--purple);
-      text-decoration: none;
-      opacity: 0.6;
-      transition: opacity 0.15s;
-    }
-
+    body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--purple); overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: radial-gradient(circle, var(--dot) 2px, transparent 2px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; background: rgba(255, 247, 238, 0.85); backdrop-filter: blur(12px); border-bottom: 2.5px solid var(--purple); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Fredoka', sans-serif; font-size: 22px; font-weight: 700; color: var(--purple); text-decoration: none; }
+    .nav-logo .lock-icon { width: 36px; height: 36px; background: var(--yellow); border: 2.5px solid var(--purple); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 2px 3px 0 var(--purple); }
+    .nav-back { font-family: 'Fredoka', sans-serif; font-size: 16px; font-weight: 600; color: var(--purple); text-decoration: none; opacity: 0.6; transition: opacity 0.15s; }
     .nav-back:hover { opacity: 1; }
-
-    /* MAIN */
-    main {
-      position: relative;
-      z-index: 1;
-      max-width: 740px;
-      margin: 0 auto;
-      padding: 120px 24px 80px;
-    }
-
-    /* HEADER */
-    .page-header {
-      margin-bottom: 48px;
-      padding-bottom: 32px;
-      border-bottom: 2.5px solid var(--purple);
-    }
-
-    .page-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--yellow);
-      border: 2px solid var(--purple);
-      border-radius: 50px;
-      padding: 6px 18px;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      box-shadow: 2px 3px 0 var(--purple);
-    }
-
-    h1 {
-      font-family: 'Fredoka', sans-serif;
-      font-size: clamp(36px, 6vw, 56px);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-
-    .meta {
-      font-size: 14px;
-      font-weight: 700;
-      opacity: 0.5;
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    /* SUMMARY CARDS */
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      margin-bottom: 56px;
-    }
-
-    .summary-card {
-      background: white;
-      border: 2.5px solid var(--purple);
-      border-radius: 20px;
-      padding: 24px 20px;
-      box-shadow: 4px 5px 0 var(--purple);
-      text-align: center;
-    }
-
+    main { position: relative; z-index: 1; max-width: 740px; margin: 0 auto; padding: 120px 24px 80px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 2.5px solid var(--purple); }
+    .page-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--yellow); border: 2px solid var(--purple); border-radius: 50px; padding: 6px 18px; font-size: 13px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 20px; box-shadow: 2px 3px 0 var(--purple); }
+    h1 { font-family: 'Fredoka', sans-serif; font-size: clamp(36px, 6vw, 56px); font-weight: 700; line-height: 1.1; margin-bottom: 16px; }
+    .meta { font-size: 14px; font-weight: 700; opacity: 0.5; display: flex; gap: 24px; flex-wrap: wrap; }
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 56px; }
+    .summary-card { background: white; border: 2.5px solid var(--purple); border-radius: 20px; padding: 24px 20px; box-shadow: 4px 5px 0 var(--purple); text-align: center; }
     .summary-card .icon { font-size: 32px; margin-bottom: 10px; display: block; }
-
-    .summary-card h3 {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .summary-card p {
-      font-size: 13px;
-      font-weight: 600;
-      opacity: 0.6;
-      line-height: 1.5;
-    }
-
+    .summary-card h3 { font-family: 'Fredoka', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .summary-card p { font-size: 13px; font-weight: 600; opacity: 0.6; line-height: 1.5; }
     .summary-card.good { border-color: var(--green); box-shadow: 4px 5px 0 var(--green); }
     .summary-card.good h3 { color: #2a8a6a; }
-
-    /* CONTENT */
-    .policy-section {
-      margin-bottom: 48px;
-    }
-
-    .section-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px; height: 32px;
-      background: var(--purple);
-      color: var(--yellow);
-      border-radius: 50%;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 26px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    p {
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 1.75;
-      opacity: 0.75;
-      margin-bottom: 16px;
-    }
-
-    ul {
-      margin: 0 0 16px 0;
-      padding-left: 0;
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    ul li {
-      font-size: 15px;
-      font-weight: 600;
-      opacity: 0.75;
-      line-height: 1.6;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    ul li::before {
-      content: '→';
-      color: var(--purple-mid);
-      font-weight: 800;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
+    .policy-section { margin-bottom: 48px; }
+    .section-number { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--purple); color: var(--yellow); border-radius: 50%; font-family: 'Fredoka', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+    h2 { font-family: 'Fredoka', sans-serif; font-size: 26px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+    p { font-size: 16px; font-weight: 600; line-height: 1.75; opacity: 0.75; margin-bottom: 16px; }
+    ul { margin: 0 0 16px 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    ul li { font-size: 15px; font-weight: 600; opacity: 0.75; line-height: 1.6; display: flex; align-items: flex-start; gap: 10px; }
+    ul li::before { content: '→'; color: var(--purple-mid); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
     ul.checkmark li::before { content: '✓'; color: var(--green); }
     ul.cross li::before { content: '✗'; color: #e05555; }
-
-    .highlight-box {
-      background: white;
-      border: 2.5px solid var(--purple);
-      border-radius: 16px;
-      padding: 20px 24px;
-      margin: 20px 0;
-      box-shadow: 3px 4px 0 var(--purple);
-    }
-
+    .highlight-box { background: white; border: 2.5px solid var(--purple); border-radius: 16px; padding: 20px 24px; margin: 20px 0; box-shadow: 3px 4px 0 var(--purple); }
     .highlight-box p { margin: 0; opacity: 1; font-weight: 700; }
-
-    .highlight-box.green {
-      background: #f0fdf7;
-      border-color: var(--green);
-      box-shadow: 3px 4px 0 var(--green);
-    }
-
+    .highlight-box.green { background: #f0fdf7; border-color: var(--green); box-shadow: 3px 4px 0 var(--green); }
     .highlight-box.green p { color: #1a6b4a; }
-
-    .divider {
-      border: none;
-      border-top: 2px solid rgba(46,38,64,0.12);
-      margin: 40px 0;
-    }
-
-    /* CONTACT */
-    .contact-card {
-      background: var(--purple);
-      border: 2.5px solid var(--purple);
-      border-radius: 24px;
-      padding: 40px 32px;
-      text-align: center;
-      box-shadow: 6px 7px 0 var(--purple-mid);
-      margin-top: 48px;
-    }
-
+    .divider { border: none; border-top: 2px solid rgba(46,38,64,0.12); margin: 40px 0; }
+    .contact-card { background: var(--purple); border: 2.5px solid var(--purple); border-radius: 24px; padding: 40px 32px; text-align: center; box-shadow: 6px 7px 0 var(--purple-mid); margin-top: 48px; }
     .contact-card h2 { color: white; justify-content: center; }
     .contact-card p { color: rgba(255,255,255,0.65); opacity: 1; }
-
-    .contact-card a {
-      display: inline-block;
-      margin-top: 16px;
-      background: var(--yellow);
-      color: var(--purple);
-      font-family: 'Fredoka', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      padding: 14px 32px;
-      border-radius: 50px;
-      text-decoration: none;
-      border: 2.5px solid var(--yellow-dark);
-      box-shadow: 3px 4px 0 var(--yellow-dark);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-
-    .contact-card a:hover {
-      transform: translateY(-2px);
-      box-shadow: 3px 6px 0 var(--yellow-dark);
-    }
-
-    /* FOOTER */
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 2.5px solid var(--purple);
-      padding: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 48px;
-    }
-
-    .footer-logo {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--purple);
-    }
-
-    footer p {
-      font-size: 13px;
-      opacity: 0.45;
-      margin: 0;
-    }
-
-    footer a {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--purple);
-      text-decoration: none;
-      opacity: 0.6;
-    }
-
+    .contact-card a { display: inline-block; margin-top: 16px; background: var(--yellow); color: var(--purple); font-family: 'Fredoka', sans-serif; font-size: 18px; font-weight: 700; padding: 14px 32px; border-radius: 50px; text-decoration: none; border: 2.5px solid var(--yellow-dark); box-shadow: 3px 4px 0 var(--yellow-dark); transition: transform 0.15s, box-shadow 0.15s; }
+    .contact-card a:hover { transform: translateY(-2px); box-shadow: 3px 6px 0 var(--yellow-dark); }
+    footer { position: relative; z-index: 1; border-top: 2.5px solid var(--purple); padding: 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 48px; }
+    .footer-logo { font-family: 'Fredoka', sans-serif; font-size: 18px; font-weight: 700; color: var(--purple); }
+    footer p { font-size: 13px; opacity: 0.45; margin: 0; }
+    footer a { font-size: 14px; font-weight: 700; color: var(--purple); text-decoration: none; opacity: 0.6; }
     footer a:hover { opacity: 1; }
-
-    @media (max-width: 600px) {
-      nav { padding: 12px 20px; }
-      main { padding: 100px 20px 60px; }
-      footer { flex-direction: column; align-items: flex-start; }
-    }
+    @media (max-width: 600px) { nav { padding: 12px 20px; } main { padding: 100px 20px 60px; } footer { flex-direction: column; align-items: flex-start; } }
   </style>
 </head>
 <body>
 
   <nav>
     <a href="index.html" class="nav-logo">
-      <div class="lock-icon">🔒</div>
+      <img src="logo.png" alt="Learning Block" style="height:36px;">
       Learning Block
     </a>
     <a href="index.html" class="nav-back">← Back to home</a>
@@ -359,159 +82,76 @@
       <div class="page-badge">📄 Legal</div>
       <h1>Privacy Policy</h1>
       <div class="meta">
-        <span>📅 Last updated: March 2026</span>
-        <span>🏢 Learning Block</span>
+        <span>📅 Last updated: April 2026</span>
+        <span>🏢 Learning Block Ltd</span>
         <span>📍 United Kingdom</span>
       </div>
     </div>
 
-    <!-- SUMMARY CARDS -->
-    <div class="summary-grid">
-      <div class="summary-card good">
-        <span class="icon">🚫</span>
-        <h3>No data collected</h3>
-        <p>We don't collect any personal information from you or your child.</p>
+    <!-- SUMMARY PILLS -->
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:48px;">
+      <div style="display:flex;align-items:center;gap:14px;background:#f0fdf7;border:2px solid var(--green);border-radius:50px;padding:14px 24px;box-shadow:3px 4px 0 var(--green);">
+        <span style="font-size:22px;">🚫</span>
+        <div><strong style="font-family:'Fredoka',sans-serif;font-size:17px;color:#1a6b4a;">No data collected</strong> <span style="font-size:14px;font-weight:600;color:#2a8a6a;opacity:.8;">— we don't collect any personal information from you or your child</span></div>
       </div>
-      <div class="summary-card good">
-        <span class="icon">📵</span>
-        <h3>No ads, ever</h3>
-        <p>We never serve advertising or share data with advertisers.</p>
+      <div style="display:flex;align-items:center;gap:14px;background:#f0fdf7;border:2px solid var(--green);border-radius:50px;padding:14px 24px;box-shadow:3px 4px 0 var(--green);">
+        <span style="font-size:22px;">📵</span>
+        <div><strong style="font-family:'Fredoka',sans-serif;font-size:17px;color:#1a6b4a;">No ads, ever</strong> <span style="font-size:14px;font-weight:600;color:#2a8a6a;opacity:.8;">— we never serve advertising or share data with advertisers</span></div>
       </div>
-      <div class="summary-card good">
-        <span class="icon">📱</span>
-        <h3>Stays on device</h3>
-        <p>All quiz results and progress are stored locally on your iPad only.</p>
+      <div style="display:flex;align-items:center;gap:14px;background:#f0fdf7;border:2px solid var(--green);border-radius:50px;padding:14px 24px;box-shadow:3px 4px 0 var(--green);">
+        <span style="font-size:22px;">📱</span>
+        <div><strong style="font-family:'Fredoka',sans-serif;font-size:17px;color:#1a6b4a;">Stays on device</strong> <span style="font-size:14px;font-weight:600;color:#2a8a6a;opacity:.8;">— all quiz results and progress are stored locally on your iPad only</span></div>
       </div>
-      <div class="summary-card good">
-        <span class="icon">👶</span>
-        <h3>Child safe</h3>
-        <p>Designed for children. No accounts, no sign-in, no external services.</p>
+      <div style="display:flex;align-items:center;gap:14px;background:#f0fdf7;border:2px solid var(--green);border-radius:50px;padding:14px 24px;box-shadow:3px 4px 0 var(--green);">
+        <span style="font-size:22px;">👶</span>
+        <div><strong style="font-family:'Fredoka',sans-serif;font-size:17px;color:#1a6b4a;">Child safe</strong> <span style="font-size:14px;font-weight:600;color:#2a8a6a;opacity:.8;">— no accounts, no sign-in, no external services</span></div>
       </div>
     </div>
 
     <!-- SECTION 1 -->
     <div class="policy-section">
-      <h2><span class="section-number">1</span> About this policy</h2>
-      <p>This Privacy Policy explains how Learning Block ("we", "us", "our") handles information when you use the Learning Block iPad application ("the app"). We are committed to protecting the privacy of children and their families.</p>
-      <p>Learning Block is designed for use by children under the supervision of a parent or guardian. We have built the app specifically to avoid collecting any personal data.</p>
+      <h2><span class="section-number">1</span> What we collect</h2>
+      <p>Learning Block stores the following locally on your iPad only. Nothing is sent to us or any third party:</p>
+      <ul class="checkmark">
+        <li>Your child's name and chosen emoji avatar</li>
+        <li>Quiz results, streak counts, XP, and badge progress</li>
+        <li>Parent settings — year group, topics, quiz length, PIN, and schedule</li>
+      </ul>
+      <div class="highlight-box green">
+        <p>✓ Learning Block has no servers. No data ever leaves your device.</p>
+      </div>
+      <p>All data can be deleted at any time via Reset Progress in Parent Settings, or by deleting the app. If you choose to sign up for email updates on our website, we collect your email address via Mailchimp for occasional product news. This is entirely optional and you can unsubscribe at any time.</p>
     </div>
 
     <hr class="divider">
 
     <!-- SECTION 2 -->
     <div class="policy-section">
-      <h2><span class="section-number">2</span> Information we do NOT collect</h2>
-      <p>Learning Block does not collect, transmit, or store any of the following:</p>
-      <ul class="cross">
-        <li>Names, email addresses, or any contact information</li>
-        <li>Location data</li>
-        <li>Device identifiers or advertising IDs</li>
-        <li>Usage analytics or behavioural data</li>
-        <li>Photos, microphone, or camera data</li>
-        <li>Payment details (handled entirely by Apple)</li>
-        <li>Any data from children without parental consent</li>
-      </ul>
-      <div class="highlight-box green">
-        <p>✓ Learning Block has no servers. No data ever leaves your device.</p>
-      </div>
+      <h2><span class="section-number">2</span> Payments &amp; third parties</h2>
+      <p>Subscriptions are processed entirely by Apple through the App Store — we never see or store your payment details. The app contains no analytics, advertising, or tracking of any kind. The only external service used is Apple's App Store for subscription management.</p>
+      <p>To manage or cancel your subscription: Settings → Apple ID → Subscriptions. Apple's privacy policy: <a href="https://www.apple.com/legal/privacy/" target="_blank" style="color: var(--purple-mid); font-weight: 700;">apple.com/legal/privacy</a>.</p>
     </div>
 
     <hr class="divider">
 
     <!-- SECTION 3 -->
     <div class="policy-section">
-      <h2><span class="section-number">3</span> What is stored on your device</h2>
-      <p>Learning Block stores the following information locally on your iPad using Apple's standard UserDefaults storage. This data never leaves your device:</p>
-      <ul class="checkmark">
-        <li>Your child's name and chosen emoji avatar</li>
-        <li>Quiz results — which topics were answered and whether answers were correct</li>
-        <li>Streak and star counts</li>
-        <li>Trophy progress</li>
-        <li>Parent settings — year group, enabled topics, quiz length, PIN, and schedule</li>
-      </ul>
-      <p>This data can be deleted at any time from within the app via the Reset Progress option in Parent Settings, or by deleting the app entirely from your device.</p>
+      <h2><span class="section-number">3</span> Your rights &amp; contact</h2>
+      <p>Learning Block Ltd complies with UK GDPR. Because all data lives on your device, your rights — access, erasure, portability — are exercised directly through the app or by deleting it. We may update this policy from time to time; the date at the top of this page reflects the latest version.</p>
     </div>
 
-    <hr class="divider">
-
-    <!-- SECTION 4 -->
-    <div class="policy-section">
-      <h2><span class="section-number">4</span> Subscriptions and payments</h2>
-      <p>Learning Block offers optional premium subscriptions. All payments are processed entirely by Apple through the App Store. We never see, handle, or store your payment information.</p>
-      <p>Apple's handling of payment data is governed by Apple's own Privacy Policy, available at <a href="https://www.apple.com/legal/privacy/" target="_blank" style="color: var(--purple-mid); font-weight: 700;">apple.com/legal/privacy</a>.</p>
-      <p>To manage or cancel your subscription, go to your device's Settings → Apple ID → Subscriptions.</p>
-    </div>
-
-    <hr class="divider">
-
-    <!-- SECTION 5 -->
-    <div class="policy-section">
-      <h2><span class="section-number">5</span> Third-party services</h2>
-      <p>Learning Block does not integrate with any third-party analytics, advertising, or tracking services. The app does not use:</p>
-      <ul class="cross">
-        <li>Google Analytics or Firebase</li>
-        <li>Facebook SDK or any Meta services</li>
-        <li>Crashlytics or any crash reporting services</li>
-        <li>Any advertising networks</li>
-      </ul>
-      <p>The only external service used is Apple's App Store for subscription management, which is governed by Apple's own privacy policy.</p>
-    </div>
-
-    <hr class="divider">
-
-    <!-- SECTION 6 -->
-    <div class="policy-section">
-      <h2><span class="section-number">6</span> Children's privacy</h2>
-      <p>Learning Block is designed specifically for use by children aged 5–11, supervised by a parent or guardian. We take children's privacy extremely seriously.</p>
-      <ul class="checkmark">
-        <li>We do not knowingly collect any personal information from children</li>
-        <li>The app requires no account creation or sign-in</li>
-        <li>There are no social features, chat, or external communication tools</li>
-        <li>There is no advertising within the app</li>
-        <li>All data remains on the device under parental control</li>
-      </ul>
-      <div class="highlight-box">
-        <p>The parent PIN system means a parent or guardian retains full control over all app settings and data at all times.</p>
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <!-- SECTION 7 -->
-    <div class="policy-section">
-      <h2><span class="section-number">7</span> Your rights under UK GDPR</h2>
-      <p>As a UK-based app, we are committed to compliance with the UK General Data Protection Regulation (UK GDPR). Because Learning Block does not collect or process any personal data on our servers, most GDPR rights (access, portability, erasure) are exercised directly on your own device.</p>
-      <ul>
-        <li><strong>Right to erasure</strong> — delete all app data using Reset Progress in Parent Settings, or by uninstalling the app</li>
-        <li><strong>Right to access</strong> — all data stored is visible within the app itself in the progress and settings screens</li>
-        <li><strong>Right to portability</strong> — data is stored locally on your device and remains under your control</li>
-      </ul>
-    </div>
-
-    <hr class="divider">
-
-    <!-- SECTION 8 -->
-    <div class="policy-section">
-      <h2><span class="section-number">8</span> Changes to this policy</h2>
-      <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. We encourage you to review this policy periodically.</p>
-      <p>Continued use of the app after any changes constitutes acceptance of the updated policy.</p>
-    </div>
-
-    <hr class="divider">
-
-    <!-- CONTACT -->
     <div class="contact-card">
       <h2>Questions?</h2>
-      <p>If you have any questions about this Privacy Policy or how Learning Block handles data, please get in touch.</p>
+      <p>Get in touch and we'll respond as quickly as we can.</p>
       <a href="mailto:learningblockapp@gmail.com">learningblockapp@gmail.com</a>
     </div>
 
   </main>
 
   <footer>
-    <div class="footer-logo">🔒 Learning Block</div>
+    <div class="footer-logo"><img src="logo.png" alt="Learning Block" style="height:28px;vertical-align:middle;margin-right:6px;">Learning Block</div>
     <a href="index.html">← Back to home</a>
-    <p>© 2026 Learning Block. United Kingdom.</p>
+    <p>© 2026 Learning Block Ltd. All rights reserved.</p>
   </footer>
 
 </body>
