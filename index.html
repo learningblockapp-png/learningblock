@@ -222,12 +222,48 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   </section>
 
   <section id="download" class="cta-section">
-    <div class="cta-card">
+
+    <!-- Download card -->
+    <div class="cta-card" style="margin-bottom:2rem;">
       <img src="logo.png" alt="" style="height:100px;display:block;margin:0 auto 1rem;">
       <h2>Ready to try Learning Block?</h2>
       <p>Join parents making screen time conditional on learning time. Free to try for 7 days — available now on iPad.</p>
       <a href="#" class="btn-primary">📱 Download on the App Store</a>
     </div>
+
+    <!-- Email signup card -->
+    <div class="cta-card" style="max-width:520px;">
+      <p style="font-size:1.3rem;font-weight:800;margin-bottom:.4rem;font-family:'Fredoka',sans-serif;">More subjects coming soon 🚀</p>
+      <p style="margin-bottom:1.5rem;">Get notified when new subjects launch. No spam, no ads — just useful updates.</p>
+
+      <!-- Mailchimp form — styled to match site -->
+      <form action="https://app.us9.list-manage.com/subscribe/post?u=5142d44616f4d988cc16eaf78&amp;id=a3fd1f749a&amp;f_id=004456e1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate style="display:flex;flex-direction:column;gap:.75rem;">
+
+        <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Your email address" required
+          style="width:100%;padding:.85rem 1.1rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;background:var(--cream);color:var(--dark);outline:none;box-sizing:border-box;">
+
+        <!-- Honeypot — do not remove -->
+        <div aria-hidden="true" style="position:absolute;left:-5000px;">
+          <input type="text" name="b_5142d44616f4d988cc16eaf78_a3fd1f749a" tabindex="-1" value="">
+        </div>
+
+        <!-- Response messages -->
+        <div id="mce-responses">
+          <div id="mce-error-response" style="display:none;color:#cc0000;font-weight:700;font-size:.9rem;"></div>
+          <div id="mce-success-response" style="display:none;color:#1a7a54;font-weight:700;font-size:.9rem;"></div>
+        </div>
+
+        <button type="submit" name="subscribe" id="mc-embedded-subscribe"
+          style="width:100%;padding:.9rem 2rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:14px;box-shadow:0 5px 0 var(--dark);cursor:pointer;transition:transform .15s,box-shadow .15s;"
+          onmouseover="this.style.transform='translateY(3px)';this.style.boxShadow='0 2px 0 var(--dark)'"
+          onmouseout="this.style.transform='';this.style.boxShadow='0 5px 0 var(--dark)'">
+          Notify me 🔔
+        </button>
+
+      </form>
+      <p style="font-size:.78rem;opacity:.45;margin-top:.75rem;margin-bottom:0;">No spam. Unsubscribe anytime. We use Mailchimp — <a href="privacy.html" style="color:var(--dark);opacity:.7;">privacy policy</a>.</p>
+    </div>
+
   </section>
 
 </div>
@@ -236,14 +272,10 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   <a href="/" class="footer-logo"><img src="logo.png" alt="Learning Block" style="height:28px;vertical-align:middle;margin-right:6px;">Learning Block</a>
   <ul class="footer-links">
     <li><a href="privacy.html">Privacy Policy</a></li>
-    <li><a href="mailto:learningblockapp@gmail.com">Contact</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#a4c8c1c5d6cacdcac3c6c8cbc7cfc5d4d4e4c3c9c5cdc88ac7cbc9">Contact</a></li>
   </ul>
   <span class="footer-copy">© 2026 Learning Block Ltd. All rights reserved.</span>
 </footer>
 
-<script>
-const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.animation='fadeUp .45s ease both';e.target.style.opacity='1'},i*60);obs.unobserve(e.target)}})},{threshold:.1});
-document.querySelectorAll('.step-card,.feature-card,.year-card,.price-card').forEach(el=>obs.observe(el));
-</script>
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.animation='fadeUp .45s ease both';e.target.style.opacity='1'},i*60);obs.unobserve(e.targe
