@@ -16,7 +16,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 nav{position:sticky;top:0;z-index:100;background:rgba(255,248,238,0.92);backdrop-filter:blur(12px);border-bottom:2.5px solid var(--dark);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
 .nav-logo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.5rem;color:var(--dark);text-decoration:none;cursor:pointer}
 .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
-.nav-links a{font-weight:700;font-size:.95rem;color:var(--dark);text-decoration:none;opacity:.6;transition:opacity .2s}
+.nav-links a{font-weight:700;font-size:.95rem;color:var(--dark);text-decoration:none;opacity:.6;transition:opacity .2s;white-space:nowrap}
 .nav-links a:hover{opacity:1}
 .nav-cta{background:var(--yellow)!important;opacity:1!important;padding:.5rem 1.25rem;border-radius:50px;border:2.5px solid var(--dark);box-shadow:0 3px 0 var(--dark);transition:transform .15s,box-shadow .15s!important}
 .nav-cta:hover{transform:translateY(2px);box-shadow:0 1px 0 var(--dark)!important}
@@ -27,10 +27,10 @@ section{position:relative;z-index:1}
 .hero h1 span{color:var(--purple-dark);position:relative;display:inline-block}
 .hero h1 span::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:8px;background:var(--yellow);border-radius:4px;z-index:-1}
 .hero-sub{font-size:1.15rem;font-weight:600;opacity:.65;max-width:500px;line-height:1.7;animation:fadeUp .6s .2s ease both}
-.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .6s .3s ease both}
-.btn-primary{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:.9rem 2rem;text-decoration:none;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;gap:.5rem}
+.hero-buttons{display:flex;flex-direction:row;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .6s .3s ease both}
+.btn-primary{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:.9rem 2rem;text-decoration:none;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;justify-content:center;gap:.5rem}
 .btn-primary:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--dark)}
-.btn-secondary{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:#fff;color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:.9rem 2rem;text-decoration:none;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s}
+.btn-secondary{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:#fff;color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:.9rem 2rem;text-decoration:none;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;justify-content:center}
 .btn-secondary:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--dark)}
 .hero-mockup{animation:fadeUp .6s .4s ease both;width:100%;max-width:340px}
 .ipad-frame{background:var(--dark);border-radius:28px;padding:14px;box-shadow:0 24px 64px rgba(45,38,64,.3)}
@@ -98,7 +98,14 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
 .footer-links a:hover{opacity:1}
 .footer-copy{font-size:.8rem;font-weight:600;opacity:.38}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:640px){.nav-links{display:none}footer{flex-direction:column;align-items:flex-start}.pricing-grid{grid-template-columns:1fr}.price-card.featured{transform:none}}
+@media(max-width:768px){
+  .nav-links{display:none}
+  footer{flex-direction:column;align-items:flex-start}
+  .pricing-grid{grid-template-columns:1fr}
+  .price-card.featured{transform:none}
+  .hero-buttons{flex-direction:column;align-items:center;width:100%}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center;text-align:center}
+}
 </style>
 </head>
 <body>
@@ -282,7 +289,6 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
 <script>
 const LB_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzU4m0mdKDgguJPPXtDpm0_wc-TAifpfCPZcw3bhQIBYKEEs4WEPXfak8-ap7NtPmc7/exec';
 
-// Toggle highlight between Parent and Teacher buttons
 document.querySelectorAll('input[name="leadType"]').forEach(radio => {
   radio.addEventListener('change', () => {
     document.getElementById('lb-label-parent').style.background =
