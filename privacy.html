@@ -52,6 +52,8 @@
     .highlight-box p { margin: 0; opacity: 1; font-weight: 700; }
     .highlight-box.green { background: #f0fdf7; border-color: var(--green); box-shadow: 3px 4px 0 var(--green); }
     .highlight-box.green p { color: #1a6b4a; }
+    .highlight-box.yellow { background: #fffbea; border-color: var(--yellow-dark); box-shadow: 3px 4px 0 var(--yellow-dark); }
+    .highlight-box.yellow p { color: #7a5c00; }
     .divider { border: none; border-top: 2px solid rgba(46,38,64,0.12); margin: 40px 0; }
     .contact-card { background: var(--purple); border: 2.5px solid var(--purple); border-radius: 24px; padding: 40px 32px; text-align: center; box-shadow: 6px 7px 0 var(--purple-mid); margin-top: 48px; }
     .contact-card h2 { color: white; justify-content: center; }
@@ -79,12 +81,12 @@
   <main>
 
     <div class="page-header">
-      <div class="page-badge">📄 Legal</div>
+      <div class="page-badge">Legal</div>
       <h1>Privacy Policy</h1>
       <div class="meta">
-        <span>📅 Last updated: April 2026</span>
-        <span>🏢 Learning Block Ltd</span>
-        <span>📍 United Kingdom</span>
+        <span>Last updated: April 2026</span>
+        <span>Learning Block Ltd</span>
+        <span>United Kingdom</span>
       </div>
     </div>
 
@@ -92,7 +94,7 @@
     <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:48px;">
       <div style="display:flex;align-items:center;gap:14px;background:#f0fdf7;border:2px solid var(--green);border-radius:50px;padding:14px 24px;box-shadow:3px 4px 0 var(--green);">
         <span style="font-size:22px;">🚫</span>
-        <div><strong style="font-family:'Fredoka',sans-serif;font-size:17px;color:#1a6b4a;">No data collected</strong> <span style="font-size:14px;font-weight:600;color:#2a8a6a;opacity:.8;">— we don't collect any personal information from you or your child</span></div>
+        <div><strong style="font-family:'Fredoka',sans-serif;font-size:17px;color:#1a6b4a;">No data collected from children</strong> <span style="font-size:14px;font-weight:600;color:#2a8a6a;opacity:.8;">— we don't collect any personal information from your child</span></div>
       </div>
       <div style="display:flex;align-items:center;gap:14px;background:#f0fdf7;border:2px solid var(--green);border-radius:50px;padding:14px 24px;box-shadow:3px 4px 0 var(--green);">
         <span style="font-size:22px;">📵</span>
@@ -104,46 +106,90 @@
       </div>
       <div style="display:flex;align-items:center;gap:14px;background:#f0fdf7;border:2px solid var(--green);border-radius:50px;padding:14px 24px;box-shadow:3px 4px 0 var(--green);">
         <span style="font-size:22px;">👶</span>
-        <div><strong style="font-family:'Fredoka',sans-serif;font-size:17px;color:#1a6b4a;">Child safe</strong> <span style="font-size:14px;font-weight:600;color:#2a8a6a;opacity:.8;">— no accounts, no sign-in, no external services</span></div>
+        <div><strong style="font-family:'Fredoka',sans-serif;font-size:17px;color:#1a6b4a;">Child safe</strong> <span style="font-size:14px;font-weight:600;color:#2a8a6a;opacity:.8;">— no accounts, no sign-in, no external services used by the app</span></div>
       </div>
     </div>
 
     <!-- SECTION 1 -->
     <div class="policy-section">
       <h2><span class="section-number">1</span> What we collect</h2>
-      <p>Learning Block stores the following locally on your iPad only. Nothing is sent to us or any third party:</p>
+      <p>Learning Block stores the following locally on your iPad only. Nothing is sent to us or any third party from within the app:</p>
       <ul class="checkmark">
         <li>Your child's name and chosen emoji avatar</li>
         <li>Quiz results, streak counts, XP, and badge progress</li>
         <li>Parent settings — year group, topics, quiz length, PIN, and schedule</li>
       </ul>
       <div class="highlight-box green">
-        <p>✓ Learning Block has no servers. No data ever leaves your device.</p>
+        <p>✓ Learning Block has no servers. No data ever leaves your device from within the app.</p>
       </div>
-      <p>All data can be deleted at any time via Reset Progress in Parent Settings, or by deleting the app. If you choose to sign up for email updates on our website, we collect your email address via Mailchimp for occasional product news. This is entirely optional and you can unsubscribe at any time.</p>
+      <p>All app data can be deleted at any time via Reset Progress in Parent Settings, or by deleting the app.</p>
     </div>
 
     <hr class="divider">
 
-    <!-- SECTION 2 -->
+    <!-- SECTION 2 — EMAIL SIGNUP (NEW) -->
     <div class="policy-section">
-      <h2><span class="section-number">2</span> Payments &amp; third parties</h2>
-      <p>Subscriptions are processed entirely by Apple through the App Store — we never see or store your payment details. The app contains no analytics, advertising, or tracking of any kind. The only external service used is Apple's App Store for subscription management.</p>
-      <p>To manage or cancel your subscription: Settings → Apple ID → Subscriptions. Apple's privacy policy: <a href="https://www.apple.com/legal/privacy/" target="_blank" style="color: var(--purple-mid); font-weight: 700;">apple.com/legal/privacy</a>.</p>
+      <h2><span class="section-number">2</span> Email waitlist &amp; marketing</h2>
+      <p>If you choose to sign up for updates on our website at learningblock.app, we collect the following information:</p>
+      <ul>
+        <li>Your email address</li>
+        <li>Whether you are a parent or a teacher/school</li>
+        <li>The date and time you gave consent</li>
+      </ul>
+      <p>We use this information to:</p>
+      <ul>
+        <li>Send you a confirmation email when you sign up</li>
+        <li>Notify you when Learning Block launches on the App Store</li>
+        <li>Send occasional updates about the app, including new features and feedback requests</li>
+        <li>Follow up personally with teachers and schools about potential school use</li>
+      </ul>
+      <div class="highlight-box yellow">
+        <p>We will never sell your email address or share it with third parties for marketing purposes.</p>
+      </div>
+
+      <h2 style="margin-top:28px;font-size:20px;">How your data is stored</h2>
+      <p>Email signups are stored in a private Google Sheet accessible only to Learning Block Ltd. Confirmation and notification emails are sent via Gmail. Your data is processed using Google's infrastructure, which may involve servers outside the UK. Google LLC is certified under the EU-US Data Privacy Framework and provides appropriate safeguards under UK GDPR.</p>
+      <p>We do not use any third-party email marketing platforms. Your data is not shared with Mailchimp or any equivalent service.</p>
+
+      <h2 style="margin-top:28px;font-size:20px;">How long we keep your data</h2>
+      <p>We retain your email address on our waitlist until you unsubscribe, or until 12 months after the app launches — whichever comes first. You can request deletion at any time by emailing <a href="mailto:hello@learningblock.app" style="color:var(--purple-mid);font-weight:700;">hello@learningblock.app</a>.</p>
+
+      <h2 style="margin-top:28px;font-size:20px;">Unsubscribing</h2>
+      <p>Every email we send includes an unsubscribe link. Clicking it will immediately remove you from our mailing list and flag your record so no further emails are sent. You can also unsubscribe by replying to any of our emails with "unsubscribe" in the subject line.</p>
+
+      <h2 style="margin-top:28px;font-size:20px;">Legal basis</h2>
+      <p>We process your email address on the basis of your explicit consent, given when you ticked the opt-in checkbox on our signup form. You may withdraw this consent at any time by unsubscribing.</p>
     </div>
 
     <hr class="divider">
 
     <!-- SECTION 3 -->
     <div class="policy-section">
-      <h2><span class="section-number">3</span> Your rights &amp; contact</h2>
-      <p>Learning Block Ltd complies with UK GDPR. Because all data lives on your device, your rights — access, erasure, portability — are exercised directly through the app or by deleting it. We may update this policy from time to time; the date at the top of this page reflects the latest version.</p>
+      <h2><span class="section-number">3</span> Payments &amp; third parties</h2>
+      <p>Subscriptions are processed entirely by Apple through the App Store — we never see or store your payment details. The app contains no analytics, advertising, or tracking of any kind. The only external service used by the app is Apple's App Store for subscription management.</p>
+      <p>To manage or cancel your subscription: Settings → Apple ID → Subscriptions. Apple's privacy policy: <a href="https://www.apple.com/legal/privacy/" target="_blank" style="color: var(--purple-mid); font-weight: 700;">apple.com/legal/privacy</a>.</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 4 -->
+    <div class="policy-section">
+      <h2><span class="section-number">4</span> Your rights</h2>
+      <p>Learning Block Ltd complies with UK GDPR. You have the right to:</p>
+      <ul>
+        <li>Access the personal data we hold about you</li>
+        <li>Request correction or deletion of your data</li>
+        <li>Withdraw consent for email communications at any time</li>
+        <li>Lodge a complaint with the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank" style="color:var(--purple-mid);font-weight:700;">ico.org.uk</a></li>
+      </ul>
+      <p>Because all app data lives on your device, rights relating to quiz progress and settings are exercised directly through the app or by deleting it. For email data, contact us at <a href="mailto:hello@learningblock.app" style="color:var(--purple-mid);font-weight:700;">hello@learningblock.app</a>.</p>
+      <p>We may update this policy from time to time. The date at the top of this page reflects the latest version.</p>
     </div>
 
     <div class="contact-card">
       <h2>Questions?</h2>
       <p>Get in touch and we'll respond as quickly as we can.</p>
-      <a href="mailto:learningblockapp@gmail.com">learningblockapp@gmail.com</a>
+      <a href="mailto:hello@learningblock.app">hello@learningblock.app</a>
     </div>
 
   </main>
