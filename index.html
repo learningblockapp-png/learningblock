@@ -200,7 +200,6 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
       <div class="section-label">Pricing</div>
       <h2 class="section-title">Try free for 7 days.<br>Cancel anytime.</h2>
       <div class="pricing-grid">
-
         <div class="price-card featured">
           <div class="recommended-badge">⭐ Best value</div>
           <h3>Annual</h3>
@@ -208,44 +207,66 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
           <div class="price-sub">per year</div>
           <div class="save-pill">Save 48% · 7-day free trial</div>
         </div>
-
         <div class="price-card">
           <h3>Monthly</h3>
           <div class="price">£3.99</div>
           <div class="price-sub">per month</div>
           <div class="price-detail">Flexible — cancel anytime</div>
         </div>
-
       </div>
       <p class="trial-note">All plans include a 7-day free trial. Cancel any time from your device settings.</p>
     </div>
   </section>
 
   <section id="download" class="cta-section">
-  <div class="cta-card" style="max-width:520px;">
-    <img src="logo.png" alt="" style="height:80px;display:block;margin:0 auto 1rem;">
-    <h2>Coming soon to the App Store</h2>
-    <p>Learning Block is finishing up. Sign up to be notified the moment it launches on the App Store — no spam, just one email.</p>
-    <form action="https://app.us8.list-manage.com/subscribe/post?u=4ea05d9778461c3d6023f7f02&amp;id=d417cb3bc9&amp;f_id=00183ce3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate style="display:flex;flex-direction:column;gap:.75rem;">
-      <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Your email address" required
-        style="width:100%;padding:.85rem 1.1rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;background:var(--cream);color:var(--dark);outline:none;box-sizing:border-box;">
-      <div aria-hidden="true" style="position:absolute;left:-5000px;">
-        <input type="text" name="b_4ea05d9778461c3d6023f7f02_d417cb3bc9" tabindex="-1" value="">
-      </div>
-      <div id="mce-responses">
-        <div id="mce-error-response" style="display:none;color:#cc0000;font-weight:700;font-size:.9rem;"></div>
-        <div id="mce-success-response" style="display:none;color:#1a7a54;font-weight:700;font-size:.9rem;"></div>
-      </div>
-      <button type="submit" name="subscribe" id="mc-embedded-subscribe"
-        style="width:100%;padding:.9rem 2rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:14px;box-shadow:0 5px 0 var(--dark);cursor:pointer;transition:transform .15s,box-shadow .15s;"
-        onmouseover="this.style.transform='translateY(3px)';this.style.boxShadow='0 2px 0 var(--dark)'"
-        onmouseout="this.style.transform='';this.style.boxShadow='0 5px 0 var(--dark)'">
-        Notify me at launch 🔔
-      </button>
-    </form>
-    <p style="font-size:.78rem;opacity:.45;margin-top:.75rem;margin-bottom:0;">No spam. Unsubscribe anytime. — <a href="privacy.html" style="color:var(--dark);opacity:.7;">Privacy policy</a></p>
-  </div>
-</section>
+    <div class="cta-card" style="max-width:520px;">
+      <img src="logo.png" alt="" style="height:80px;display:block;margin:0 auto 1rem;">
+      <h2>Coming soon to the App Store</h2>
+      <p>Learning Block is finishing up. Sign up to be notified the moment it launches on the App Store — no spam, just one email.</p>
+
+      <form id="lb-signup-form" style="display:flex;flex-direction:column;gap:.75rem;">
+
+        <!-- Parent / Teacher toggle -->
+        <div style="display:flex;gap:.6rem;">
+          <label id="lb-label-parent"
+            style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.75rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;cursor:pointer;background:var(--yellow);transition:background .15s;">
+            <input type="radio" name="leadType" value="Parent" checked style="display:none;">
+            👨‍👩‍👧 Parent
+          </label>
+          <label id="lb-label-teacher"
+            style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.75rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;cursor:pointer;background:#fff;transition:background .15s;">
+            <input type="radio" name="leadType" value="Teacher" style="display:none;">
+            🏫 Teacher / School
+          </label>
+        </div>
+
+        <!-- Email -->
+        <input type="email" id="lb-email" placeholder="Your email address" required
+          style="width:100%;padding:.85rem 1.1rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;background:var(--cream);color:var(--dark);outline:none;box-sizing:border-box;">
+
+        <!-- Consent -->
+        <label style="display:flex;align-items:flex-start;gap:.6rem;font-size:.85rem;font-weight:700;opacity:.7;cursor:pointer;text-align:left;">
+          <input type="checkbox" id="lb-consent" required
+            style="margin-top:3px;width:16px;height:16px;flex-shrink:0;accent-color:var(--purple-dark);">
+          I agree to receive emails from Learning Block about the app launch, updates, and occasional feedback requests. No spam, unsubscribe anytime.
+        </label>
+
+        <!-- Status message -->
+        <div id="lb-message" style="display:none;font-weight:700;font-size:.9rem;padding:.6rem 1rem;border-radius:10px;"></div>
+
+        <!-- Submit -->
+        <button type="button" id="lb-submit" onclick="handleLBSignup()"
+          style="width:100%;padding:.9rem 2rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:14px;box-shadow:0 5px 0 var(--dark);cursor:pointer;transition:transform .15s,box-shadow .15s;"
+          onmouseover="this.style.transform='translateY(3px)';this.style.boxShadow='0 2px 0 var(--dark)'"
+          onmouseout="this.style.transform='';this.style.boxShadow='0 5px 0 var(--dark)'">
+          Notify me at launch 🔔
+        </button>
+
+      </form>
+
+      <p style="font-size:.78rem;opacity:.45;margin-top:.75rem;margin-bottom:0;">No spam. Unsubscribe anytime. — <a href="privacy.html" style="color:var(--dark);opacity:.7;">Privacy policy</a></p>
+    </div>
+  </section>
 
 </div>
 
@@ -259,8 +280,83 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
 </footer>
 
 <script>
-const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.animation='fadeUp .45s ease both';e.target.style.opacity='1'},i*60);obs.unobserve(e.target)}})},{threshold:.1});
-document.querySelectorAll('.step-card,.feature-card,.year-card,.price-card').forEach(el=>obs.observe(el));
+const LB_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzU4m0mdKDgguJPPXtDpm0_wc-TAifpfCPZcw3bhQIBYKEEs4WEPXfak8-ap7NtPmc7/exec';
+
+// Toggle highlight between Parent and Teacher buttons
+document.querySelectorAll('input[name="leadType"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    document.getElementById('lb-label-parent').style.background =
+      radio.value === 'Parent' && radio.checked ? 'var(--yellow)' : '#fff';
+    document.getElementById('lb-label-teacher').style.background =
+      radio.value === 'Teacher' && radio.checked ? 'var(--yellow)' : '#fff';
+  });
+});
+
+async function handleLBSignup() {
+  const email = document.getElementById('lb-email').value.trim();
+  const consent = document.getElementById('lb-consent').checked;
+  const leadType = document.querySelector('input[name="leadType"]:checked').value;
+  const msg = document.getElementById('lb-message');
+  const btn = document.getElementById('lb-submit');
+
+  if (!email) {
+    showMsg(msg, 'Please enter your email address.', '#cc0000', '#fff0f0');
+    return;
+  }
+  if (!consent) {
+    showMsg(msg, 'Please tick the consent box to continue.', '#cc0000', '#fff0f0');
+    return;
+  }
+
+  btn.textContent = 'Signing you up…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch(LB_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `email=${encodeURIComponent(email)}&leadType=${encodeURIComponent(leadType)}&consent=true`
+    });
+    const data = await res.json();
+
+    if (data.status === 'success') {
+      showMsg(msg, "🎉 You're on the list! We'll email you at launch.", '#1a7a54', '#f0fff8');
+      document.getElementById('lb-signup-form').reset();
+      document.getElementById('lb-label-parent').style.background = 'var(--yellow)';
+      document.getElementById('lb-label-teacher').style.background = '#fff';
+    } else if (data.status === 'duplicate') {
+      showMsg(msg, "You're already signed up — we'll be in touch at launch!", '#6B52E0', '#f5f0ff');
+    } else {
+      showMsg(msg, 'Something went wrong. Please try again.', '#cc0000', '#fff0f0');
+    }
+  } catch (err) {
+    showMsg(msg, 'Something went wrong. Please try again.', '#cc0000', '#fff0f0');
+  }
+
+  btn.textContent = 'Notify me at launch 🔔';
+  btn.disabled = false;
+}
+
+function showMsg(el, text, color, bg) {
+  el.textContent = text;
+  el.style.color = color;
+  el.style.background = bg;
+  el.style.border = `2px solid ${color}`;
+  el.style.display = 'block';
+}
+
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => {
+        e.target.style.animation = 'fadeUp .45s ease both';
+        e.target.style.opacity = '1';
+      }, i * 60);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: .1 });
+document.querySelectorAll('.step-card,.feature-card,.year-card,.price-card').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
