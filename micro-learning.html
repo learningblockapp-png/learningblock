@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why 10 Minutes of Maths a Day Beats an Hour at the Weekend — Learning Block Blog</title>
+<meta name="description" content="The research is clear: short daily sessions crush occasional long ones. Here's why micro learning works and how to make it happen at home.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cream:#FFF8EE;--dark:#2D2640;--yellow:#FFD94A;--purple:#A78BFA;--purple-dark:#6B52E0;--green:#4FCDA3;--dot:rgba(255,217,74,0.35)}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,var(--dot) 2px,transparent 2px);background-size:48px 48px;pointer-events:none;z-index:0}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,248,238,0.92);backdrop-filter:blur(12px);border-bottom:2.5px solid var(--dark);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.5rem;color:var(--dark);text-decoration:none;cursor:pointer;display:flex;align-items:center;gap:8px}
+.nav-logo img{height:36px}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-weight:700;font-size:.95rem;color:var(--dark);text-decoration:none;opacity:.6;transition:opacity .2s;white-space:nowrap}
+.nav-links a:hover{opacity:1}
+.nav-links a.active{opacity:1}
+.nav-cta{background:var(--yellow)!important;opacity:1!important;padding:.5rem 1.25rem;border-radius:50px;border:2.5px solid var(--dark);box-shadow:0 3px 0 var(--dark);transition:transform .15s,box-shadow .15s!important}
+.nav-cta:hover{transform:translateY(2px);box-shadow:0 1px 0 var(--dark)!important}
+.nav-burger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+.nav-burger span{display:block;width:22px;height:2.5px;background:var(--dark);border-radius:2px}
+.mobile-nav{display:none;position:fixed;top:52px;left:0;right:0;background:var(--cream);border-bottom:2.5px solid var(--dark);z-index:99;flex-direction:column;padding:1rem 1.25rem 1.5rem;gap:.25rem;transform:translateY(-110%);transition:transform .3s ease;box-shadow:0 8px 24px rgba(45,38,64,.1)}
+.mobile-nav.open{transform:translateY(0)}
+.mobile-nav a{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;color:var(--dark);text-decoration:none;padding:.7rem 0;border-bottom:1.5px solid rgba(45,38,64,.08)}
+.mobile-nav a:last-child{border-bottom:none}
+.mobile-nav-cta{background:var(--yellow);border:2.5px solid var(--dark);border-radius:14px;padding:.75rem!important;text-align:center;box-shadow:0 4px 0 var(--dark);margin-top:.5rem;border-bottom:none!important}
+.article-wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:3rem 2rem 4rem}
+.article-back{display:inline-flex;align-items:center;gap:.4rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;color:var(--purple-dark);text-decoration:none;margin-bottom:2rem;opacity:.7;transition:opacity .2s}
+.article-back:hover{opacity:1}
+.article-tag{display:inline-block;padding:.25rem .75rem;border-radius:50px;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border:2px solid var(--dark);margin-bottom:1rem}
+.tag-learning{background:var(--green);color:var(--dark)}
+.article-date{font-size:.82rem;font-weight:700;opacity:.4;margin-bottom:.75rem}
+.article-wrap h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.8rem,4.5vw,2.6rem);line-height:1.15;margin-bottom:2rem}
+.article-wrap h2{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.35rem;margin-top:2.5rem;margin-bottom:.75rem}
+.article-wrap p{font-size:1.02rem;font-weight:600;line-height:1.8;opacity:.72;margin-bottom:1.25rem}
+.article-cta{background:#fff;border:2.5px solid var(--dark);border-radius:24px;padding:2rem;box-shadow:0 6px 0 var(--dark);margin-top:3rem;text-align:center}
+.article-cta h3{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.3rem;margin-bottom:.5rem}
+.article-cta p{font-size:.92rem;opacity:.6;margin-bottom:1.25rem}
+.article-cta a{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:14px;padding:.75rem 1.75rem;text-decoration:none;box-shadow:0 4px 0 var(--dark);display:inline-flex;align-items:center;gap:.4rem;transition:transform .15s,box-shadow .15s}
+.article-cta a:hover{transform:translateY(2px);box-shadow:0 2px 0 var(--dark)}
+footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;z-index:1}
+.footer-logo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.15rem;color:var(--dark);text-decoration:none;display:flex;align-items:center;gap:6px}
+.footer-logo img{height:28px}
+.footer-links{display:flex;gap:1.5rem;list-style:none}
+.footer-links a{font-size:.87rem;font-weight:700;color:var(--dark);opacity:.5;text-decoration:none;transition:opacity .2s}
+.footer-links a:hover{opacity:1}
+.footer-copy{font-size:.8rem;font-weight:600;opacity:.38}
+@media(max-width:768px){.nav-links{display:none}.nav-burger{display:flex}.mobile-nav{display:flex}nav{padding:0 1rem;height:52px}.nav-logo{font-size:1.15rem;gap:6px}.nav-logo img{height:28px}.article-wrap{padding:2rem 1.25rem 3rem}footer{flex-direction:column;align-items:flex-start;padding:1.5rem 1.25rem}}
+@media(max-width:400px){.nav-logo{font-size:1rem}.nav-logo img{height:24px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><img src="../logo.png" alt="Learning Block"><span>Learning Block</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="../blog.html" class="active">Blog</a></li>
+    <li><a href="/#download" class="nav-cta">Get notified</a></li>
+  </ul>
+  <button class="nav-burger" onclick="document.querySelector('.mobile-nav').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav">
+  <a href="/" onclick="this.parentElement.classList.remove('open')">Home</a>
+  <a href="../blog.html" onclick="this.parentElement.classList.remove('open')">Blog</a>
+  <a href="/#download" class="mobile-nav-cta" onclick="this.parentElement.classList.remove('open')">🔔 Get notified</a>
+</div>
+
+<article class="article-wrap">
+  <a href="../blog.html" class="article-back">← Back to Blog</a>
+  <span class="article-tag tag-learning">Learning</span>
+  <div class="article-date">April 2026</div>
+  <h1>Why 10 Minutes of Maths a Day Beats an Hour at the Weekend</h1>
+
+  <p>Here's a scene most parents will recognise. It's Sunday afternoon. You've been meaning to sit down with your child and go through some maths all week. Now you're both tired, nobody wants to do it, and the 45 minutes you had planned turns into 10 minutes of actual work and 35 minutes of negotiation.</p>
+
+  <p>There's a better way. And it's backed by a surprisingly large pile of research.</p>
+
+  <h2>The science of small</h2>
+
+  <p>The idea behind micro learning is simple: short, focused bursts of study (5 to 15 minutes) beat long sessions almost every time. This isn't new age thinking. It goes back to the 1880s when psychologist Hermann Ebbinghaus discovered the "spacing effect", which basically says that spreading your learning across multiple short sessions helps you remember things far better than cramming it all into one go.</p>
+
+  <p>More recently, a 2024 study published in The Journal of Learning for Development found that students in micro learning groups scored significantly higher than those in traditional longer sessions. And research from Rutgers University in 2025 put it bluntly: children who use screens for two or more hours a day are at higher risk of concentration difficulties, making shorter study sessions even more important.</p>
+
+  <p>Think about it. A child's attention span is not built for hour long study marathons. But ten focused minutes? That's completely doable. And when those ten minutes happen every single day, the results compound fast.</p>
+
+  <h2>Why daily beats weekly</h2>
+
+  <p>There's a concept in learning science called consolidation. When your brain takes in a small amount of new information and isn't immediately overwhelmed by more, it has time to move that information from short term memory into long term memory. Psychologist George Miller's research showed that most people can hold about seven items in short term memory at once. Pile on more and the earlier stuff falls off the edge.</p>
+
+  <p>Daily micro learning works because it respects how the brain actually operates. You learn a small thing, sleep on it, and come back the next day to build on it. The connections get stronger each time. Compare that to a single weekly session where you're trying to cover five topics in one sitting and hoping something sticks.</p>
+
+  <p>For maths, this is especially powerful. Maths is cumulative. You need addition before multiplication, multiplication before fractions, fractions before percentages. A little bit every day creates a steady upward ramp. A big chunk once a week creates a rollercoaster that mostly goes sideways.</p>
+
+  <h2>Making it stick at home</h2>
+
+  <p>The tricky part isn't knowing that daily practice works. It's making it actually happen. Every parent has good intentions on a Monday morning that have completely evaporated by Wednesday teatime.</p>
+
+  <p>This is where building micro learning into an existing routine makes all the difference. Attach it to something that already happens every day. For a lot of families, the obvious anchor is screen time. Your child wants to use the iPad anyway, so you make the maths quiz the thing that unlocks it.</p>
+
+  <p>That's the whole idea behind Learning Block. Ten questions, curriculum aligned, takes about five minutes. The iPad stays locked until it's done. There's no negotiation, no "I'll do it later", no forgetting. It just becomes part of the routine, like brushing teeth.</p>
+
+  <p>And because the questions are different every time and adjust to your child's year group, it's genuine practice rather than repetition of the same worksheet you printed three weeks ago and found under the sofa.</p>
+
+  <h2>The compound effect</h2>
+
+  <p>Here's the exciting bit. A child doing 10 questions a day, five days a week, will have answered over 2,500 questions in a year. That's 2,500 small moments where their brain practised recalling a method, worked through a problem, and built a tiny bit more confidence.</p>
+
+  <p>No Sunday afternoon maths marathon is going to match that. Not even close.</p>
+
+  <p>The research is clear. The method is simple. And the results speak for themselves: short, daily, and consistent beats long, occasional, and stressful every single time.</p>
+
+  <div class="article-cta">
+    <h3>Built by parents, for parents</h3>
+    <p>Learning Block locks your child's iPad until they complete a curriculum-aligned maths quiz. No quiz, no screen time.</p>
+    <a href="/#download">🔔 Get notified at launch</a>
+  </div>
+</article>
+
+<footer>
+  <a href="/" class="footer-logo"><img src="../logo.png" alt="Learning Block">Learning Block</a>
+  <ul class="footer-links"><li><a href="../privacy.html">Privacy Policy</a></li><li><a href="mailto:hello@learningblock.app">Contact</a></li></ul>
+  <span class="footer-copy">© 2026 Learning Block Ltd. All rights reserved.</span>
+</footer>
+
+</body>
+</html>
