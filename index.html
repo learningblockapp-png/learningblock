@@ -14,53 +14,86 @@ html{scroll-behavior:smooth}
 body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,var(--dot) 2px,transparent 2px);background-size:48px 48px;pointer-events:none;z-index:0}
 nav{position:sticky;top:0;z-index:100;background:rgba(255,248,238,0.92);backdrop-filter:blur(12px);border-bottom:2.5px solid var(--dark);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
-.nav-logo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.5rem;color:var(--dark);text-decoration:none;cursor:pointer}
+.nav-logo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.5rem;color:var(--dark);text-decoration:none;cursor:pointer;display:flex;align-items:center;gap:8px}
+.nav-logo img{height:36px}
 .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
 .nav-links a{font-weight:700;font-size:.95rem;color:var(--dark);text-decoration:none;opacity:.6;transition:opacity .2s;white-space:nowrap}
 .nav-links a:hover{opacity:1}
 .nav-cta{background:var(--yellow)!important;opacity:1!important;padding:.5rem 1.25rem;border-radius:50px;border:2.5px solid var(--dark);box-shadow:0 3px 0 var(--dark);transition:transform .15s,box-shadow .15s!important}
 .nav-cta:hover{transform:translateY(2px);box-shadow:0 1px 0 var(--dark)!important}
 section{position:relative;z-index:1}
-.hero{min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem 3rem;gap:1.75rem}
-.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:2.5px solid var(--dark);border-radius:50px;padding:.4rem 1rem;font-weight:700;font-size:.85rem;box-shadow:0 3px 0 var(--dark);animation:fadeUp .6s ease both}
-.hero h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(3rem,8vw,5.5rem);line-height:1.05;max-width:800px;animation:fadeUp .6s .1s ease both}
+
+/* iPad CSS Frame */
+.ipad-wrap{display:inline-block}
+.ipad-bezel{background:#1a1a2e;border-radius:24px;padding:10px;box-shadow:0 20px 60px rgba(45,38,64,.22),0 0 0 1px rgba(255,255,255,.05) inset}
+.ipad-bezel img{display:block;width:100%;border-radius:14px}
+.ipad-lg .ipad-bezel{border-radius:28px;padding:12px}
+.ipad-lg .ipad-bezel img{border-radius:18px}
+.ipad-sm .ipad-bezel{border-radius:18px;padding:8px}
+.ipad-sm .ipad-bezel img{border-radius:10px}
+
+/* HERO */
+.hero{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:4rem 2rem 3rem;gap:4rem;max-width:1200px;margin:0 auto}
+.hero-text{flex:1;max-width:540px;animation:fadeUp .6s ease both}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:2.5px solid var(--dark);border-radius:50px;padding:.4rem 1rem;font-weight:700;font-size:.85rem;box-shadow:0 3px 0 var(--dark);margin-bottom:1.5rem}
+.hero h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.05;margin-bottom:1.25rem}
 .hero h1 span{color:var(--purple-dark);position:relative;display:inline-block}
 .hero h1 span::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:8px;background:var(--yellow);border-radius:4px;z-index:-1}
-.hero-sub{font-size:1.15rem;font-weight:600;opacity:.65;max-width:500px;line-height:1.7;animation:fadeUp .6s .2s ease both}
-.hero-buttons{display:flex;flex-direction:row;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .6s .3s ease both}
+.hero-sub{font-size:1.1rem;font-weight:600;opacity:.65;max-width:460px;line-height:1.7;margin-bottom:1.75rem}
+.hero-buttons{display:flex;flex-direction:row;gap:1rem;flex-wrap:wrap}
+.hero-visual{flex:0 0 auto;animation:fadeUp .6s .3s ease both;display:flex;gap:1.25rem;align-items:center}
+.hero-visual .ipad-primary{width:260px}
+.hero-visual .ipad-secondary{width:220px;transform:translateY(40px)}
 .btn-primary{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:.9rem 2rem;text-decoration:none;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;justify-content:center;gap:.5rem}
 .btn-primary:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--dark)}
 .btn-secondary{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:#fff;color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:.9rem 2rem;text-decoration:none;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;justify-content:center}
 .btn-secondary:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--dark)}
-.hero-mockup{animation:fadeUp .6s .4s ease both;width:100%;max-width:340px}
-.ipad-frame{background:var(--dark);border-radius:28px;padding:14px;box-shadow:0 24px 64px rgba(45,38,64,.3)}
-.ipad-screen{background:var(--cream);border-radius:16px;padding:1.5rem;min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;position:relative;overflow:hidden}
-.ipad-screen::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,217,74,.3) 2px,transparent 2px);background-size:24px 24px}
-.lock-emoji{font-size:2.8rem;position:relative;z-index:1}
-.ipad-title{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.3rem;position:relative;z-index:1}
-.ipad-sub{font-size:.78rem;font-weight:600;opacity:.6;text-align:center;position:relative;z-index:1;max-width:200px}
-.ipad-btn{background:var(--yellow);border:2.5px solid var(--dark);border-radius:12px;padding:.55rem 1.4rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.95rem;box-shadow:0 3px 0 var(--dark);position:relative;z-index:1;animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+
+/* SECTIONS */
 .section-inner{max-width:1100px;margin:0 auto;padding:5rem 2rem}
 .section-label{font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-dark);margin-bottom:.6rem}
-.section-title{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(2rem,4vw,2.8rem);margin-bottom:2.5rem}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem}
-.step-card{background:#fff;border:2.5px solid var(--dark);border-radius:24px;padding:1.75rem;box-shadow:0 6px 0 var(--dark);transition:transform .2s,box-shadow .2s;opacity:0}
+.section-title{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(2rem,4vw,2.8rem);margin-bottom:1rem}
+.section-subtitle{font-size:1.05rem;font-weight:600;opacity:.6;line-height:1.7;max-width:560px;margin-bottom:2.5rem}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.step-card{background:#fff;border:2.5px solid var(--dark);border-radius:24px;padding:1.5rem;box-shadow:0 6px 0 var(--dark);transition:transform .2s,box-shadow .2s;opacity:0;display:flex;flex-direction:column}
 .step-card:hover{transform:translateY(-3px);box-shadow:0 9px 0 var(--dark)}
 .step-number{width:38px;height:38px;background:var(--yellow);border:2.5px solid var(--dark);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;margin-bottom:1rem;box-shadow:0 3px 0 var(--dark)}
 .step-card h3{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.2rem;margin-bottom:.4rem}
-.step-card p{font-size:.9rem;font-weight:600;opacity:.62;line-height:1.65}
-.features-section{background:var(--dark);position:relative;overflow:hidden}
-.features-section::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(167,139,250,.12) 2px,transparent 2px);background-size:48px 48px}
-.features-section .section-inner{position:relative;z-index:1}
-.features-section .section-label{color:var(--yellow)}
-.features-section .section-title{color:#fff}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1rem}
-.feature-card{background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.1);border-radius:20px;padding:1.5rem;transition:background .2s,border-color .2s;opacity:0}
-.feature-card:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22)}
-.feature-icon{font-size:1.9rem;margin-bottom:.7rem;display:block}
-.feature-card h3{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;margin-bottom:.35rem}
-.feature-card p{font-size:.87rem;font-weight:600;color:rgba(255,255,255,.5);line-height:1.65}
+.step-card p{font-size:.88rem;font-weight:600;opacity:.62;line-height:1.65;margin-bottom:1.25rem}
+.step-card .ipad-wrap{margin-top:auto;width:100%}
+.step-card .ipad-bezel{width:100%}
+
+/* SHOWCASE */
+.showcase-dark{background:var(--dark);position:relative;overflow:hidden}
+.showcase-dark::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(167,139,250,.12) 2px,transparent 2px);background-size:48px 48px}
+.showcase-dark .section-inner{position:relative;z-index:1}
+.showcase-dark .section-label{color:var(--yellow)}
+.showcase-dark .section-title{color:#fff}
+.showcase-row{display:flex;align-items:center;gap:4rem;margin-bottom:5rem;opacity:0}
+.showcase-row:last-of-type{margin-bottom:0}
+.showcase-row.reverse{flex-direction:row-reverse}
+.showcase-text{flex:1;min-width:0}
+.showcase-text .emoji-tag{font-size:1.6rem;margin-bottom:.6rem;display:block}
+.showcase-text h3{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.6rem;color:#fff;margin-bottom:.6rem}
+.showcase-text p{font-size:.95rem;font-weight:600;color:rgba(255,255,255,.5);line-height:1.7}
+.showcase-visual{flex:0 0 300px;max-width:300px}
+.showcase-visual .ipad-bezel{transition:transform .3s}
+.showcase-visual:hover .ipad-bezel{transform:scale(1.02) rotate(-1deg)}
+
+/* FEATURE PILLS */
+.features-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:3.5rem;padding-top:3rem;border-top:2px solid rgba(255,255,255,.08)}
+.feature-pill{background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.1);border-radius:16px;padding:1.2rem;display:flex;align-items:flex-start;gap:.85rem;transition:background .2s,border-color .2s;opacity:0}
+.feature-pill:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22)}
+.feature-pill .fp-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
+.feature-pill h4{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;color:#fff;margin-bottom:.2rem}
+.feature-pill p{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.45);line-height:1.55}
+
+/* CURRICULUM */
+.curriculum-header{display:flex;align-items:center;gap:3rem;flex-wrap:wrap;margin-bottom:3rem}
+.curriculum-header-text{flex:1;min-width:280px}
+.curriculum-header-img{flex:0 0 240px;max-width:240px}
 .year-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
 .year-card{background:#fff;border:2.5px solid var(--dark);border-radius:24px;padding:1.75rem;box-shadow:0 6px 0 var(--dark);opacity:0}
 .year-badge{display:inline-block;padding:.28rem .85rem;border-radius:50px;font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--dark);margin-bottom:.85rem}
@@ -70,6 +103,17 @@ section{position:relative;z-index:1}
 .year-card h3{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.25rem;margin-bottom:1rem}
 .topic-list{list-style:none;display:flex;flex-wrap:wrap;gap:.45rem}
 .topic-pill{background:var(--cream);border:2px solid var(--dark);border-radius:50px;padding:.22rem .7rem;font-size:.8rem;font-weight:700}
+
+/* SCROLLING BANNER */
+.screenshot-banner{background:var(--dark);overflow:hidden;padding:3rem 0;position:relative}
+.screenshot-banner::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--dark) 0%,transparent 8%,transparent 92%,var(--dark) 100%);z-index:2;pointer-events:none}
+.banner-track{display:flex;gap:2rem;animation:bannerScroll 40s linear infinite;width:max-content;position:relative;z-index:1}
+.banner-track .ipad-wrap{flex-shrink:0}
+.banner-track .ipad-bezel{height:340px;width:auto;padding:8px;border-radius:18px}
+.banner-track .ipad-bezel img{height:100%;width:auto;border-radius:10px}
+@keyframes bannerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* PRICING */
 .pricing-section{background:var(--dark);position:relative;overflow:hidden}
 .pricing-section::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,217,74,.07) 2px,transparent 2px);background-size:48px 48px}
 .pricing-section .section-inner{position:relative;z-index:1}
@@ -86,32 +130,142 @@ section{position:relative;z-index:1}
 .price-detail{font-size:.75rem;font-weight:700;color:rgba(255,255,255,.35);margin-top:.5rem}
 .save-pill{display:inline-block;background:var(--green);border:2px solid #2a8a6a;border-radius:50px;padding:.2rem .75rem;font-size:.72rem;font-weight:800;color:#1a4a35;margin-top:.6rem}
 .trial-note{text-align:center;margin-top:1.5rem;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.45)}
+
+/* CTA */
 .cta-section{padding:5rem 2rem;text-align:center;position:relative;z-index:1}
-.cta-card{background:#fff;border:2.5px solid var(--dark);border-radius:32px;padding:3.5rem 2rem;box-shadow:0 8px 0 var(--dark);max-width:600px;margin:0 auto}
-.cta-card .emoji{font-size:3.5rem;margin-bottom:1rem;display:block}
+.cta-card{background:#fff;border:2.5px solid var(--dark);border-radius:32px;padding:3.5rem 2rem;box-shadow:0 8px 0 var(--dark);max-width:520px;margin:0 auto}
 .cta-card h2{font-family:'Fredoka',sans-serif;font-weight:700;font-size:2.1rem;margin-bottom:.75rem}
-.cta-card p{font-size:1rem;font-weight:600;opacity:.62;margin-bottom:2rem;line-height:1.65}
+.cta-card>p{font-size:1rem;font-weight:600;opacity:.62;margin-bottom:2rem;line-height:1.65}
+
 footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;z-index:1}
-.footer-logo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.15rem;color:var(--dark);text-decoration:none}
+.footer-logo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.15rem;color:var(--dark);text-decoration:none;display:flex;align-items:center;gap:6px}
+.footer-logo img{height:28px}
 .footer-links{display:flex;gap:1.5rem;list-style:none}
 .footer-links a{font-size:.87rem;font-weight:700;color:var(--dark);opacity:.5;text-decoration:none;transition:opacity .2s}
 .footer-links a:hover{opacity:1}
 .footer-copy{font-size:.8rem;font-weight:600;opacity:.38}
+
+/* Hamburger button */
+.nav-burger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+.nav-burger span{display:block;width:22px;height:2.5px;background:var(--dark);border-radius:2px;transition:transform .2s,opacity .2s}
+
+/* Mobile slide-down nav */
+.mobile-nav{display:none;position:fixed;top:52px;left:0;right:0;background:var(--cream);border-bottom:2.5px solid var(--dark);z-index:99;flex-direction:column;padding:1rem 1.25rem 1.5rem;gap:.25rem;transform:translateY(-110%);transition:transform .3s ease;box-shadow:0 8px 24px rgba(45,38,64,.1)}
+.mobile-nav.open{transform:translateY(0)}
+.mobile-nav a{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;color:var(--dark);text-decoration:none;padding:.7rem 0;border-bottom:1.5px solid rgba(45,38,64,.08)}
+.mobile-nav a:last-child{border-bottom:none}
+.mobile-nav-cta{background:var(--yellow);border:2.5px solid var(--dark);border-radius:14px;padding:.75rem!important;text-align:center;box-shadow:0 4px 0 var(--dark);margin-top:.5rem;border-bottom:none!important}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* Tablet */
+@media(max-width:960px){
+  .hero{flex-direction:column;text-align:center;gap:2.5rem;padding-top:3rem}
+  .hero-text{max-width:100%;display:flex;flex-direction:column;align-items:center}
+  .hero-sub{max-width:500px}
+  .hero-buttons{justify-content:center}
+  .hero-visual{gap:.75rem}
+  .hero-visual .ipad-primary{width:200px}
+  .hero-visual .ipad-secondary{width:170px;transform:translateY(30px)}
+  .showcase-row,.showcase-row.reverse{flex-direction:column;gap:2rem;text-align:center}
+  .showcase-visual{flex:0 0 auto;max-width:260px;margin:0 auto}
+  .steps{grid-template-columns:1fr;max-width:420px;margin:0 auto}
+  .curriculum-header{flex-direction:column;text-align:center}
+  .curriculum-header-text{text-align:center}
+  .curriculum-header-text .section-subtitle{margin-left:auto;margin-right:auto}
+  .curriculum-header-img{max-width:200px}
+}
+
+/* Mobile */
 @media(max-width:768px){
+  /* Nav — hide links, show hamburger */
   .nav-links{display:none}
-  footer{flex-direction:column;align-items:flex-start}
-  .pricing-grid{grid-template-columns:1fr}
+  .nav-burger{display:flex}
+  .mobile-nav{display:flex}
+  nav{padding:0 1rem;height:52px}
+  .nav-logo{font-size:1.15rem;gap:6px}
+  .nav-logo img{height:28px}
+
+  /* Hero — tighter, less wasted space */
+  .hero{min-height:auto;padding:1.5rem 1.25rem 2rem;gap:1.5rem}
+  .hero h1{font-size:2.4rem}
+  .hero-sub{font-size:.95rem;margin-bottom:1.25rem;line-height:1.6}
+  .hero-badge{font-size:.75rem;padding:.3rem .75rem;margin-bottom:1rem}
+  .hero-buttons{flex-direction:column;align-items:center;width:100%;gap:.75rem}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center;text-align:center;font-size:1rem;padding:.8rem 1.5rem;border-radius:14px}
+  .hero-visual{flex-direction:row;align-items:center;justify-content:center;gap:.6rem}
+  .hero-visual .ipad-primary{width:52%}
+  .hero-visual .ipad-secondary{width:42%;transform:translateY(20px)}
+  .hero-visual .ipad-bezel{border-radius:16px;padding:6px;box-shadow:0 10px 30px rgba(45,38,64,.18)}
+  .hero-visual .ipad-bezel img{border-radius:10px}
+
+  /* Section spacing */
+  .section-inner{padding:3.5rem 1.25rem}
+  .section-title{font-size:1.8rem}
+  .section-subtitle{font-size:.95rem;margin-bottom:2rem}
+  .section-label{font-size:.72rem}
+
+  /* Steps — single column, smaller iPads */
+  .steps{grid-template-columns:1fr;gap:1rem;max-width:100%}
+  .step-card{padding:1.25rem;border-radius:20px}
+  .step-card .ipad-bezel{border-radius:14px;padding:6px}
+  .step-card .ipad-bezel img{border-radius:8px}
+
+  /* Showcase — tighter on mobile */
+  .showcase-row{margin-bottom:3.5rem;gap:1.5rem}
+  .showcase-visual{max-width:220px}
+  .showcase-visual .ipad-bezel{border-radius:20px;padding:8px;box-shadow:0 12px 32px rgba(0,0,0,.25)}
+  .showcase-visual .ipad-bezel img{border-radius:12px}
+  .showcase-text h3{font-size:1.35rem}
+  .showcase-text p{font-size:.9rem}
+
+  /* Feature pills — single column */
+  .features-mini{grid-template-columns:1fr;gap:.75rem;margin-top:2.5rem;padding-top:2rem}
+  .feature-pill{padding:1rem;border-radius:14px}
+
+  /* Curriculum */
+  .curriculum-header-img{max-width:180px}
+  .year-cards{grid-template-columns:1fr;gap:1rem}
+  .year-card{padding:1.25rem;border-radius:20px}
+
+  /* Banner */
+  .banner-track .ipad-bezel{height:220px;border-radius:14px;padding:6px}
+  .banner-track .ipad-bezel img{border-radius:8px}
+  .screenshot-banner{padding:2rem 0}
+
+  /* Pricing */
+  .pricing-grid{grid-template-columns:1fr;gap:1rem}
   .price-card.featured{transform:none}
-  .hero-buttons{flex-direction:column;align-items:center;width:100%}
-  .btn-primary,.btn-secondary{width:100%;justify-content:center;text-align:center}
+  .price-card{border-radius:20px;padding:1.5rem}
+
+  /* CTA */
+  .cta-section{padding:3.5rem 1.25rem}
+  .cta-card{padding:2.5rem 1.5rem;border-radius:24px}
+  .cta-card h2{font-size:1.7rem}
+  .cta-card>p{font-size:.92rem}
+
+  /* Footer */
+  footer{flex-direction:column;align-items:flex-start;padding:1.5rem 1.25rem}
+}
+
+/* Small phones */
+@media(max-width:400px){
+  .hero h1{font-size:2rem}
+  .hero{padding:1.25rem 1rem 1.5rem;gap:1.25rem}
+  .hero-visual .ipad-primary{width:55%}
+  .hero-visual .ipad-secondary{width:40%;transform:translateY(16px)}
+  .hero-visual{gap:.5rem}
+  .section-title{font-size:1.6rem}
+  .showcase-visual{max-width:190px}
+  .banner-track .ipad-bezel{height:180px}
+  .nav-logo{font-size:1rem}
+  .nav-logo img{height:24px}
 }
 </style>
 </head>
 <body>
-
 <nav>
-  <a href="/" class="nav-logo"><img src="logo.png" alt="Learning Block" style="height:36px;vertical-align:middle;margin-right:8px;">Learning Block</a>
+  <a href="/" class="nav-logo"><img src="logo.png" alt="Learning Block"><span>Learning Block</span></a>
   <ul class="nav-links">
     <li><a href="#how">How it works</a></li>
     <li><a href="#features">Features</a></li>
@@ -119,26 +273,32 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#download" class="nav-cta">Get notified</a></li>
   </ul>
+  <button class="nav-burger" onclick="document.querySelector('.mobile-nav').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
-
+<div class="mobile-nav">
+  <a href="#how" onclick="this.parentElement.classList.remove('open')">How it works</a>
+  <a href="#features" onclick="this.parentElement.classList.remove('open')">Features</a>
+  <a href="#curriculum" onclick="this.parentElement.classList.remove('open')">Curriculum</a>
+  <a href="#pricing" onclick="this.parentElement.classList.remove('open')">Pricing</a>
+  <a href="#download" class="mobile-nav-cta" onclick="this.parentElement.classList.remove('open')">🔔 Get notified</a>
+</div>
 <div id="main-content">
 
   <section class="hero">
-    <div class="hero-badge">🇬🇧 UK National Curriculum aligned · Coming soon to iPad</div>
-    <h1>Learn first,<br><span>earn screen time</span></h1>
-    <p class="hero-sub">Learning Block locks your child's iPad until they complete a UK curriculum-aligned maths quiz. No quiz, no screen time — it's that simple.</p>
-    <div class="hero-buttons">
-      <a href="#download" class="btn-primary">🔔 Get notified at launch</a>
-      <a href="#how" class="btn-secondary">How it works</a>
-    </div>
-    <div class="hero-mockup">
-      <div class="ipad-frame">
-        <div class="ipad-screen">
-          <img src="logo.png" alt="Learning Block" style="height:80px;position:relative;z-index:1;margin-bottom:.2rem;">
-          <div class="ipad-sub">Answer your maths quiz to unlock your iPad</div>
-          <div class="ipad-btn">Let's Go! 🚀</div>
-        </div>
+    <div class="hero-text">
+      <div class="hero-badge">🇬🇧 UK National Curriculum aligned · Coming soon to iPad</div>
+      <h1>Learn first,<br><span>earn screen time</span></h1>
+      <p class="hero-sub">Learning Block locks your child's iPad until they complete a UK curriculum-aligned maths quiz. No quiz, no screen time — it's that simple.</p>
+      <div class="hero-buttons">
+        <a href="#download" class="btn-primary">🔔 Get notified at launch</a>
+        <a href="#how" class="btn-secondary">How it works</a>
       </div>
+    </div>
+    <div class="hero-visual">
+      <div class="ipad-wrap ipad-lg ipad-primary"><div class="ipad-bezel"><img src="screen-locked.png" alt="iPad locked — complete a quiz to unlock"></div></div>
+      <div class="ipad-wrap ipad-lg ipad-secondary"><div class="ipad-bezel"><img src="screen-earned.png" alt="Screen time earned — 29 minutes remaining"></div></div>
     </div>
   </section>
 
@@ -146,223 +306,180 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
     <div class="section-inner">
       <div class="section-label">How it works</div>
       <h2 class="section-title">Simple by design</h2>
+      <p class="section-subtitle">Three steps and your child earns their screen time through learning. Set it up once and it runs itself.</p>
       <div class="steps">
-        <div class="step-card"><div class="step-number">1</div><h3>Set it up</h3><p>Choose your child's year group, select topics, and set how many questions they need to answer. Takes two minutes.</p></div>
-        <div class="step-card"><div class="step-number">2</div><h3>iPad gets locked</h3><p>Set a bedtime or lock it manually. When locked, your child sees the Learning Block screen — no way around it.</p></div>
-        <div class="step-card"><div class="step-number">3</div><h3>Earn screen time</h3><p>Complete the quiz, unlock the iPad. Earn XP, collect badges, and unlock themes as progress builds over time.</p></div>
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Set it up</h3>
+          <p>Choose your child's year group, select topics, and set how many questions they need to answer. Takes two minutes.</p>
+          <div class="ipad-wrap ipad-sm"><div class="ipad-bezel"><img src="screen-topics.png" alt="Parent settings — choose year group and topics"></div></div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>iPad gets locked</h3>
+          <p>Set a bedtime or lock it manually. When locked, your child sees the Learning Block screen — no way around it.</p>
+          <div class="ipad-wrap ipad-sm"><div class="ipad-bezel"><img src="screen-locked.png" alt="iPad is locked — do a quiz to unlock"></div></div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Earn screen time</h3>
+          <p>Complete the quiz, unlock the iPad. Earn XP, collect badges, and unlock themes as progress builds over time.</p>
+          <div class="ipad-wrap ipad-sm"><div class="ipad-bezel"><img src="screen-earned.png" alt="Screen time earned after completing quiz"></div></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="features" class="features-section">
+  <section id="features" class="showcase-dark">
     <div class="section-inner">
       <div class="section-label">Features</div>
       <h2 class="section-title">Everything you need</h2>
-      <div class="features-grid">
-        <div class="feature-card"><span class="feature-icon">🔐</span><h3>OS-level lock</h3><p>Uses Apple Screen Time to lock the entire iPad at OS level — not just the app. No workarounds, no way out.</p></div>
-        <div class="feature-card"><span class="feature-icon">📚</span><h3>Curriculum-aligned</h3><p>Questions generated from the UK National Curriculum for KS1 and KS2, with infinite variety — different every time.</p></div>
-        <div class="feature-card"><span class="feature-icon">🕐</span><h3>Visual questions</h3><p>Clock faces, shapes, angles, fractions, and number lines — not just text on a screen.</p></div>
-        <div class="feature-card"><span class="feature-icon">✏️</span><h3>Show workings</h3><p>Drawing pad and column maths panel so children can work things out properly, not just guess.</p></div>
-        <div class="feature-card"><span class="feature-icon">🌙</span><h3>Bedtime schedule</h3><p>Set a bedtime and a wake time. The iPad locks automatically at night and stays locked until morning quiz done.</p></div>
-        <div class="feature-card"><span class="feature-icon">🏆</span><h3>Collections &amp; unlocks</h3><p>Level up to unlock themes, celebrations, and emoji avatars. 20 badges to earn by mastering topics.</p></div>
-        <div class="feature-card"><span class="feature-icon">📊</span><h3>Parent dashboard</h3><p>Per-topic accuracy, quiz history, and daily streaks. See exactly which areas your child is strongest in.</p></div>
-        <div class="feature-card"><span class="feature-icon">📱</span><h3>Lock screen widget</h3><p>Glance at the iPad's lock screen to instantly see if it's locked, unlocked, or counting down free time.</p></div>
-        <div class="feature-card"><span class="feature-icon">🚫</span><h3>No ads, ever</h3><p>No adverts, no distractions, no social features. Just maths, learning, and screen time earned.</p></div>
+
+      <div class="showcase-row">
+        <div class="showcase-visual ipad-wrap ipad-lg"><div class="ipad-bezel"><img src="screen-walkthrough.png" alt="Column addition walkthrough — step by step with visual diagrams"></div></div>
+        <div class="showcase-text">
+          <span class="emoji-tag">📖</span>
+          <h3>Learn it before they're tested on it</h3>
+          <p>Every topic has animated, step-by-step walkthroughs that teach the method before your child faces the quiz. Visual diagrams, worked examples, and clear explanations — all at their own pace. It's not just testing, it's teaching.</p>
+        </div>
+      </div>
+
+      <div class="showcase-row reverse">
+        <div class="showcase-visual ipad-wrap ipad-lg"><div class="ipad-bezel"><img src="screen-clock.png" alt="Visual maths question — telling the time"></div></div>
+        <div class="showcase-text">
+          <span class="emoji-tag">🕐</span>
+          <h3>Not just numbers</h3>
+          <p>Clock faces, shapes, angles, fractions, and number lines — visual questions that match what they see in the classroom. Not just text on a screen.</p>
+        </div>
+      </div>
+
+      <div class="showcase-row">
+        <div class="showcase-visual ipad-wrap ipad-lg"><div class="ipad-bezel"><img src="screen-workings-sub.png" alt="Column method subtraction with borrowing"></div></div>
+        <div class="showcase-text">
+          <span class="emoji-tag">✏️</span>
+          <h3>Work it out. For real</h3>
+          <p>Column method, borrowing, and a drawing pad so children can show their working. They learn the method, not just the answer.</p>
+        </div>
+      </div>
+
+      <div class="showcase-row reverse">
+        <div class="showcase-visual ipad-wrap ipad-lg"><div class="ipad-bezel"><img src="screen-schedule.png" alt="Parent settings — schedule, screen time, earned sessions"></div></div>
+        <div class="showcase-text">
+          <span class="emoji-tag">⚙️</span>
+          <h3>You set the rules</h3>
+          <p>Schedule, screen time limits, earned sessions, daily caps — all in your hands. Set a bedtime and a wake time. The iPad locks automatically and stays locked until the morning quiz is done.</p>
+        </div>
+      </div>
+
+      <div class="showcase-row">
+        <div class="showcase-visual ipad-wrap ipad-lg"><div class="ipad-bezel"><img src="screen-blocked.png" alt="iPad is blocked — OS-level lock"></div></div>
+        <div class="showcase-text">
+          <span class="emoji-tag">🔐</span>
+          <h3>They can't get around this one</h3>
+          <p>Uses Apple Screen Time to lock the entire iPad at OS level — not just the app. No workarounds, no way out. When Learning Block says locked, it means locked.</p>
+        </div>
+      </div>
+
+      <div class="features-mini">
+        <div class="feature-pill"><span class="fp-icon">📚</span><div><h4>Curriculum-aligned</h4><p>Questions from the UK National Curriculum for KS1 and KS2, with infinite variety — different every time.</p></div></div>
+        <div class="feature-pill"><span class="fp-icon">📊</span><div><h4>Parent dashboard</h4><p>Per-topic accuracy, quiz history, and daily streaks. See exactly which areas need attention.</p></div></div>
+        <div class="feature-pill"><span class="fp-icon">🏆</span><div><h4>Collections &amp; badges</h4><p>24 badges to earn, 56 emoji to collect, and 8 themes to unlock. Progress rewarded.</p></div></div>
+        <div class="feature-pill"><span class="fp-icon">📱</span><div><h4>Lock screen widget</h4><p>Glance at the lock screen to see if it's locked, unlocked, or counting down free time.</p></div></div>
+        <div class="feature-pill"><span class="fp-icon">🌙</span><div><h4>Bedtime schedule</h4><p>Locks at night, stays locked until the morning quiz. Automatic, every day.</p></div></div>
+        <div class="feature-pill"><span class="fp-icon">🚫</span><div><h4>No ads, ever</h4><p>No adverts, no distractions, no social features. Just maths, learning, and screen time earned.</p></div></div>
       </div>
     </div>
   </section>
 
   <section id="curriculum">
     <div class="section-inner">
-      <div class="section-label">Curriculum</div>
-      <h2 class="section-title">Matched to your child's year group</h2>
-      <div class="year-cards">
-        <div class="year-card">
-          <span class="year-badge ks1">Year 1–2</span>
-          <h3>Ages 5–7</h3>
-          <ul class="topic-list">
-            <li class="topic-pill">➕ Addition</li><li class="topic-pill">➖ Subtraction</li><li class="topic-pill">✖️ Multiplication</li><li class="topic-pill">➗ Division</li><li class="topic-pill">½ Fractions</li><li class="topic-pill">🔷 Shapes</li><li class="topic-pill">🕐 Time</li><li class="topic-pill">🔢 Place Value</li>
-          </ul>
+      <div class="curriculum-header">
+        <div class="curriculum-header-text">
+          <div class="section-label">Curriculum</div>
+          <h2 class="section-title" style="margin-bottom:.75rem">Matched to your child's year group</h2>
+          <p class="section-subtitle" style="margin-bottom:0">Addition to angles, fractions to decimals — every topic they cover in class, from Year 1 to Year 6. All aligned to the UK National Curriculum.</p>
         </div>
-        <div class="year-card">
-          <span class="year-badge ks2l">Year 3–4</span>
-          <h3>Ages 7–9</h3>
-          <ul class="topic-list">
-            <li class="topic-pill">➕ Addition</li><li class="topic-pill">➖ Subtraction</li><li class="topic-pill">✖️ Multiplication</li><li class="topic-pill">➗ Division</li><li class="topic-pill">½ Fractions</li><li class="topic-pill">· Decimals</li><li class="topic-pill">🔷 Shapes</li><li class="topic-pill">🕐 Time</li><li class="topic-pill">🔢 Place Value</li>
-          </ul>
-        </div>
-        <div class="year-card">
-          <span class="year-badge ks2u">Year 5–6</span>
-          <h3>Ages 9–11</h3>
-          <ul class="topic-list">
-            <li class="topic-pill">➕ Addition</li><li class="topic-pill">➖ Subtraction</li><li class="topic-pill">✖️ Multiplication</li><li class="topic-pill">➗ Division</li><li class="topic-pill">½ Fractions</li><li class="topic-pill">% Percentages</li><li class="topic-pill">· Decimals</li><li class="topic-pill">📐 Area &amp; Perimeter</li><li class="topic-pill">📏 Angles</li>
-          </ul>
-        </div>
+        <div class="curriculum-header-img ipad-wrap ipad-sm"><div class="ipad-bezel"><img src="screen-quiz2.png" alt="KS1 and KS2 addition question"></div></div>
       </div>
+      <div class="year-cards">
+        <div class="year-card"><span class="year-badge ks1">Year 1–2</span><h3>Ages 5–7</h3><ul class="topic-list"><li class="topic-pill">➕ Addition</li><li class="topic-pill">➖ Subtraction</li><li class="topic-pill">✖️ Multiplication</li><li class="topic-pill">➗ Division</li><li class="topic-pill">½ Fractions</li><li class="topic-pill">🔷 Shapes</li><li class="topic-pill">🕐 Time</li><li class="topic-pill">🔢 Place Value</li></ul></div>
+        <div class="year-card"><span class="year-badge ks2l">Year 3–4</span><h3>Ages 7–9</h3><ul class="topic-list"><li class="topic-pill">➕ Addition</li><li class="topic-pill">➖ Subtraction</li><li class="topic-pill">✖️ Multiplication</li><li class="topic-pill">➗ Division</li><li class="topic-pill">½ Fractions</li><li class="topic-pill">· Decimals</li><li class="topic-pill">🔷 Shapes</li><li class="topic-pill">🕐 Time</li><li class="topic-pill">🔢 Place Value</li></ul></div>
+        <div class="year-card"><span class="year-badge ks2u">Year 5–6</span><h3>Ages 9–11</h3><ul class="topic-list"><li class="topic-pill">➕ Addition</li><li class="topic-pill">➖ Subtraction</li><li class="topic-pill">✖️ Multiplication</li><li class="topic-pill">➗ Division</li><li class="topic-pill">½ Fractions</li><li class="topic-pill">% Percentages</li><li class="topic-pill">· Decimals</li><li class="topic-pill">📐 Area &amp; Perimeter</li><li class="topic-pill">📏 Angles</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screenshot-banner" aria-hidden="true">
+    <div class="banner-track">
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-locked.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-earned.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-workings-sub.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-clock.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-schedule.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-quiz2.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-blocked.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-topics.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-quiz.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-workings-add.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-locked.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-earned.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-workings-sub.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-clock.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-schedule.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-quiz2.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-blocked.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-topics.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-quiz.png" alt=""></div></div>
+      <div class="ipad-wrap"><div class="ipad-bezel"><img src="screen-workings-add.png" alt=""></div></div>
     </div>
   </section>
 
   <section id="pricing" class="pricing-section">
     <div class="section-inner">
       <div class="section-label">Pricing</div>
-      <h2 class="section-title">Try free for 7 days.<br>Cancel anytime.</h2>
+      <h2 class="section-title">Simple pricing.<br>Cancel anytime.</h2>
       <div class="pricing-grid">
-        <div class="price-card featured">
-          <div class="recommended-badge">⭐ Best value</div>
-          <h3>Annual</h3>
-          <div class="price">£24.99</div>
-          <div class="price-sub">per year</div>
-          <div class="save-pill">Save 48% · 7-day free trial</div>
-        </div>
-        <div class="price-card">
-          <h3>Monthly</h3>
-          <div class="price">£3.99</div>
-          <div class="price-sub">per month</div>
-          <div class="price-detail">Flexible — cancel anytime</div>
-        </div>
+        <div class="price-card featured"><div class="recommended-badge">⭐ Best value</div><h3>Annual</h3><div class="price">£24.99</div><div class="price-sub">per year</div><div class="save-pill">Save 48% vs monthly</div></div>
+        <div class="price-card"><h3>Monthly</h3><div class="price">£3.99</div><div class="price-sub">per month</div><div class="price-detail">Flexible — cancel anytime</div></div>
       </div>
-      <p class="trial-note">All plans include a 7-day free trial. Cancel any time from your device settings.</p>
+      <p class="trial-note">Free to download. Cancel any time from your device settings.</p>
     </div>
   </section>
 
   <section id="download" class="cta-section">
-    <div class="cta-card" style="max-width:520px;">
+    <div class="cta-card">
       <img src="logo.png" alt="" style="height:80px;display:block;margin:0 auto 1rem;">
       <h2>Coming soon to the App Store</h2>
       <p>Learning Block is finishing up. Sign up to be notified the moment it launches on the App Store — no spam, just one email.</p>
-
       <form id="lb-signup-form" style="display:flex;flex-direction:column;gap:.75rem;">
-
-        <!-- Parent / Teacher toggle -->
         <div style="display:flex;gap:.6rem;">
-          <label id="lb-label-parent"
-            style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.75rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;cursor:pointer;background:var(--yellow);transition:background .15s;">
-            <input type="radio" name="leadType" value="Parent" checked style="display:none;">
-            👨‍👩‍👧 Parent
-          </label>
-          <label id="lb-label-teacher"
-            style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.75rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;cursor:pointer;background:#fff;transition:background .15s;">
-            <input type="radio" name="leadType" value="Teacher" style="display:none;">
-            🏫 Teacher / School
-          </label>
+          <label id="lb-label-parent" style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.75rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;cursor:pointer;background:var(--yellow);transition:background .15s;"><input type="radio" name="leadType" value="Parent" checked style="display:none;">👨‍👩‍👧 Parent</label>
+          <label id="lb-label-teacher" style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.75rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;cursor:pointer;background:#fff;transition:background .15s;"><input type="radio" name="leadType" value="Teacher" style="display:none;">🏫 Teacher / School</label>
         </div>
-
-        <!-- Email -->
-        <input type="email" id="lb-email" placeholder="Your email address" required
-          style="width:100%;padding:.85rem 1.1rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;background:var(--cream);color:var(--dark);outline:none;box-sizing:border-box;">
-
-        <!-- Consent -->
-        <label style="display:flex;align-items:flex-start;gap:.6rem;font-size:.85rem;font-weight:700;opacity:.7;cursor:pointer;text-align:left;">
-          <input type="checkbox" id="lb-consent" required
-            style="margin-top:3px;width:16px;height:16px;flex-shrink:0;accent-color:var(--purple-dark);">
-          I agree to receive emails from Learning Block about the app launch, updates, and occasional feedback requests. No spam, unsubscribe anytime.
-        </label>
-
-        <!-- Status message -->
+        <input type="email" id="lb-email" placeholder="Your email address" required style="width:100%;padding:.85rem 1.1rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;background:var(--cream);color:var(--dark);outline:none;">
+        <label style="display:flex;align-items:flex-start;gap:.6rem;font-size:.85rem;font-weight:700;opacity:.7;cursor:pointer;text-align:left;"><input type="checkbox" id="lb-consent" required style="margin-top:3px;width:16px;height:16px;flex-shrink:0;accent-color:var(--purple-dark);">I agree to receive emails from Learning Block about the app launch, updates, and occasional feedback requests. No spam, unsubscribe anytime.</label>
         <div id="lb-message" style="display:none;font-weight:700;font-size:.9rem;padding:.6rem 1rem;border-radius:10px;"></div>
-
-        <!-- Submit -->
-        <button type="button" id="lb-submit" onclick="handleLBSignup()"
-          style="width:100%;padding:.9rem 2rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:14px;box-shadow:0 5px 0 var(--dark);cursor:pointer;transition:transform .15s,box-shadow .15s;"
-          onmouseover="this.style.transform='translateY(3px)';this.style.boxShadow='0 2px 0 var(--dark)'"
-          onmouseout="this.style.transform='';this.style.boxShadow='0 5px 0 var(--dark)'">
-          Notify me at launch 🔔
-        </button>
-
+        <button type="button" id="lb-submit" onclick="handleLBSignup()" style="width:100%;padding:.9rem 2rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:14px;box-shadow:0 5px 0 var(--dark);cursor:pointer;transition:transform .15s,box-shadow .15s;" onmouseover="this.style.transform='translateY(3px)';this.style.boxShadow='0 2px 0 var(--dark)'" onmouseout="this.style.transform='';this.style.boxShadow='0 5px 0 var(--dark)'">Notify me at launch 🔔</button>
       </form>
-
       <p style="font-size:.78rem;opacity:.45;margin-top:.75rem;margin-bottom:0;">No spam. Unsubscribe anytime. — <a href="privacy.html" style="color:var(--dark);opacity:.7;">Privacy policy</a></p>
     </div>
   </section>
 
 </div>
-
 <footer>
-  <a href="/" class="footer-logo"><img src="logo.png" alt="Learning Block" style="height:28px;vertical-align:middle;margin-right:6px;">Learning Block</a>
-  <ul class="footer-links">
-    <li><a href="privacy.html">Privacy Policy</a></li>
-    <li><a href="mailto:hello@learningblock.app">Contact</a></li>
-  </ul>
+  <a href="/" class="footer-logo"><img src="logo.png" alt="Learning Block">Learning Block</a>
+  <ul class="footer-links"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="mailto:hello@learningblock.app">Contact</a></li></ul>
   <span class="footer-copy">© 2026 Learning Block Ltd. All rights reserved.</span>
 </footer>
-
 <script>
-const LB_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzU4m0mdKDgguJPPXtDpm0_wc-TAifpfCPZcw3bhQIBYKEEs4WEPXfak8-ap7NtPmc7/exec';
-
-document.querySelectorAll('input[name="leadType"]').forEach(radio => {
-  radio.addEventListener('change', () => {
-    document.getElementById('lb-label-parent').style.background =
-      radio.value === 'Parent' && radio.checked ? 'var(--yellow)' : '#fff';
-    document.getElementById('lb-label-teacher').style.background =
-      radio.value === 'Teacher' && radio.checked ? 'var(--yellow)' : '#fff';
-  });
-});
-
-async function handleLBSignup() {
-  const email = document.getElementById('lb-email').value.trim();
-  const consent = document.getElementById('lb-consent').checked;
-  const leadType = document.querySelector('input[name="leadType"]:checked').value;
-  const msg = document.getElementById('lb-message');
-  const btn = document.getElementById('lb-submit');
-
-  if (!email) {
-    showMsg(msg, 'Please enter your email address.', '#cc0000', '#fff0f0');
-    return;
-  }
-  if (!consent) {
-    showMsg(msg, 'Please tick the consent box to continue.', '#cc0000', '#fff0f0');
-    return;
-  }
-
-  btn.textContent = 'Signing you up…';
-  btn.disabled = true;
-
-  try {
-    const res = await fetch(LB_SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `email=${encodeURIComponent(email)}&leadType=${encodeURIComponent(leadType)}&consent=true`
-    });
-    const data = await res.json();
-
-    if (data.status === 'success') {
-      showMsg(msg, "🎉 You're on the list! We'll email you at launch.", '#1a7a54', '#f0fff8');
-      document.getElementById('lb-signup-form').reset();
-      document.getElementById('lb-label-parent').style.background = 'var(--yellow)';
-      document.getElementById('lb-label-teacher').style.background = '#fff';
-    } else if (data.status === 'duplicate') {
-      showMsg(msg, "You're already signed up — we'll be in touch at launch!", '#6B52E0', '#f5f0ff');
-    } else {
-      showMsg(msg, 'Something went wrong. Please try again.', '#cc0000', '#fff0f0');
-    }
-  } catch (err) {
-    showMsg(msg, 'Something went wrong. Please try again.', '#cc0000', '#fff0f0');
-  }
-
-  btn.textContent = 'Notify me at launch 🔔';
-  btn.disabled = false;
-}
-
-function showMsg(el, text, color, bg) {
-  el.textContent = text;
-  el.style.color = color;
-  el.style.background = bg;
-  el.style.border = `2px solid ${color}`;
-  el.style.display = 'block';
-}
-
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => {
-        e.target.style.animation = 'fadeUp .45s ease both';
-        e.target.style.opacity = '1';
-      }, i * 60);
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: .1 });
-document.querySelectorAll('.step-card,.feature-card,.year-card,.price-card').forEach(el => obs.observe(el));
+const LB_SCRIPT_URL='https://script.google.com/macros/s/AKfycbzU4m0mdKDgguJPPXtDpm0_wc-TAifpfCPZcw3bhQIBYKEEs4WEPXfak8-ap7NtPmc7/exec';
+document.querySelectorAll('input[name="leadType"]').forEach(r=>{r.addEventListener('change',()=>{document.getElementById('lb-label-parent').style.background=r.value==='Parent'&&r.checked?'var(--yellow)':'#fff';document.getElementById('lb-label-teacher').style.background=r.value==='Teacher'&&r.checked?'var(--yellow)':'#fff'})});
+async function handleLBSignup(){const email=document.getElementById('lb-email').value.trim();const consent=document.getElementById('lb-consent').checked;const leadType=document.querySelector('input[name="leadType"]:checked').value;const msg=document.getElementById('lb-message');const btn=document.getElementById('lb-submit');if(!email){showMsg(msg,'Please enter your email address.','#cc0000','#fff0f0');return}if(!consent){showMsg(msg,'Please tick the consent box to continue.','#cc0000','#fff0f0');return}btn.textContent='Signing you up…';btn.disabled=true;try{const res=await fetch(LB_SCRIPT_URL,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:`email=${encodeURIComponent(email)}&leadType=${encodeURIComponent(leadType)}&consent=true`});const data=await res.json();if(data.status==='success'){showMsg(msg,"🎉 You're on the list! We'll email you at launch.",'#1a7a54','#f0fff8');document.getElementById('lb-signup-form').reset();document.getElementById('lb-label-parent').style.background='var(--yellow)';document.getElementById('lb-label-teacher').style.background='#fff'}else if(data.status==='duplicate'){showMsg(msg,"You're already signed up — we'll be in touch at launch!",'#6B52E0','#f5f0ff')}else{showMsg(msg,'Something went wrong. Please try again.','#cc0000','#fff0f0')}}catch(err){showMsg(msg,'Something went wrong. Please try again.','#cc0000','#fff0f0')}btn.textContent='Notify me at launch 🔔';btn.disabled=false}
+function showMsg(el,text,color,bg){el.textContent=text;el.style.color=color;el.style.background=bg;el.style.border=`2px solid ${color}`;el.style.display='block'}
+const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.animation='fadeUp .45s ease both';e.target.style.opacity='1'},i*60);obs.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.step-card,.feature-pill,.year-card,.price-card').forEach(el=>obs.observe(el));
+const sObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.animation='fadeUp .6s ease both';e.target.style.opacity='1';sObs.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.showcase-row').forEach(el=>sObs.observe(el));
 </script>
 </body>
 </html>
