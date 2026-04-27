@@ -46,6 +46,7 @@
     ul { margin: 0 0 16px 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
     ul li { font-size: 15px; font-weight: 600; opacity: 0.75; line-height: 1.6; display: flex; align-items: flex-start; gap: 10px; }
     ul li::before { content: '→'; color: var(--purple-mid); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+    ul li span.li-text { display: inline; }
     ul.checkmark li::before { content: '✓'; color: var(--green); }
     ul.cross li::before { content: '✗'; color: #e05555; }
     .highlight-box { background: white; border: 2.5px solid var(--purple); border-radius: 16px; padding: 20px 24px; margin: 20px 0; box-shadow: 3px 4px 0 var(--purple); }
@@ -106,7 +107,7 @@
       </div>
       <div style="display:flex;align-items:center;gap:14px;background:#f0fdf7;border:2px solid var(--green);border-radius:50px;padding:14px 24px;box-shadow:3px 4px 0 var(--green);">
         <span style="font-size:22px;">👶</span>
-        <div><strong style="font-family:'Fredoka',sans-serif;font-size:17px;color:#1a6b4a;">Child safe</strong> <span style="font-size:14px;font-weight:600;color:#2a8a6a;opacity:.8;">— no accounts, no sign-in, no external services used by the app</span></div>
+        <div><strong style="font-family:'Fredoka',sans-serif;font-size:17px;color:#1a6b4a;">Child safe</strong> <span style="font-size:14px;font-weight:600;color:#2a8a6a;opacity:.8;">— no accounts, no sign-in, no third-party services used by the app</span></div>
       </div>
     </div>
 
@@ -127,9 +128,29 @@
 
     <hr class="divider">
 
-    <!-- SECTION 2 — EMAIL SIGNUP (NEW) -->
+    <!-- SECTION 2 — SCREEN TIME & DEVICE MANAGEMENT (NEW) -->
     <div class="policy-section">
-      <h2><span class="section-number">2</span> Email waitlist &amp; marketing</h2>
+      <h2><span class="section-number">2</span> Screen Time &amp; device management</h2>
+      <p>Learning Block uses Apple's Screen Time framework — specifically FamilyControls, ManagedSettings, and DeviceActivityMonitor — to manage app access on your child's iPad. This is what allows the app to lock and unlock the device based on quiz completion, schedules, and screen time limits.</p>
+      <p>This feature requires a parent or guardian to grant Screen Time authorisation during initial setup. The authorisation can be revoked at any time via the device's Settings app under Screen Time.</p>
+
+      <h2 style="margin-top:28px;font-size:20px;">What the app can and cannot see</h2>
+      <ul class="checkmark">
+        <li><span class="li-text">The app receives opaque tokens from Apple to identify app categories — it <strong>never</strong> sees the names, icons, or bundle IDs of any other apps installed on the device</span></li>
+        <li>All device management data is processed entirely on-device and is never transmitted to us or any third party</li>
+        <li>The app uses a shared on-device container (App Group) to coordinate between its own components only — this data is not accessible to any other app or service</li>
+      </ul>
+
+      <div class="highlight-box green">
+        <p>✓ Learning Block cannot see which apps your child uses. Apple's Screen Time framework is designed to protect this information — the app only receives anonymous tokens, never app names or identifiers.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 3 — EMAIL SIGNUP -->
+    <div class="policy-section">
+      <h2><span class="section-number">3</span> Email waitlist &amp; marketing</h2>
       <p>If you choose to sign up for updates on our website at learningblock.app, we collect the following information:</p>
       <ul>
         <li>Your email address</li>
@@ -163,18 +184,19 @@
 
     <hr class="divider">
 
-    <!-- SECTION 3 -->
+    <!-- SECTION 4 — PAYMENTS -->
     <div class="policy-section">
-      <h2><span class="section-number">3</span> Payments &amp; third parties</h2>
-      <p>Subscriptions are processed entirely by Apple through the App Store — we never see or store your payment details. The app contains no analytics, advertising, or tracking of any kind. The only external service used by the app is Apple's App Store for subscription management.</p>
+      <h2><span class="section-number">4</span> Payments &amp; third parties</h2>
+      <p>Subscriptions are processed entirely by Apple through the App Store — we never see or store your payment details. Subscription status is verified locally on your device using Apple's StoreKit framework. Transaction identifiers are stored on-device to confirm your subscription and are not sent to any server.</p>
+      <p>The app contains no analytics, advertising, or tracking of any kind. The only external services used by the app are Apple's App Store for subscription management and Apple's Screen Time framework for device management (see section 2).</p>
       <p>To manage or cancel your subscription: Settings → Apple ID → Subscriptions. Apple's privacy policy: <a href="https://www.apple.com/legal/privacy/" target="_blank" style="color: var(--purple-mid); font-weight: 700;">apple.com/legal/privacy</a>.</p>
     </div>
 
     <hr class="divider">
 
-    <!-- SECTION 4 -->
+    <!-- SECTION 5 — YOUR RIGHTS -->
     <div class="policy-section">
-      <h2><span class="section-number">4</span> Your rights</h2>
+      <h2><span class="section-number">5</span> Your rights</h2>
       <p>Learning Block Ltd complies with UK GDPR. You have the right to:</p>
       <ul>
         <li>Access the personal data we hold about you</li>
