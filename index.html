@@ -475,11 +475,94 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
 </footer>
 <script>
 const LB_SCRIPT_URL='https://script.google.com/macros/s/AKfycbzU4m0mdKDgguJPPXtDpm0_wc-TAifpfCPZcw3bhQIBYKEEs4WEPXfak8-ap7NtPmc7/exec';
+
+/* ── Geo capture: runs on page load, stores result for form submission ── */
+const lbGeo = { country: '', timezone: '', language: '' };
+
+// 1. Browser signals — always available, instant
+try { lbGeo.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e) {}
+lbGeo.language = navigator.language || '';
+
+// 2. IP geolocation — more accurate country, fetched in background
+(async function() {
+  try {
+    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) });
+    if (res.ok) {
+      const data = await res.json();
+      lbGeo.country = data.country_name || '';
+      // Also grab city + region for richer data if available
+      if (data.city) lbGeo.city = data.city;
+      if (data.region) lbGeo.region = data.region;
+      if (data.country_code) lbGeo.countryCode = data.country_code;
+    }
+  } catch(e) {
+    // Fallback: derive country from timezone if IP lookup fails
+    const tzCountryMap = {
+      'Europe/London': 'United Kingdom', 'Europe/Dublin': 'Ireland',
+      'Australia/Sydney': 'Australia', 'Australia/Melbourne': 'Australia',
+      'Australia/Brisbane': 'Australia', 'Australia/Perth': 'Australia',
+      'America/New_York': 'United States', 'America/Chicago': 'United States',
+      'America/Denver': 'United States', 'America/Los_Angeles': 'United States',
+      'America/Toronto': 'Canada', 'America/Vancouver': 'Canada',
+      'Pacific/Auckland': 'New Zealand'
+    };
+    lbGeo.country = tzCountryMap[lbGeo.timezone] || '';
+  }
+})();
+
 document.querySelectorAll('input[name="leadType"]').forEach(r=>{r.addEventListener('change',()=>{document.getElementById('lb-label-parent').style.background=r.value==='Parent'&&r.checked?'var(--yellow)':'#fff';document.getElementById('lb-label-teacher').style.background=r.value==='Teacher'&&r.checked?'var(--yellow)':'#fff'})});
-async function handleLBSignup(){const email=document.getElementById('lb-email').value.trim();const consent=document.getElementById('lb-consent').checked;const leadType=document.querySelector('input[name="leadType"]:checked').value;const msg=document.getElementById('lb-message');const btn=document.getElementById('lb-submit');if(!email){showMsg(msg,'Please enter your email address.','#cc0000','#fff0f0');return}if(!consent){showMsg(msg,'Please tick the consent box to continue.','#cc0000','#fff0f0');return}btn.textContent='Signing you up…';btn.disabled=true;try{const res=await fetch(LB_SCRIPT_URL,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:`email=${encodeURIComponent(email)}&leadType=${encodeURIComponent(leadType)}&consent=true`});const data=await res.json();if(data.status==='success'){showMsg(msg,"🎉 You're on the list! We'll email you at launch.",'#1a7a54','#f0fff8');document.getElementById('lb-signup-form').reset();document.getElementById('lb-label-parent').style.background='var(--yellow)';document.getElementById('lb-label-teacher').style.background='#fff'}else if(data.status==='duplicate'){showMsg(msg,"You're already signed up — we'll be in touch at launch!",'#6B52E0','#f5f0ff')}else{showMsg(msg,'Something went wrong. Please try again.','#cc0000','#fff0f0')}}catch(err){showMsg(msg,'Something went wrong. Please try again.','#cc0000','#fff0f0')}btn.textContent='Notify me at launch 🔔';btn.disabled=false}
+
+async function handleLBSignup(){
+  const email=document.getElementById('lb-email').value.trim();
+  const consent=document.getElementById('lb-consent').checked;
+  const leadType=document.querySelector('input[name="leadType"]:checked').value;
+  const msg=document.getElementById('lb-message');
+  const btn=document.getElementById('lb-submit');
+
+  if(!email){showMsg(msg,'Please enter your email address.','#cc0000','#fff0f0');return}
+  if(!consent){showMsg(msg,'Please tick the consent box to continue.','#cc0000','#fff0f0');return}
+
+  btn.textContent='Signing you up…';btn.disabled=true;
+
+  try{
+    // Build POST body — now includes country, timezone, language
+    const body = [
+      `email=${encodeURIComponent(email)}`,
+      `leadType=${encodeURIComponent(leadType)}`,
+      `consent=true`,
+      `country=${encodeURIComponent(lbGeo.country || 'Unknown')}`,
+      `timezone=${encodeURIComponent(lbGeo.timezone || 'Unknown')}`,
+      `language=${encodeURIComponent(lbGeo.language || 'Unknown')}`
+    ].join('&');
+
+    const res=await fetch(LB_SCRIPT_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body: body
+    });
+    const data=await res.json();
+
+    if(data.status==='success'){
+      showMsg(msg,"🎉 You're on the list! We'll email you at launch.",'#1a7a54','#f0fff8');
+      document.getElementById('lb-signup-form').reset();
+      document.getElementById('lb-label-parent').style.background='var(--yellow)';
+      document.getElementById('lb-label-teacher').style.background='#fff'
+    }else if(data.status==='duplicate'){
+      showMsg(msg,"You're already signed up — we'll be in touch at launch!",'#6B52E0','#f5f0ff')
+    }else{
+      showMsg(msg,'Something went wrong. Please try again.','#cc0000','#fff0f0')
+    }
+  }catch(err){
+    showMsg(msg,'Something went wrong. Please try again.','#cc0000','#fff0f0')
+  }
+  btn.textContent='Notify me at launch 🔔';btn.disabled=false
+}
+
 function showMsg(el,text,color,bg){el.textContent=text;el.style.color=color;el.style.background=bg;el.style.border=`2px solid ${color}`;el.style.display='block'}
+
 const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.animation='fadeUp .45s ease both';e.target.style.opacity='1'},i*60);obs.unobserve(e.target)}})},{threshold:.1});
 document.querySelectorAll('.step-card,.feature-pill,.year-card,.price-card').forEach(el=>obs.observe(el));
+
 const sObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.animation='fadeUp .6s ease both';e.target.style.opacity='1';sObs.unobserve(e.target)}})},{threshold:.15});
 document.querySelectorAll('.showcase-row').forEach(el=>sObs.observe(el));
 </script>
