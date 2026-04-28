@@ -57,9 +57,16 @@ section{position:relative;z-index:1}
 
 /* DEMO SECTION */
 .demo-section{position:relative;z-index:1}
-.demo-section .section-inner{display:flex;flex-direction:column;align-items:center}
-.demo-iframe-wrap{margin-top:1rem}
+.demo-layout{display:flex;align-items:center;gap:4rem}
+.demo-left{flex:0 0 auto}
 .demo-iframe-wrap iframe{border:none;display:block}
+.demo-right{flex:1;min-width:0}
+.demo-steps{display:flex;flex-direction:column;gap:1.25rem;margin:1.5rem 0}
+.demo-step{display:flex;gap:1rem;align-items:flex-start}
+.demo-step-num{width:36px;height:36px;background:var(--yellow);border:2.5px solid var(--dark);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;flex-shrink:0;box-shadow:0 3px 0 var(--dark)}
+.demo-step h4{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.1rem;color:var(--dark);margin-bottom:.2rem}
+.demo-step p{font-size:.88rem;font-weight:600;opacity:.6;line-height:1.6}
+.demo-cta-text{font-weight:700;font-size:.95rem;color:var(--purple-dark);margin-top:.5rem}
 
 /* SHOWCASE */
 .showcase-dark{background:var(--dark);position:relative;overflow:hidden}
@@ -160,6 +167,9 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   .curriculum-header-text{text-align:center}
   .curriculum-header-text .section-subtitle{margin-left:auto;margin-right:auto}
   .curriculum-header-img{max-width:200px}
+  .demo-layout{flex-direction:column;text-align:center;gap:2rem}
+  .demo-cta-text{display:none}
+  .demo-steps{align-items:center}
 }
 
 /* Mobile */
@@ -205,7 +215,11 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   .cta-card>p{font-size:.92rem}
   footer{flex-direction:column;align-items:flex-start;padding:1.5rem 1.25rem}
   /* Demo responsive */
-  .demo-iframe-wrap iframe{width:280px;height:470px}
+  .demo-layout{flex-direction:column-reverse;gap:1.5rem}
+  .demo-right{text-align:center}
+  .demo-steps{display:none}
+  .demo-cta-text{display:none}
+  .demo-iframe-wrap iframe{width:calc(100vw - 40px);max-width:320px;height:480px}
 }
 
 /* Small phones */
@@ -219,7 +233,7 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   .showcase-visual{max-width:190px}
   .nav-logo{font-size:1rem}
   .nav-logo img{height:24px}
-  .demo-iframe-wrap iframe{width:260px;height:470px}
+  .demo-iframe-wrap iframe{width:calc(100vw - 32px);max-width:290px;height:460px}
 }
 </style>
 </head>
@@ -264,14 +278,43 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
     </div>
   </section>
 
-  <!-- INTERACTIVE DEMO — replaces "How it works" -->
+  <!-- INTERACTIVE DEMO -->
   <section id="demo" class="demo-section">
     <div class="section-inner">
-      <div class="section-label">Try it yourself</div>
-      <h2 class="section-title">See how it works</h2>
-      <p class="section-subtitle">Tap through the demo below to experience the full flow — from locked iPad to earned screen time.</p>
-      <div class="demo-iframe-wrap">
-        <iframe src="demo.html" width="300" height="480" title="Learning Block interactive demo" loading="lazy" scrolling="no" style="overflow:hidden"></iframe>
+      <div class="demo-layout">
+        <div class="demo-left">
+          <div class="demo-iframe-wrap">
+            <iframe src="demo.html" width="300" height="480" title="Learning Block interactive demo" loading="lazy" scrolling="no" style="overflow:hidden"></iframe>
+          </div>
+        </div>
+        <div class="demo-right">
+          <div class="section-label">Try it yourself</div>
+          <h2 class="section-title">See how it works</h2>
+          <div class="demo-steps">
+            <div class="demo-step">
+              <div class="demo-step-num">1</div>
+              <div>
+                <h4>iPad gets locked</h4>
+                <p>Apps are blocked at OS level — no workarounds. Your child sees the Learning Block screen.</p>
+              </div>
+            </div>
+            <div class="demo-step">
+              <div class="demo-step-num">2</div>
+              <div>
+                <h4>Complete the quiz</h4>
+                <p>Curriculum-aligned maths questions. Get them all right to unlock — wrong answers mean try again.</p>
+              </div>
+            </div>
+            <div class="demo-step">
+              <div class="demo-step-num">3</div>
+              <div>
+                <h4>Earn screen time</h4>
+                <p>Perfect score? iPad unlocks with a countdown timer. When time's up, it locks again until the next quiz.</p>
+              </div>
+            </div>
+          </div>
+          <p class="demo-cta-text">👈 Tap through the demo to try it yourself</p>
+        </div>
       </div>
     </div>
   </section>
