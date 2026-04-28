@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Block Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#FFF8EE;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:16px}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(255,217,74,0.25) 1.5px,transparent 1.5px);background-size:32px 32px;pointer-events:none;z-index:0}
+
+.demo-title{text-align:center;margin-bottom:14px;position:relative;z-index:1}
+.demo-title .label{font-weight:800;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6B52E0;margin-bottom:2px}
+.demo-title h2{font-family:'Fredoka',sans-serif;font-weight:700;font-size:20px;color:#2D2640;margin-bottom:2px}
+.demo-title .sub{font-weight:600;font-size:11px;color:#9B95A8}
+
+.bezel{background:#1a1a2e;border-radius:24px;padding:10px;box-shadow:0 16px 48px rgba(45,38,64,0.22),0 0 0 1px rgba(255,255,255,0.05) inset;width:300px;height:500px;position:relative;z-index:1}
+.screen-area{border-radius:16px;width:100%;height:100%;overflow:hidden;position:relative;background:#FFF5E9}
+
+.screen{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity 0.25s ease}
+.screen.active{opacity:1;pointer-events:auto}
+
+/* Screenshot screens */
+.screen-img{width:100%;height:100%;object-fit:cover;border-radius:16px;cursor:pointer;display:block}
+.tap-overlay{position:absolute;bottom:10px;left:0;right:0;text-align:center;pointer-events:none}
+.tap-overlay span{background:rgba(0,0,0,0.5);color:#fff;font-weight:700;font-size:10px;padding:4px 14px;border-radius:20px}
+
+/* Quiz screen */
+.quiz-screen{display:flex;flex-direction:column;height:100%;background:#FFF5E9;background-image:radial-gradient(circle,rgba(255,217,74,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;border-radius:16px}
+.quiz-top{padding:6px 10px 0;display:flex;align-items:center;gap:6px}
+.back-btn{width:26px;height:26px;border-radius:50%;border:2px solid #2D2640;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:none;color:#2D2640}
+.quiz-num{font-weight:800;font-size:11px;color:#2D2640}
+.pbar{height:7px;border-radius:4px;background:#E8E4DF;width:100%;overflow:hidden}
+.pbar-fill{height:100%;border-radius:4px;transition:width 0.5s ease}
+.star-row{display:flex;justify-content:center;gap:1px;padding:2px 0}
+.star-row span{font-size:12px;transition:all 0.3s}
+.star-row span.dim{filter:grayscale(1) opacity(0.3)}
+
+.question-card{flex:1;margin:0 10px;background:#fff;border:2.5px solid #2D2640;border-radius:18px;box-shadow:0 3px 0 #2D2640;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;margin-bottom:4px}
+.topic-label{display:flex;align-items:center;gap:3px;margin-bottom:3px}
+.topic-label .icon{font-size:10px}
+.topic-label .name{font-weight:700;font-size:10px;color:#C4A35A}
+.q-text{font-family:'Fredoka',sans-serif;font-weight:700;font-size:18px;color:#2D2640;text-align:center;margin-bottom:3px}
+.q-text.small{font-size:14px}
+.workings-pill{font-weight:700;font-size:8px;color:#A78BFA;background:#F0EAFA;padding:2px 8px;border-radius:14px;border:1px solid rgba(167,139,250,0.25)}
+
+.answers{display:flex;flex-direction:column;gap:3px;padding:0 10px;margin-bottom:4px}
+.answer-btn{width:100%;padding:8px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:14px;color:#2D2640;background:#fff;border:2.5px solid #2D2640;border-radius:13px;box-shadow:0 2px 0 #2D2640;cursor:pointer;transition:all 0.15s}
+.answer-btn.small-text{font-size:11px}
+.answer-btn.correct{background:#D4EDDA;border-color:#2A9D7C}
+.answer-btn.wrong{background:#FFE0E0;border-color:#E74C3C}
+.answer-btn.faded{opacity:0.4}
+.answer-btn:disabled{cursor:default}
+
+.stats-bar{display:flex;gap:4px;padding:0 10px 6px}
+.stat-pill{flex:1;text-align:center;padding:4px 2px;border-radius:9px;border:1.5px solid #2D2640}
+.stat-pill .val{font-family:'Fredoka',sans-serif;font-weight:700;font-size:10px;color:#2D2640}
+.stat-pill .lbl{font-weight:800;font-size:7px;color:#9B95A8;letter-spacing:0.4px}
+
+/* Try again screen */
+.tryagain-screen{display:flex;flex-direction:column;height:100%;background:#FFF5E9;background-image:radial-gradient(circle,rgba(255,217,74,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;border-radius:16px}
+.tryagain-content{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 16px}
+.tryagain-stats{display:flex;gap:4px;width:100%;padding:0 10px;margin-bottom:16px}
+.tryagain-stat{flex:1;text-align:center;padding:8px 4px;border-radius:10px;border:1.5px solid #2D2640}
+.tryagain-stat .pval{font-family:'Fredoka',sans-serif;font-weight:700;font-size:16px}
+.tryagain-stat .plbl{font-weight:800;font-size:7px;color:#9B95A8;letter-spacing:0.4px}
+.btn-go{width:100%;padding:11px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;color:#2D2640;background:#CBC3B4;border:2.5px solid #2D2640;border-radius:16px;box-shadow:0 4px 0 rgba(45,38,64,0.25);cursor:pointer;transition:transform 0.1s,box-shadow 0.1s}
+.btn-go:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(45,38,64,0.25)}
+
+/* Confetti */
+.confetti-box{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:50;border-radius:16px}
+
+/* Dots & hint */
+.dots{display:flex;gap:5px;margin-top:12px;position:relative;z-index:1}
+.dot{height:6px;border-radius:3px;background:#D4CCBC;transition:all 0.3s}
+.dot.active{background:#6B52E0}
+.hint{font-weight:700;font-size:10px;color:#9B95A8;margin-top:5px;text-align:center;position:relative;z-index:1;min-height:16px}
+
+/* Clock */
+.clock-wrap{margin-bottom:3px}
+</style>
+</head>
+<body>
+
+<div class="demo-title">
+  <div class="label">Interactive demo</div>
+  <h2>Try it yourself</h2>
+  <div class="sub">Tap through to see how Learning Block works</div>
+</div>
+
+<div class="bezel">
+  <div class="screen-area">
+    <div class="confetti-box" id="confettiBox"></div>
+
+    <!-- 1. iPad home locked (screenshot) -->
+    <div class="screen active" id="s-ipadLocked">
+      <img src="screen-ipad-locked.png" alt="iPad locked — apps blocked" class="screen-img" onclick="go('locked')">
+      <div class="tap-overlay"><span>👆 Tap to open Learning Block</span></div>
+    </div>
+
+    <!-- 2. LB locked (screenshot) -->
+    <div class="screen" id="s-locked">
+      <img src="screen-demo-locked.png" alt="Learning Block — iPad is locked" class="screen-img" onclick="go('quiz')">
+      <div class="tap-overlay"><span>👆 Tap Let's Go</span></div>
+    </div>
+
+    <!-- 3. Quiz (interactive) -->
+    <div class="screen" id="s-quiz">
+      <div class="quiz-screen">
+        <div class="quiz-top">
+          <div class="back-btn">←</div>
+          <div style="flex:1"><div class="pbar"><div class="pbar-fill" id="quizBar" style="width:20%;background:#FF8A65"></div></div></div>
+          <span class="quiz-num" id="qNum">1/5</span>
+        </div>
+        <div class="star-row" id="starRow"></div>
+        <div style="padding:0 10px;flex:1;display:flex;flex-direction:column;min-height:0">
+          <div class="question-card" id="qCard"></div>
+          <div class="answers" id="ansBox"></div>
+        </div>
+        <div class="stats-bar" id="statBar"></div>
+      </div>
+    </div>
+
+    <!-- 4. Try again (interactive) -->
+    <div class="screen" id="s-tryAgain">
+      <div class="tryagain-screen">
+        <div class="tryagain-content">
+          <div style="font-size:42px;margin-bottom:6px">🔒</div>
+          <div style="font-family:Fredoka,sans-serif;font-weight:700;font-size:18px;color:#2D2640;margin-bottom:4px">Not quite!</div>
+          <div id="tryAgainMsg" style="font-weight:600;font-size:10px;color:#9B95A8;text-align:center;line-height:1.5;margin-bottom:16px"></div>
+          <div class="tryagain-stats" id="tryAgainStats"></div>
+          <div style="width:100%;padding:8px 12px;background:#FFE0E0;border-radius:10px;text-align:center;font-weight:700;font-size:9px;color:#E74C3C">🔒 iPad stays locked — try again!</div>
+        </div>
+        <div style="padding:8px 10px 10px">
+          <button class="btn-go" onclick="retryQuiz()">Try Again 🚀</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Perfect score (screenshot) -->
+    <div class="screen" id="s-perfect">
+      <img src="screen-demo-perfect.png" alt="Perfect score!" class="screen-img" onclick="go('earned')">
+      <div class="tap-overlay"><span>👆 Tap to unlock iPad</span></div>
+    </div>
+
+    <!-- 6. Earned / timer (screenshot) -->
+    <div class="screen" id="s-earned">
+      <img src="screen-demo-earned.png" alt="Screen time earned" class="screen-img" onclick="go('ipadUnlocked')">
+      <div class="tap-overlay"><span>👆 Tap to continue</span></div>
+    </div>
+
+    <!-- 7. iPad home unlocked (screenshot) -->
+    <div class="screen" id="s-ipadUnlocked">
+      <img src="screen-ipad-unlocked.png" alt="iPad unlocked — apps available" class="screen-img" onclick="restart()">
+      <div class="tap-overlay"><span>👆 Tap to restart demo</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="dots" id="dotsRow"></div>
+<div class="hint" id="hintText"></div>
+
+<script>
+/* ── Config ── */
+const SCREENS = ['ipadLocked','locked','quiz','perfect','earned','ipadUnlocked'];
+const QUESTIONS = [
+  {topic:'Multiplication',question:'What is 5 × 5?',answers:[21,19,25,23],correct:25,type:'text',hint:'tap 25!'},
+  {topic:'Time',question:'What time is shown?',answers:['Quarter past 6','Half past 6','Quarter to 7',"6 o'clock"],correct:'Quarter past 6',type:'clock',clockHour:6,clockMinute:15,hint:'tap Quarter past 6!'},
+  {topic:'Subtraction',question:'What is 83 – 47?',answers:[36,46,34,44],correct:36,type:'text',hint:'tap 36!'},
+];
+
+const HINTS = {
+  ipadLocked:'Apps are blocked — tap to open Learning Block',
+  locked:"iPad is locked — tap Let's Go to start",
+  perfect:'Perfect score! Tap to unlock the iPad',
+  earned:'Screen time earned — tap to continue',
+  ipadUnlocked:'Apps unlocked! Tap to restart demo',
+  tryAgain:'Not enough correct — tap Try Again',
+};
+
+/* ── State ── */
+let screen = 'ipadLocked';
+let qIdx = 0, picked = null;
+let stars = 0, streak = 0, correctCt = 0, demoCorrect = 0;
+let advanceTimeout = null;
+
+/* ── Init dots ── */
+const dotsRow = document.getElementById('dotsRow');
+SCREENS.forEach(s => {
+  const d = document.createElement('div');
+  d.className = 'dot'; d.dataset.s = s;
+  dotsRow.appendChild(d);
+});
+
+/* ── Navigation ── */
+function go(next) {
+  // If going to tryAgain, temporarily add it to dots
+  document.querySelectorAll('.screen.active').forEach(el => el.classList.remove('active'));
+  screen = next;
+  setTimeout(() => {
+    const el = document.getElementById('s-' + next);
+    if (el) el.classList.add('active');
+    updateDots(); updateHint();
+    if (next === 'quiz') renderQuiz();
+  }, 50);
+}
+
+function restart() {
+  qIdx = 0; picked = null;
+  stars = 0; streak = 0; correctCt = 0; demoCorrect = 0;
+  clearTimeout(advanceTimeout);
+  go('ipadLocked');
+}
+
+function retryQuiz() {
+  qIdx = 0; picked = null;
+  stars = 0; streak = 0; correctCt = 0; demoCorrect = 0;
+  go('locked');
+}
+
+function updateDots() {
+  const current = (screen === 'tryAgain') ? 'quiz' : screen;
+  document.querySelectorAll('.dot').forEach(d => {
+    const active = d.dataset.s === current;
+    d.classList.toggle('active', active);
+    d.style.width = active ? '18px' : '6px';
+  });
+}
+
+function updateHint() {
+  const h = document.getElementById('hintText');
+  if (screen === 'quiz') {
+    h.textContent = 'Question ' + (qIdx+1) + ' of ' + QUESTIONS.length + ' — ' + QUESTIONS[qIdx].hint;
+  } else {
+    h.textContent = HINTS[screen] || '';
+  }
+}
+
+/* ── Clock SVG ── */
+function clockSVG(hour, minute, size) {
+  const cx=size/2,cy=size/2,r=size/2-6;
+  const minA=(minute/60)*360-90,hrA=((hour%12)/12)*360+(minute/60)*30-90;
+  const mL=r*0.72,hL=r*0.5,toR=d=>d*Math.PI/180;
+  let s=`<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`;
+  s+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="#FFF8EE" stroke="#2D2640" stroke-width="2"/>`;
+  for(let n=1;n<=12;n++){const a=(n/12)*360-90;s+=`<text x="${cx+(r-10)*Math.cos(toR(a))}" y="${cy+(r-10)*Math.sin(toR(a))}" text-anchor="middle" dominant-baseline="central" style="font-size:${size*0.11}px;font-family:Fredoka,sans-serif;font-weight:700;fill:#2D2640">${n}</text>`;}
+  s+=`<line x1="${cx}" y1="${cy}" x2="${cx+hL*Math.cos(toR(hrA))}" y2="${cy+hL*Math.sin(toR(hrA))}" stroke="#2D2640" stroke-width="3" stroke-linecap="round"/>`;
+  s+=`<line x1="${cx}" y1="${cy}" x2="${cx+mL*Math.cos(toR(minA))}" y2="${cy+mL*Math.sin(toR(minA))}" stroke="#6B52E0" stroke-width="2" stroke-linecap="round"/>`;
+  s+=`<circle cx="${cx}" cy="${cy}" r="3" fill="#2D2640"/></svg>`;
+  return s;
+}
+
+/* ── Render quiz ── */
+function renderQuiz() {
+  const q = QUESTIONS[qIdx]; picked = null;
+
+  // Progress
+  const pct = ((qIdx+1)/QUESTIONS.length)*100;
+  const bar = document.getElementById('quizBar');
+  bar.style.width = pct+'%'; bar.style.background = '#FF8A65';
+  document.getElementById('qNum').textContent = (qIdx+1)+'/'+QUESTIONS.length;
+
+  // Stars
+  const sr = document.getElementById('starRow'); sr.innerHTML = '';
+  for(let i=0;i<QUESTIONS.length;i++){const sp=document.createElement('span');sp.textContent='⭐';if(i>=stars)sp.className='dim';sr.appendChild(sp);}
+
+  // Question card
+  const qc = document.getElementById('qCard');
+  let html = '<div class="topic-label"><span class="icon">⭐</span><span class="name">'+q.topic+'</span></div>';
+  if(q.type==='clock') html += '<div class="clock-wrap">'+clockSVG(q.clockHour,q.clockMinute,75)+'</div>';
+  html += '<div class="q-text'+(q.type==='clock'?' small':'')+'">'+q.question+'</div>';
+  if(q.type==='text') html += '<div class="workings-pill">Show workings 📝</div>';
+  qc.innerHTML = html;
+
+  // Answers
+  const ab = document.getElementById('ansBox'); ab.innerHTML = '';
+  q.answers.forEach(a => {
+    const btn = document.createElement('button');
+    btn.className = 'answer-btn'+(q.type==='clock'?' small-text':'');
+    btn.textContent = a;
+    btn.onclick = () => handleAnswer(a,q);
+    ab.appendChild(btn);
+  });
+
+  // Stats
+  renderStats();
+  updateHint();
+}
+
+function renderStats() {
+  document.getElementById('statBar').innerHTML =
+    '<div class="stat-pill" style="background:#E8FAF3"><div class="val">'+correctCt+'/'+QUESTIONS.length+'</div><div class="lbl">CORRECT</div></div>'+
+    '<div class="stat-pill" style="background:#FFF5E9"><div class="val">🔑 +'+correctCt+'</div><div class="lbl">KEYS</div></div>'+
+    '<div class="stat-pill" style="background:#FFF0E8"><div class="val">'+streak+' 🔥</div><div class="lbl">STREAK</div></div>';
+}
+
+/* ── Handle answer ── */
+function handleAnswer(val, q) {
+  if(picked!==null) return;
+  picked = val;
+  const right = val === q.correct;
+
+  // Style buttons
+  document.querySelectorAll('.answer-btn').forEach(b => {
+    b.disabled = true;
+    if(b.textContent == q.correct) b.classList.add('correct');
+    else if(b.textContent == val) b.classList.add('wrong');
+    else b.classList.add('faded');
+  });
+
+  setTimeout(() => {
+    if(right){ fireConfetti(); stars++; correctCt++; streak++; demoCorrect++; }
+    else { streak = 0; }
+    renderStats();
+
+    // Update bar color
+    const bar = document.getElementById('quizBar');
+    bar.style.background = right ? '#4FCDA3' : '#E74C3C';
+
+    // Update stars
+    const sr = document.getElementById('starRow'); sr.innerHTML = '';
+    for(let i=0;i<QUESTIONS.length;i++){const sp=document.createElement('span');sp.textContent='⭐';if(i>=stars)sp.className='dim';sr.appendChild(sp);}
+
+    advanceTimeout = setTimeout(() => {
+      if(qIdx < QUESTIONS.length-1) {
+        qIdx++; renderQuiz();
+      } else if(demoCorrect === QUESTIONS.length) {
+        go('perfect');
+      } else {
+        renderTryAgain(); go('tryAgain');
+      }
+    }, right ? 1100 : 700);
+  }, 250);
+}
+
+/* ── Try again ── */
+function renderTryAgain() {
+  const total = QUESTIONS.length;
+  document.getElementById('tryAgainMsg').innerHTML =
+    'You got '+demoCorrect+'/'+total+' correct.<br>You need all '+total+' to unlock the iPad.';
+  document.getElementById('tryAgainStats').innerHTML =
+    '<div class="tryagain-stat" style="background:#FFE0E0"><div class="pval" style="color:#E74C3C">'+demoCorrect+'/'+total+'</div><div class="plbl">CORRECT</div></div>'+
+    '<div class="tryagain-stat" style="background:#FFF0E8"><div class="pval" style="color:#E67E22">'+streak+' 🔥</div><div class="plbl">STREAK</div></div>';
+}
+
+/* ── Confetti ── */
+function fireConfetti() {
+  const box = document.getElementById('confettiBox'); box.innerHTML = '';
+  const colors = ['#FFD94A','#A78BFA','#4FCDA3','#FF8A65','#64B5F6','#FF6B9D'];
+  let css = '';
+  for(let i=0;i<30;i++){
+    const el = document.createElement('div');
+    const x=25+Math.random()*50, delay=Math.random()*0.2, drift=(Math.random()-0.5)*80;
+    const dur=1+Math.random()*0.5, sz=4+Math.random()*4, rot=400+Math.random()*300;
+    const c=colors[i%colors.length], sh=i%3;
+    el.style.cssText='position:absolute;left:'+x+'%;top:-3%;width:'+sz+'px;height:'+(sh===1?sz*1.5:sz)+'px;border-radius:'+(sh===0?'50%':'2px')+';background:'+c+';opacity:0;animation:c'+i+' '+dur+'s '+delay+'s ease-out forwards;';
+    box.appendChild(el);
+    css+='@keyframes c'+i+'{0%{opacity:1;transform:translateY(0) translateX(0) rotate(0deg)}100%{opacity:0;transform:translateY(400px) translateX('+drift+'px) rotate('+rot+'deg)}}';
+  }
+  const st=document.createElement('style');st.textContent=css;box.appendChild(st);
+  setTimeout(()=>{box.innerHTML='';},1500);
+}
+
+/* ── Init ── */
+updateDots();
+updateHint();
+</script>
+</body>
+</html>
