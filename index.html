@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learning Block — Learn first, earn screen time</title>
-<meta name="description" content="Learning Block locks your child's iPad until they complete a curriculum-aligned maths quiz. Learn first, earn screen time. Free to download on the App Store.">
+<title>Learning Block | Kids Maths App — Earn Screen Time | KS1 & KS2 for iPad</title>
+<meta name="description" content="Learning Block locks your child's iPad until they complete a UK curriculum-aligned maths quiz. No quiz, no screen time. Free to download on the App Store. KS1 & KS2.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -252,6 +252,8 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   .nav-logo img{height:24px}
   .demo-iframe-wrap iframe{width:calc(100vw - 32px);max-width:290px;height:460px}
 }
+.email-divider{display:flex;align-items:center;gap:1rem;color:var(--dark);opacity:.35;font-size:.82rem;font-weight:700}
+.email-divider::before,.email-divider::after{content:'';flex:1;height:1.5px;background:var(--dark);opacity:.15}
 </style>
 </head>
 <body>
@@ -453,14 +455,26 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   <section id="download" class="cta-section">
     <div class="cta-card">
       <img src="logo.png" alt="" style="height:80px;display:block;margin:0 auto 1rem;">
-      <h2>Download Learning Block</h2>
-      <p>Free to download on the App Store. Start with KS1 Addition — no payment needed until you're ready to unlock everything.</p>
-      <div class="cta-appstore-wrap">
+      <h2>Try it free today</h2>
+      <p>Download on the App Store and start with KS1 Addition — no payment needed. Or sign up below to hear when new subjects (English, Science and more) launch.</p>
+      <div class="cta-appstore-wrap" style="margin-bottom:2rem;">
         <a href="https://apps.apple.com/gb/app/learning-block/id6761186962?platform=ipad" target="_blank" rel="noopener" class="appstore-badge">
           <img src="appstore-badge.svg" alt="Download on the App Store">
         </a>
         <p class="free-note">🆓 Free to download · iOS 16+</p>
       </div>
+      <div class="email-divider"><span>or stay in the loop</span></div>
+      <form id="lb-signup-form" style="display:flex;flex-direction:column;gap:.75rem;margin-top:1.25rem;">
+        <div style="display:flex;gap:.6rem;">
+          <label id="lb-label-parent" style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.75rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;cursor:pointer;background:var(--yellow);transition:background .15s;"><input type="radio" name="leadType" value="Parent" checked style="display:none;">👨‍👩‍👧 Parent</label>
+          <label id="lb-label-teacher" style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.75rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;cursor:pointer;background:#fff;transition:background .15s;"><input type="radio" name="leadType" value="Teacher" style="display:none;">🏫 Teacher / School</label>
+        </div>
+        <input type="email" id="lb-email" placeholder="Your email address" required style="width:100%;padding:.85rem 1.1rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;background:var(--cream);color:var(--dark);outline:none;">
+        <label style="display:flex;align-items:flex-start;gap:.6rem;font-size:.85rem;font-weight:700;opacity:.7;cursor:pointer;text-align:left;"><input type="checkbox" id="lb-consent" required style="margin-top:3px;width:16px;height:16px;flex-shrink:0;accent-color:var(--purple-dark);">I agree to receive emails from Learning Block about new subjects, updates, and tips. No spam, unsubscribe anytime.</label>
+        <div id="lb-message" style="display:none;font-weight:700;font-size:.9rem;padding:.6rem 1rem;border-radius:10px;"></div>
+        <button type="button" id="lb-submit" onclick="handleLBSignup()" style="width:100%;padding:.9rem 2rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:14px;box-shadow:0 5px 0 var(--dark);cursor:pointer;transition:transform .15s,box-shadow .15s;" onmouseover="this.style.transform='translateY(3px)';this.style.boxShadow='0 2px 0 var(--dark)'" onmouseout="this.style.transform='';this.style.boxShadow='0 5px 0 var(--dark)'">Notify me when new subjects launch 🔔</button>
+      </form>
+      <p style="font-size:.78rem;opacity:.45;margin-top:.75rem;margin-bottom:0;">No spam. Unsubscribe anytime. — <a href="privacy.html" style="color:var(--dark);opacity:.7;">Privacy policy</a></p>
     </div>
   </section>
 
@@ -474,6 +488,44 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   </div>
 </footer>
 <script>
+const LB_SCRIPT_URL='https://script.google.com/macros/s/AKfycbzU4m0mdKDgguJPPXtDpm0_wc-TAifpfCPZcw3bhQIBYKEEs4WEPXfak8-ap7NtPmc7/exec';
+
+const lbGeo={country:'',timezone:'',language:''};
+try{lbGeo.timezone=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
+lbGeo.language=navigator.language||'';
+(async function(){
+  try{
+    const res=await fetch('https://ipapi.co/json/',{signal:AbortSignal.timeout(3000)});
+    if(res.ok){const data=await res.json();lbGeo.country=data.country_name||'';if(data.city)lbGeo.city=data.city;if(data.region)lbGeo.region=data.region;if(data.country_code)lbGeo.countryCode=data.country_code;}
+  }catch(e){
+    const m={'Europe/London':'United Kingdom','Europe/Dublin':'Ireland','Australia/Sydney':'Australia','America/New_York':'United States','America/Toronto':'Canada','Pacific/Auckland':'New Zealand'};
+    lbGeo.country=m[lbGeo.timezone]||'';
+  }
+})();
+
+document.querySelectorAll('input[name="leadType"]').forEach(r=>{r.addEventListener('change',()=>{document.getElementById('lb-label-parent').style.background=r.value==='Parent'&&r.checked?'var(--yellow)':'#fff';document.getElementById('lb-label-teacher').style.background=r.value==='Teacher'&&r.checked?'var(--yellow)':'#fff';});});
+
+async function handleLBSignup(){
+  const email=document.getElementById('lb-email').value.trim();
+  const consent=document.getElementById('lb-consent').checked;
+  const leadType=document.querySelector('input[name="leadType"]:checked').value;
+  const msg=document.getElementById('lb-message');
+  const btn=document.getElementById('lb-submit');
+  if(!email){showMsg(msg,'Please enter your email address.','#cc0000','#fff0f0');return;}
+  if(!consent){showMsg(msg,'Please tick the consent box to continue.','#cc0000','#fff0f0');return;}
+  btn.textContent='Signing you up…';btn.disabled=true;
+  try{
+    const body=['email='+encodeURIComponent(email),'leadType='+encodeURIComponent(leadType),'consent=true','country='+encodeURIComponent(lbGeo.country||'Unknown'),'timezone='+encodeURIComponent(lbGeo.timezone||'Unknown'),'language='+encodeURIComponent(lbGeo.language||'Unknown')].join('&');
+    const res=await fetch(LB_SCRIPT_URL,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body});
+    const data=await res.json();
+    if(data.status==='success'){showMsg(msg,"🎉 You're on the list! We'll let you know when new subjects launch.",'#1a7a54','#f0fff8');document.getElementById('lb-signup-form').reset();document.getElementById('lb-label-parent').style.background='var(--yellow)';document.getElementById('lb-label-teacher').style.background='#fff';}
+    else if(data.status==='duplicate'){showMsg(msg,"You're already signed up — we'll be in touch!",'#6B52E0','#f5f0ff');}
+    else{showMsg(msg,'Something went wrong. Please try again.','#cc0000','#fff0f0');}
+  }catch(err){showMsg(msg,'Something went wrong. Please try again.','#cc0000','#fff0f0');}
+  btn.textContent='Notify me when new subjects launch 🔔';btn.disabled=false;
+}
+function showMsg(el,text,color,bg){el.textContent=text;el.style.color=color;el.style.background=bg;el.style.border='2px solid '+color;el.style.display='block';}
+
 const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.animation='fadeUp .45s ease both';e.target.style.opacity='1'},i*60);obs.unobserve(e.target)}})},{threshold:.1});
 document.querySelectorAll('.feature-pill,.year-card,.price-card').forEach(el=>obs.observe(el));
 
