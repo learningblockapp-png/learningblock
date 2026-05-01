@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Learning Block — Learn first, earn screen time</title>
-<meta name="description" content="Learning Block locks your child's iPad until they complete a curriculum-aligned maths quiz. Learn first, earn screen time.">
+<meta name="description" content="Learning Block locks your child's iPad until they complete a curriculum-aligned maths quiz. Learn first, earn screen time. Free to download on the App Store.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -36,6 +36,7 @@ section{position:relative;z-index:1}
 .hero{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:4rem 2rem 3rem;gap:4rem;max-width:1200px;margin:0 auto}
 .hero-text{flex:1;max-width:540px;animation:fadeUp .6s ease both}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:2.5px solid var(--dark);border-radius:50px;padding:.4rem 1rem;font-weight:700;font-size:.85rem;box-shadow:0 3px 0 var(--dark);margin-bottom:1.5rem}
+.hero-badge.live{background:var(--green);color:#fff;border-color:#2a8a6a;box-shadow:0 3px 0 #2a8a6a}
 .hero h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.05;margin-bottom:1.25rem}
 .hero h1 span{color:var(--purple-dark);position:relative;display:inline-block}
 .hero h1 span::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:8px;background:var(--yellow);border-radius:4px;z-index:-1}
@@ -49,11 +50,23 @@ section{position:relative;z-index:1}
 .btn-secondary{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:#fff;color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:.9rem 2rem;text-decoration:none;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;justify-content:center}
 .btn-secondary:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--dark)}
 
+/* App Store badge */
+.appstore-badge{display:inline-block;transition:opacity .2s;line-height:0}
+.appstore-badge:hover{opacity:.8}
+.appstore-badge img{height:52px;width:auto;display:block}
+
 /* SECTIONS */
 .section-inner{max-width:1100px;margin:0 auto;padding:5rem 2rem}
 .section-label{font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-dark);margin-bottom:.6rem}
 .section-title{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(2rem,4vw,2.8rem);margin-bottom:1rem}
 .section-subtitle{font-size:1.05rem;font-weight:600;opacity:.6;line-height:1.7;max-width:560px;margin-bottom:2.5rem}
+
+/* SOCIAL PROOF STRIP */
+.social-strip{background:#fff;border-top:2.5px solid var(--dark);border-bottom:2.5px solid var(--dark);padding:.9rem 2rem;position:relative;z-index:1;overflow:hidden}
+.social-strip-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap}
+.social-item{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:.9rem;white-space:nowrap}
+.social-item .star-row{color:var(--yellow);font-size:.95rem;letter-spacing:-1px}
+.social-sep{width:4px;height:4px;background:var(--dark);border-radius:50%;opacity:.25}
 
 /* DEMO SECTION */
 .demo-section{position:relative;z-index:1}
@@ -113,7 +126,7 @@ section{position:relative;z-index:1}
 .pricing-section .section-inner{position:relative;z-index:1}
 .pricing-section .section-label{color:var(--yellow)}
 .pricing-section .section-title{color:#fff}
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;align-items:center;max-width:560px;margin:0 auto}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;align-items:center;max-width:720px;margin:0 auto}
 .price-card{background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.12);border-radius:24px;padding:1.75rem;text-align:center;opacity:0}
 .price-card.featured{background:var(--yellow);border-color:var(--yellow);transform:scale(1.04);box-shadow:0 8px 32px rgba(255,217,74,.25)}
 .price-card.featured h3,.price-card.featured .price,.price-card.featured .price-sub,.price-card.featured .price-detail{color:var(--dark)!important}
@@ -122,6 +135,8 @@ section{position:relative;z-index:1}
 .price{font-family:'Fredoka',sans-serif;font-weight:700;font-size:2.2rem;color:#fff}
 .price-sub{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.5);margin-top:.2rem}
 .price-detail{font-size:.75rem;font-weight:700;color:rgba(255,255,255,.35);margin-top:.5rem}
+.price-card.free-card .price{font-size:1.8rem}
+.price-card.free-card .price-detail{color:rgba(255,255,255,.45)}
 .save-pill{display:inline-block;background:var(--green);border:2px solid #2a8a6a;border-radius:50px;padding:.2rem .75rem;font-size:.72rem;font-weight:800;color:#1a4a35;margin-top:.6rem}
 .trial-note{text-align:center;margin-top:1.5rem;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.45)}
 
@@ -130,6 +145,9 @@ section{position:relative;z-index:1}
 .cta-card{background:#fff;border:2.5px solid var(--dark);border-radius:32px;padding:3.5rem 2rem;box-shadow:0 8px 0 var(--dark);max-width:520px;margin:0 auto}
 .cta-card h2{font-family:'Fredoka',sans-serif;font-weight:700;font-size:2.1rem;margin-bottom:.75rem}
 .cta-card>p{font-size:1rem;font-weight:600;opacity:.62;margin-bottom:2rem;line-height:1.65}
+.cta-appstore-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem}
+.cta-appstore-wrap .appstore-badge img{height:60px}
+.free-note{display:flex;align-items:center;gap:.4rem;font-size:.88rem;font-weight:700;opacity:.55}
 
 footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;z-index:1}
 .footer-logo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.15rem;color:var(--dark);text-decoration:none;display:flex;align-items:center;gap:6px}
@@ -139,11 +157,9 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
 .footer-links a:hover{opacity:1}
 .footer-copy{font-size:.8rem;font-weight:600;opacity:.38}
 
-/* Hamburger button */
+/* Hamburger */
 .nav-burger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:4px;align-items:center;justify-content:center}
 .nav-burger span{display:block;width:22px;height:2.5px;background:var(--dark);border-radius:2px;transition:transform .2s,opacity .2s}
-
-/* Mobile slide-down nav */
 .mobile-nav{display:none;position:fixed;top:52px;left:0;right:0;background:var(--cream);border-bottom:2.5px solid var(--dark);z-index:99;flex-direction:column;padding:1rem 1.25rem 1.5rem;gap:.25rem;transform:translateY(-110%);transition:transform .3s ease;box-shadow:0 8px 24px rgba(45,38,64,.1)}
 .mobile-nav.open{transform:translateY(0)}
 .mobile-nav a{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;color:var(--dark);text-decoration:none;padding:.7rem 0;border-bottom:1.5px solid rgba(45,38,64,.08)}
@@ -152,7 +168,6 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
-/* Tablet */
 @media(max-width:960px){
   .hero{flex-direction:column;text-align:center;gap:2.5rem;padding-top:3rem}
   .hero-text{max-width:100%;display:flex;flex-direction:column;align-items:center}
@@ -171,9 +186,9 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   .demo-right{text-align:left}
   .demo-left{display:flex;justify-content:center}
   .demo-cta-text{display:none}
+  .social-strip-inner{gap:1.2rem}
 }
 
-/* Mobile */
 @media(max-width:768px){
   .nav-links{display:none}
   .nav-burger{display:flex}
@@ -187,6 +202,7 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   .hero-badge{font-size:.75rem;padding:.3rem .75rem;margin-bottom:1rem}
   .hero-buttons{flex-direction:column;align-items:center;width:100%;gap:.75rem}
   .btn-primary,.btn-secondary{width:100%;justify-content:center;text-align:center;font-size:1rem;padding:.8rem 1.5rem;border-radius:14px}
+  .appstore-btn{width:100%;justify-content:center}
   .hero-visual{flex-direction:row;align-items:center;justify-content:center;gap:.6rem}
   .hero-visual .ipad-primary{width:52%}
   .hero-visual .ipad-secondary{width:42%;transform:translateY(20px)}
@@ -215,15 +231,15 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   .cta-card h2{font-size:1.7rem}
   .cta-card>p{font-size:.92rem}
   footer{flex-direction:column;align-items:flex-start;padding:1.5rem 1.25rem}
-  /* Demo responsive */
   .demo-layout{flex-direction:column-reverse;gap:1.5rem}
   .demo-right{text-align:center}
   .demo-steps{display:none}
   .demo-cta-text{display:none}
   .demo-iframe-wrap iframe{width:calc(100vw - 40px);max-width:320px;height:480px}
+  .social-strip-inner{gap:.9rem}
+  .social-sep{display:none}
 }
 
-/* Small phones */
 @media(max-width:400px){
   .hero h1{font-size:2rem}
   .hero{padding:1.25rem 1rem 1.5rem;gap:1.25rem}
@@ -247,7 +263,7 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
     <li><a href="#curriculum">Curriculum</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="blog.html">Blog</a></li>
-    <li><a href="#download" class="nav-cta">Get notified</a></li>
+    <li><a href="https://apps.apple.com/gb/app/learning-block/id6761186962?platform=ipad" target="_blank" rel="noopener" class="nav-cta">Download free</a></li>
   </ul>
   <button class="nav-burger" onclick="document.querySelector('.mobile-nav').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -259,17 +275,19 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   <a href="#curriculum" onclick="this.parentElement.classList.remove('open')">Curriculum</a>
   <a href="#pricing" onclick="this.parentElement.classList.remove('open')">Pricing</a>
   <a href="blog.html" onclick="this.parentElement.classList.remove('open')">Blog</a>
-  <a href="#download" class="mobile-nav-cta" onclick="this.parentElement.classList.remove('open')">🔔 Get notified</a>
+  <a href="https://apps.apple.com/gb/app/learning-block/id6761186962?platform=ipad" target="_blank" rel="noopener" class="mobile-nav-cta" onclick="this.parentElement.classList.remove('open')">📲 Free download — App Store</a>
 </div>
 <div id="main-content">
 
   <section class="hero">
     <div class="hero-text">
-      <div class="hero-badge">🇬🇧 UK National Curriculum aligned · Coming soon to iPad</div>
+      <div class="hero-badge live">🎉 Live now on the App Store — free to download</div>
       <h1>Learn first,<br><span>earn screen time</span></h1>
       <p class="hero-sub">Learning Block locks your child's iPad until they complete a UK curriculum-aligned maths quiz. No quiz, no screen time — it's that simple.</p>
       <div class="hero-buttons">
-        <a href="#download" class="btn-primary">🔔 Get notified at launch</a>
+        <a href="https://apps.apple.com/gb/app/learning-block/id6761186962?platform=ipad" target="_blank" rel="noopener" class="appstore-badge">
+          <img src="appstore-badge.svg" alt="Download on the App Store">
+        </a>
         <a href="#demo" class="btn-secondary">Try the demo</a>
       </div>
     </div>
@@ -278,6 +296,19 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
       <div class="ipad-wrap ipad-lg ipad-secondary"><div class="ipad-bezel"><img src="screen-earned.png" alt="Screen time earned — 29 minutes remaining"></div></div>
     </div>
   </section>
+
+  <!-- SOCIAL PROOF STRIP -->
+  <div class="social-strip">
+    <div class="social-strip-inner">
+      <div class="social-item"><span class="star-row">★★★★★</span><span>Free to download</span></div>
+      <div class="social-sep"></div>
+      <div class="social-item">🇬🇧<span>UK National Curriculum aligned</span></div>
+      <div class="social-sep"></div>
+      <div class="social-item">🔐<span>OS-level lock — no workarounds</span></div>
+      <div class="social-sep"></div>
+      <div class="social-item">👨‍👩‍👧<span>Built by a parent</span></div>
+    </div>
+  </div>
 
   <!-- INTERACTIVE DEMO -->
   <section id="demo" class="demo-section">
@@ -393,31 +424,43 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   <section id="pricing" class="pricing-section">
     <div class="section-inner">
       <div class="section-label">Pricing</div>
-      <h2 class="section-title">Simple pricing.<br>Cancel anytime.</h2>
+      <h2 class="section-title">Start free.<br>Upgrade anytime.</h2>
       <div class="pricing-grid">
-        <div class="price-card featured"><div class="recommended-badge">⭐ Best value</div><h3>Annual</h3><div class="price">£24.99</div><div class="price-sub">per year</div><div class="save-pill">Save 48% vs monthly</div></div>
-        <div class="price-card"><h3>Monthly</h3><div class="price">£3.99</div><div class="price-sub">per month</div><div class="price-detail">Flexible — cancel anytime</div></div>
+        <div class="price-card free-card">
+          <h3>Free</h3>
+          <div class="price">£0</div>
+          <div class="price-sub">forever</div>
+          <div class="price-detail" style="margin-top:.75rem;color:rgba(255,255,255,.5)">KS1 Addition · 5 questions<br>Try before you buy</div>
+        </div>
+        <div class="price-card featured">
+          <div class="recommended-badge">⭐ Best value</div>
+          <h3>Annual</h3>
+          <div class="price">£24.99</div>
+          <div class="price-sub">per year</div>
+          <div class="save-pill">Save 48% vs monthly</div>
+        </div>
+        <div class="price-card">
+          <h3>Monthly</h3>
+          <div class="price">£3.99</div>
+          <div class="price-sub">per month</div>
+          <div class="price-detail">Flexible — cancel anytime</div>
+        </div>
       </div>
-      <p class="trial-note">Free to download. Cancel any time from your device settings.</p>
+      <p class="trial-note">Free tier always available. Premium unlocks all year groups, topics, and OS-level locking. Cancel any time from your device settings.</p>
     </div>
   </section>
 
   <section id="download" class="cta-section">
     <div class="cta-card">
       <img src="logo.png" alt="" style="height:80px;display:block;margin:0 auto 1rem;">
-      <h2>Coming soon to the App Store</h2>
-      <p>Learning Block is finishing up. Sign up to be notified the moment it launches on the App Store — no spam, just one email.</p>
-      <form id="lb-signup-form" style="display:flex;flex-direction:column;gap:.75rem;">
-        <div style="display:flex;gap:.6rem;">
-          <label id="lb-label-parent" style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.75rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;cursor:pointer;background:var(--yellow);transition:background .15s;"><input type="radio" name="leadType" value="Parent" checked style="display:none;">👨‍👩‍👧 Parent</label>
-          <label id="lb-label-teacher" style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.75rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;cursor:pointer;background:#fff;transition:background .15s;"><input type="radio" name="leadType" value="Teacher" style="display:none;">🏫 Teacher / School</label>
-        </div>
-        <input type="email" id="lb-email" placeholder="Your email address" required style="width:100%;padding:.85rem 1.1rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;border:2.5px solid var(--dark);border-radius:14px;background:var(--cream);color:var(--dark);outline:none;">
-        <label style="display:flex;align-items:flex-start;gap:.6rem;font-size:.85rem;font-weight:700;opacity:.7;cursor:pointer;text-align:left;"><input type="checkbox" id="lb-consent" required style="margin-top:3px;width:16px;height:16px;flex-shrink:0;accent-color:var(--purple-dark);">I agree to receive emails from Learning Block about the app launch, updates, and occasional feedback requests. No spam, unsubscribe anytime.</label>
-        <div id="lb-message" style="display:none;font-weight:700;font-size:.9rem;padding:.6rem 1rem;border-radius:10px;"></div>
-        <button type="button" id="lb-submit" onclick="handleLBSignup()" style="width:100%;padding:.9rem 2rem;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:14px;box-shadow:0 5px 0 var(--dark);cursor:pointer;transition:transform .15s,box-shadow .15s;" onmouseover="this.style.transform='translateY(3px)';this.style.boxShadow='0 2px 0 var(--dark)'" onmouseout="this.style.transform='';this.style.boxShadow='0 5px 0 var(--dark)'">Notify me at launch 🔔</button>
-      </form>
-      <p style="font-size:.78rem;opacity:.45;margin-top:.75rem;margin-bottom:0;">No spam. Unsubscribe anytime. — <a href="privacy.html" style="color:var(--dark);opacity:.7;">Privacy policy</a></p>
+      <h2>Download Learning Block</h2>
+      <p>Free to download on the App Store. Start with KS1 Addition — no payment needed until you're ready to unlock everything.</p>
+      <div class="cta-appstore-wrap">
+        <a href="https://apps.apple.com/gb/app/learning-block/id6761186962?platform=ipad" target="_blank" rel="noopener" class="appstore-badge">
+          <img src="appstore-badge.svg" alt="Download on the App Store">
+        </a>
+        <p class="free-note">🆓 Free to download · iPad required · iOS 16+</p>
+      </div>
     </div>
   </section>
 
@@ -425,92 +468,12 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
 <footer>
   <a href="/" class="footer-logo"><img src="logo.png" alt="Learning Block">Learning Block</a>
   <ul class="footer-links"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="mailto:hello@learningblock.app">Contact</a></li></ul>
-  <span class="footer-copy">© 2026 Learning Block Ltd. All rights reserved.</span>
+  <div style="display:flex;flex-direction:column;gap:.25rem;text-align:right">
+    <span class="footer-copy">© 2026 Learning Block Ltd. All rights reserved.</span>
+    <span class="footer-copy" style="opacity:.55">Have feedback? Reach out at <a href="mailto:hello@learningblock.app" style="color:var(--dark);opacity:1;text-decoration:underline;text-underline-offset:2px;">hello@learningblock.app</a></span>
+  </div>
 </footer>
 <script>
-const LB_SCRIPT_URL='https://script.google.com/macros/s/AKfycbzU4m0mdKDgguJPPXtDpm0_wc-TAifpfCPZcw3bhQIBYKEEs4WEPXfak8-ap7NtPmc7/exec';
-
-/* ── Geo capture: runs on page load, stores result for form submission ── */
-const lbGeo = { country: '', timezone: '', language: '' };
-
-// 1. Browser signals — always available, instant
-try { lbGeo.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e) {}
-lbGeo.language = navigator.language || '';
-
-// 2. IP geolocation — more accurate country, fetched in background
-(async function() {
-  try {
-    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) });
-    if (res.ok) {
-      const data = await res.json();
-      lbGeo.country = data.country_name || '';
-      if (data.city) lbGeo.city = data.city;
-      if (data.region) lbGeo.region = data.region;
-      if (data.country_code) lbGeo.countryCode = data.country_code;
-    }
-  } catch(e) {
-    const tzCountryMap = {
-      'Europe/London': 'United Kingdom', 'Europe/Dublin': 'Ireland',
-      'Australia/Sydney': 'Australia', 'Australia/Melbourne': 'Australia',
-      'Australia/Brisbane': 'Australia', 'Australia/Perth': 'Australia',
-      'America/New_York': 'United States', 'America/Chicago': 'United States',
-      'America/Denver': 'United States', 'America/Los_Angeles': 'United States',
-      'America/Toronto': 'Canada', 'America/Vancouver': 'Canada',
-      'Pacific/Auckland': 'New Zealand'
-    };
-    lbGeo.country = tzCountryMap[lbGeo.timezone] || '';
-  }
-})();
-
-document.querySelectorAll('input[name="leadType"]').forEach(r=>{r.addEventListener('change',()=>{document.getElementById('lb-label-parent').style.background=r.value==='Parent'&&r.checked?'var(--yellow)':'#fff';document.getElementById('lb-label-teacher').style.background=r.value==='Teacher'&&r.checked?'var(--yellow)':'#fff'})});
-
-async function handleLBSignup(){
-  const email=document.getElementById('lb-email').value.trim();
-  const consent=document.getElementById('lb-consent').checked;
-  const leadType=document.querySelector('input[name="leadType"]:checked').value;
-  const msg=document.getElementById('lb-message');
-  const btn=document.getElementById('lb-submit');
-
-  if(!email){showMsg(msg,'Please enter your email address.','#cc0000','#fff0f0');return}
-  if(!consent){showMsg(msg,'Please tick the consent box to continue.','#cc0000','#fff0f0');return}
-
-  btn.textContent='Signing you up…';btn.disabled=true;
-
-  try{
-    const body = [
-      `email=${encodeURIComponent(email)}`,
-      `leadType=${encodeURIComponent(leadType)}`,
-      `consent=true`,
-      `country=${encodeURIComponent(lbGeo.country || 'Unknown')}`,
-      `timezone=${encodeURIComponent(lbGeo.timezone || 'Unknown')}`,
-      `language=${encodeURIComponent(lbGeo.language || 'Unknown')}`
-    ].join('&');
-
-    const res=await fetch(LB_SCRIPT_URL,{
-      method:'POST',
-      headers:{'Content-Type':'application/x-www-form-urlencoded'},
-      body: body
-    });
-    const data=await res.json();
-
-    if(data.status==='success'){
-      showMsg(msg,"🎉 You're on the list! We'll email you at launch.",'#1a7a54','#f0fff8');
-      document.getElementById('lb-signup-form').reset();
-      document.getElementById('lb-label-parent').style.background='var(--yellow)';
-      document.getElementById('lb-label-teacher').style.background='#fff'
-    }else if(data.status==='duplicate'){
-      showMsg(msg,"You're already signed up — we'll be in touch at launch!",'#6B52E0','#f5f0ff')
-    }else{
-      showMsg(msg,'Something went wrong. Please try again.','#cc0000','#fff0f0')
-    }
-  }catch(err){
-    showMsg(msg,'Something went wrong. Please try again.','#cc0000','#fff0f0')
-  }
-  btn.textContent='Notify me at launch 🔔';btn.disabled=false
-}
-
-function showMsg(el,text,color,bg){el.textContent=text;el.style.color=color;el.style.background=bg;el.style.border=`2px solid ${color}`;el.style.display='block'}
-
 const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.animation='fadeUp .45s ease both';e.target.style.opacity='1'},i*60);obs.unobserve(e.target)}})},{threshold:.1});
 document.querySelectorAll('.feature-pill,.year-card,.price-card').forEach(el=>obs.observe(el));
 
