@@ -247,7 +247,7 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
 </div>
 
 <!-- ====================================================
-     HALF TERM BANNER — remove after 21 June 2026
+     HALF TERM BANNER — remove after 8 June 2026
      ==================================================== -->
 <style>
 #ht-banner{position:relative;z-index:99;background:#0f3d2e;border-bottom:2.5px solid #2D2640;font-family:'Nunito',sans-serif;}
@@ -294,6 +294,7 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
         <span class="val" id="ht-d">--</span><span class="lbl">d</span>
         <span class="val" id="ht-h">--</span><span class="lbl">h</span>
         <span class="val" id="ht-m">--</span><span class="lbl">m</span>
+        <span class="val" id="ht-s">--</span><span class="lbl">s</span>
       </div>
     </div>
     <div class="ht-right">
@@ -522,7 +523,7 @@ document.querySelectorAll('.showcase-row').forEach(el=>sObs.observe(el));
 
 /* HALF TERM BANNER SCRIPTS */
 (function(){
-  var end=new Date('2026-06-21T23:59:59').getTime();
+  var end=new Date('2026-06-08T23:59:59').getTime();
   /* Hide banner immediately if offer has expired */
   if(Date.now()>end){
     var b=document.getElementById('ht-banner');
@@ -534,9 +535,10 @@ document.querySelectorAll('.showcase-row').forEach(el=>sObs.observe(el));
     if(diff===0){document.getElementById('ht-banner').style.display='none';return;}
     document.getElementById('ht-d').textContent=Math.floor(diff/86400000);
     document.getElementById('ht-h').textContent=Math.floor((diff%86400000)/3600000);
-    document.getElementById('ht-m').textContent=Math.floor((diff%3600000)/60000);
+    document.getElementById('ht-m').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    document.getElementById('ht-s').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
   }
-  htTick();setInterval(htTick,60000);
+  htTick();setInterval(htTick,1000);
 })();
 function htCopy(){
   navigator.clipboard.writeText('HALFTERMHELP').then(function(){
