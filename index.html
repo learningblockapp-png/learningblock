@@ -180,7 +180,35 @@ section{position:relative;z-index:1}
 details[open] .faq-q::after{transform:rotate(45deg)}
 .faq-a{padding:0 1.4rem 1.1rem;font-size:.9rem;font-weight:600;color:var(--dark);opacity:.65;line-height:1.7;border-top:1.5px solid rgba(45,38,64,.08);padding-top:.85rem}
 
-.cta-section{padding:5rem 2rem;text-align:center;position:relative;z-index:1}
+/* FAQ GROUPED ACCORDION */
+.faq-groups{display:flex;flex-direction:column;gap:1rem;max-width:760px;margin:0 auto}
+.faq-group{background:#fff;border:2.5px solid var(--dark);border-radius:20px;overflow:hidden;box-shadow:0 5px 0 var(--dark)}
+.faq-group-header{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.4rem;cursor:pointer;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.15rem;color:var(--dark);user-select:none;background:var(--cream);border-bottom:2px solid transparent;transition:border-color .2s}
+.faq-group.open .faq-group-header{border-bottom-color:rgba(45,38,64,.12)}
+.faq-group-arrow{font-size:1.1rem;transition:transform .25s;color:var(--purple-dark)}
+.faq-group.open .faq-group-arrow{transform:rotate(180deg)}
+.faq-group-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-group.open .faq-group-body{max-height:1200px}
+.faq-item-hp{border-top:1.5px solid rgba(45,38,64,.07)}
+.faq-item-hp:first-child{border-top:none}
+.faq-q-hp{padding:.9rem 1.4rem;font-weight:700;font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:background .15s}
+.faq-q-hp::after{content:'+';font-size:1.2rem;font-weight:700;color:var(--purple-dark);flex-shrink:0;transition:transform .2s}
+.faq-item-hp.open .faq-q-hp::after{transform:rotate(45deg)}
+.faq-q-hp:hover{background:rgba(107,82,224,.04)}
+.faq-a-hp{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item-hp.open .faq-a-hp{max-height:400px}
+.faq-a-hp-inner{padding:.1rem 1.4rem 1rem;font-size:.9rem;font-weight:600;opacity:.65;line-height:1.75}
+
+/* FAQ SECTION background */
+.faq-section{background:#fff;position:relative;z-index:1}
+.faq-section .section-label{color:var(--purple-dark)}
+
+@media(max-width:768px){
+  .faq-group-header{font-size:1rem;padding:.95rem 1.1rem}
+  .faq-q-hp{font-size:.88rem;padding:.8rem 1.1rem}
+  .faq-a-hp-inner{padding:.1rem 1.1rem .9rem;font-size:.85rem}
+}
+/* END FAQ GROUPED */
 .cta-card{background:#fff;border:2.5px solid var(--dark);border-radius:32px;padding:3.5rem 2rem;box-shadow:0 8px 0 var(--dark);max-width:520px;margin:0 auto}
 .cta-card h2{font-family:'Fredoka',sans-serif;font-weight:700;font-size:2.1rem;margin-bottom:.75rem}
 .cta-card>p{font-size:1rem;font-weight:600;opacity:.62;margin-bottom:2rem;line-height:1.65}
@@ -225,6 +253,13 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   .social-strip-inner{gap:1.2rem}
   .hero-send-ipad{justify-content:center}
 }
+/* Mobile hero: inline star rating + simplified CTAs */
+.hero-stars-inline{display:none;align-items:center;gap:.5rem;font-size:.88rem;font-weight:700;margin-bottom:1.25rem;justify-content:center}
+.hero-stars-inline .stars{color:var(--yellow);letter-spacing:1px;font-size:.95rem}
+.hero-stars-inline .rating-text{color:var(--dark);opacity:.65}
+.hero-dl-btn-mobile{display:none;width:100%;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:1rem 2rem;text-decoration:none;text-align:center;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s}
+.hero-dl-btn-mobile:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--dark)}
+.hero-demo-link-mobile{display:none;font-family:'Fredoka',sans-serif;font-weight:700;font-size:.9rem;color:var(--purple-dark);text-decoration:underline;text-underline-offset:3px;text-align:center;margin-top:.6rem}
 @media(max-width:768px){
   .nav-links{display:none}
   .nav-burger{display:flex}
@@ -238,6 +273,14 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   .hero-badge{font-size:.75rem;padding:.3rem .75rem}
   .hero-buttons{flex-direction:column;align-items:center;width:100%;gap:.75rem}
   .btn-primary,.btn-secondary{width:100%;justify-content:center;text-align:center;font-size:1rem;padding:.8rem 1.5rem;border-radius:14px}
+  .hero-badge.live{display:none}
+  .hero-badges{margin-bottom:.75rem}
+  .hero-stars-inline{display:flex}
+  .hero-buttons{display:none}
+  .hero-trial-note{display:none}
+  .hero-dl-btn-mobile{display:block}
+  .hero-demo-link-mobile{display:block}
+  .send-ipad-btn{font-size:.78rem;padding:.32rem .85rem}
   .hero-visual{flex-direction:row;align-items:center;justify-content:center;gap:.6rem}
   .hero-visual .ipad-primary{width:52%}
   .hero-visual .ipad-secondary{width:42%;transform:translateY(20px)}
@@ -390,7 +433,14 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
         <span class="hero-badge trial">🎁 7-day free trial — no payment required</span>
       </div>
       <h1>Learn first,<br><span>earn screen time</span></h1>
+      <!-- Mobile only: inline star rating directly under headline -->
+      <div class="hero-stars-inline">
+        <span class="stars">★★★★★</span>
+        <span class="rating-text">4.9 · "Brilliant app" — App Store</span>
+      </div>
+      <!-- Desktop sub-copy (full) -->
       <p class="hero-sub">Learning Block locks your child's iPad until they complete a UK curriculum-aligned maths quiz. No quiz, no screen time — it's that simple.</p>
+      <!-- Desktop CTAs -->
       <div class="hero-buttons">
         <a href="https://apps.apple.com/gb/app/learning-block/id6761186962?platform=ipad" target="_blank" rel="noopener" class="appstore-badge">
           <img src="https://learningblock.app/appstore-badge.svg" alt="Download on the App Store">
@@ -398,6 +448,9 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
         <a href="#demo" class="btn-secondary">Try the demo</a>
       </div>
       <p class="hero-trial-note">✨ Install on your child's iPad — takes 2 minutes to set up</p>
+      <!-- Mobile CTAs: single primary button + small demo link -->
+      <a href="https://apps.apple.com/gb/app/learning-block/id6761186962?platform=ipad" target="_blank" rel="noopener" class="hero-dl-btn-mobile">📲 Free download — App Store</a>
+      <a href="#demo" class="hero-demo-link-mobile">Try the demo first →</a>
       <div class="hero-send-ipad">
         <button class="send-ipad-btn" onclick="openSendModal()">📲 Browsing on your phone? Send link to iPad</button>
       </div>
@@ -571,42 +624,106 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   <section id="faq" class="faq-section">
     <div class="section-inner">
       <div class="section-label" style="text-align:center">Frequently asked questions</div>
-      <h2 class="section-title" style="text-align:center;margin-bottom:2rem">Got questions? We've got answers.</h2>
-      <div class="faq-grid">
-        <details class="faq-item">
-          <summary class="faq-q">Which device does Learning Block go on?</summary>
-          <div class="faq-a">Learning Block goes on your <strong>child's iPad</strong> — not your own phone. Once installed, you set it up with your parental PIN and it works automatically from there. It takes about 2 minutes to configure.</div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">What if my child knows the Screen Time passcode?</summary>
-          <div class="faq-a">Learning Block uses a separate PIN you set during setup — your child never sees it. As long as your Screen Time passcode is private, there's no way for them to bypass the lock. We also recommend checking Apple's Screen Time settings to make sure your passcode is secure.</div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">Can I use it on more than one iPad?</summary>
-          <div class="faq-a">Your subscription covers one child's iPad. If you have multiple children on different iPads, you'd need a subscription per device. Each child gets their own year group, topics, and progress tracking.</div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">Which year groups and topics does it cover?</summary>
-          <div class="faq-a">Learning Block covers Years 1–6 (ages 5–11), aligned to the UK National Curriculum. Topics include addition, subtraction, multiplication, division, fractions, decimals, percentages, place value, shapes, time, area &amp; perimeter, and angles — depending on year group.</div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">Does the free trial require a credit card?</summary>
-          <div class="faq-a">No. The 7-day free trial is completely free — no payment required upfront. You start the trial through the App Store, and if you don't choose to subscribe before it ends, your account automatically drops to the free tier. No charges, no surprises.</div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">What happens when screen time runs out?</summary>
-          <div class="faq-a">When earned screen time runs out, the iPad locks again automatically. Your child will need to complete another quiz to earn more time. You can set daily caps and a bedtime schedule so everything manages itself around your family's routine.</div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">Is Learning Block available on Android or Amazon Fire?</summary>
-          <div class="faq-a">Currently Learning Block is iPad only — it relies on Apple's Screen Time API for the OS-level lock, which isn't available on other platforms. We're focused on making the iPad version excellent before considering other platforms.</div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">My child is struggling with a topic. Does the app help them learn, not just test them?</summary>
-          <div class="faq-a">Yes — this is one of Learning Block's key features. Every topic has an animated, step-by-step Learn section that teaches the method visually before your child attempts the quiz. There's also a built-in workings panel with column arithmetic and a drawing pad so they can work through problems properly.</div>
-        </details>
+      <h2 class="section-title" style="text-align:center;margin-bottom:.5rem">Got questions?</h2>
+      <p class="section-subtitle" style="text-align:center;margin:0 auto 2.5rem">Everything you need to know — grouped by topic. <a href="/faq" style="color:var(--purple-dark);font-weight:800;text-decoration:underline;text-underline-offset:2px;">Full help centre →</a></p>
+
+      <div class="faq-groups">
+
+        <div class="faq-group">
+          <div class="faq-group-header" onclick="toggleFaqGroup(this)">
+            <span>🚀 Getting Started</span><span class="faq-group-arrow">▾</span>
+          </div>
+          <div class="faq-group-body">
+            <div class="faq-item-hp">
+              <div class="faq-q-hp" onclick="toggleFaqItem(this)">Which device does Learning Block go on?</div>
+              <div class="faq-a-hp"><div class="faq-a-hp-inner">Learning Block goes on your <strong>child's iPad</strong> — not your own phone. Once installed, you set it up with your parental PIN and it works automatically. Takes about 2 minutes to configure.</div></div>
+            </div>
+            <div class="faq-item-hp">
+              <div class="faq-q-hp" onclick="toggleFaqItem(this)">What's the difference between free and premium?</div>
+              <div class="faq-a-hp"><div class="faq-a-hp-inner"><strong>Free:</strong> KS1 Addition only, 5 questions per quiz, 1 quiz per day. <strong>Premium:</strong> All year groups (Year 1–6), all topics, configurable quiz length, pass mark and difficulty, bedtime schedule, earned time, daily caps, the full Learn section with walkthroughs, and the complete badges &amp; collections system. New users get 7 days of full premium free — no payment details needed.</div></div>
+            </div>
+            <div class="faq-item-hp">
+              <div class="faq-q-hp" onclick="toggleFaqItem(this)">Is it available on Android or Amazon Fire?</div>
+              <div class="faq-a-hp"><div class="faq-a-hp-inner">iPad only for now — Learning Block relies on Apple's Screen Time API for the OS-level lock, which isn't available on other platforms.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-group">
+          <div class="faq-group-header" onclick="toggleFaqGroup(this)">
+            <span>🔐 Lock &amp; Security</span><span class="faq-group-arrow">▾</span>
+          </div>
+          <div class="faq-group-body">
+            <div class="faq-item-hp">
+              <div class="faq-q-hp" onclick="toggleFaqItem(this)">What if my child knows the Screen Time passcode?</div>
+              <div class="faq-a-hp"><div class="faq-a-hp-inner">Learning Block uses a separate parent PIN that your child never sees. As long as your Screen Time passcode is private, there's no way to bypass the lock.</div></div>
+            </div>
+            <div class="faq-item-hp">
+              <div class="faq-q-hp" onclick="toggleFaqItem(this)">What if my child deletes the app?</div>
+              <div class="faq-a-hp"><div class="faq-a-hp-inner">If Learning Block is deleted, the lock is removed. To prevent this, go to <strong>Settings → Screen Time → Content &amp; Privacy Restrictions → Deleting Apps → Don't Allow</strong>. This is protected by your Screen Time passcode.</div></div>
+            </div>
+            <div class="faq-item-hp">
+              <div class="faq-q-hp" onclick="toggleFaqItem(this)">Can I fully block the iPad — not just quiz-lock it?</div>
+              <div class="faq-a-hp"><div class="faq-a-hp-inner">Yes. Switch to <strong>Block</strong> mode and the device is completely locked — your child can't quiz their way out. Only a parent can unlock it. Switch to <strong>Unblock</strong> for full free access when you want.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-group">
+          <div class="faq-group-header" onclick="toggleFaqGroup(this)">
+            <span>⏰ Schedule &amp; Screen Time</span><span class="faq-group-arrow">▾</span>
+          </div>
+          <div class="faq-group-body">
+            <div class="faq-item-hp">
+              <div class="faq-q-hp" onclick="toggleFaqItem(this)">What happens when screen time runs out?</div>
+              <div class="faq-a-hp"><div class="faq-a-hp-inner">The iPad locks again automatically. Your child needs to complete another quiz to earn more time. You control how much each quiz earns (5–60 minutes), how many quizzes they can do per day, and a total daily screen time cap.</div></div>
+            </div>
+            <div class="faq-item-hp">
+              <div class="faq-q-hp" onclick="toggleFaqItem(this)">How does the bedtime schedule work?</div>
+              <div class="faq-a-hp"><div class="faq-a-hp-inner">Set a wake time and a bedtime. The iPad locks at bedtime automatically and stays locked until wake time the next morning — when your child will need to complete a quiz before using it.</div></div>
+            </div>
+            <div class="faq-item-hp">
+              <div class="faq-q-hp" onclick="toggleFaqItem(this)">Can I temporarily unblock the iPad without changing all my settings?</div>
+              <div class="faq-a-hp"><div class="faq-a-hp-inner">Yes — switch to <strong>Unblock</strong> mode for full access, then toggle on <strong>Resets to Learning at midnight</strong> and it automatically switches back to quiz-lock at midnight without you having to remember.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-group">
+          <div class="faq-group-header" onclick="toggleFaqGroup(this)">
+            <span>💳 Subscription</span><span class="faq-group-arrow">▾</span>
+          </div>
+          <div class="faq-group-body">
+            <div class="faq-item-hp">
+              <div class="faq-q-hp" onclick="toggleFaqItem(this)">Does the free trial need a credit card?</div>
+              <div class="faq-a-hp"><div class="faq-a-hp-inner">No. The 7-day free trial needs no payment details. After 7 days it drops to the free tier automatically — no charges, no surprises.</div></div>
+            </div>
+            <div class="faq-item-hp">
+              <div class="faq-q-hp" onclick="toggleFaqItem(this)">Can I use it on more than one iPad?</div>
+              <div class="faq-a-hp"><div class="faq-a-hp-inner">Your subscription is tied to your Apple ID and can be used on any device signed into that account. Each device keeps its own settings and progress independently.</div></div>
+            </div>
+            <div class="faq-item-hp">
+              <div class="faq-q-hp" onclick="toggleFaqItem(this)">Do you offer school or teacher pricing?</div>
+              <div class="faq-a-hp"><div class="faq-a-hp-inner">Yes — free premium codes for teachers and batch codes for schools. Email <a href="mailto:hello@learningblock.app" style="color:var(--purple-dark)">hello@learningblock.app</a> and we'll set you up.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-group">
+          <div class="faq-group-header" onclick="toggleFaqGroup(this)">
+            <span>🔒 Privacy</span><span class="faq-group-arrow">▾</span>
+          </div>
+          <div class="faq-group-body">
+            <div class="faq-item-hp">
+              <div class="faq-q-hp" onclick="toggleFaqItem(this)">What data do you collect?</div>
+              <div class="faq-a-hp"><div class="faq-a-hp-inner">None. All quiz data, child profiles, and settings are stored locally on the device. No data is sent to any server — no accounts, no analytics, no tracking, no ads. Ever.</div></div>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <p style="text-align:center;margin-top:2rem;font-size:.88rem;font-weight:700;opacity:.5;">Still have a question? <a href="mailto:hello@learningblock.app" style="color:var(--purple-dark);opacity:1;text-decoration:underline;text-underline-offset:2px;">hello@learningblock.app</a></p>
+
+      <p style="text-align:center;margin-top:2.5rem;font-size:.88rem;font-weight:700;opacity:.5;">More questions? <a href="/faq" style="color:var(--purple-dark);opacity:1;text-decoration:underline;text-underline-offset:2px;">Visit the full help centre</a> or email <a href="mailto:hello@learningblock.app" style="color:var(--purple-dark);opacity:1;text-decoration:underline;text-underline-offset:2px;">hello@learningblock.app</a></p>
     </div>
   </section>
 
@@ -713,7 +830,22 @@ document.querySelectorAll('.feature-pill,.year-card,.price-card,.testimonial-car
 const sObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.animation='fadeUp .6s ease both';e.target.style.opacity='1';sObs.unobserve(e.target)}})},{threshold:.15});
 document.querySelectorAll('.showcase-row').forEach(el=>sObs.observe(el));
 
-// Testimonials drag-to-scroll
+// Grouped FAQ accordion
+function toggleFaqGroup(header){
+  var group=header.parentElement;
+  var isOpen=group.classList.contains('open');
+  document.querySelectorAll('.faq-group.open').forEach(function(g){g.classList.remove('open');});
+  if(!isOpen)group.classList.add('open');
+}
+function toggleFaqItem(qEl){
+  var item=qEl.parentElement;
+  var isOpen=item.classList.contains('open');
+  item.parentElement.querySelectorAll('.faq-item-hp.open').forEach(function(i){i.classList.remove('open');});
+  if(!isOpen)item.classList.add('open');
+}
+// Open first group by default
+(function(){var first=document.querySelector('.faq-group');if(first)first.classList.add('open');})();
+
 (function(){
   var el=document.querySelector('.testimonials-grid');
   if(!el)return;
