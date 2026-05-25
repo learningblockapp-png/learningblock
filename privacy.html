@@ -39,7 +39,8 @@
     ]
   };
   </script>
-  <script defer src="https://cdn.kiprotect.com/klaro/v0.7/klaro.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/klaro@0.7/dist/klaro-no-css.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/klaro@0.7/dist/klaro.min.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -277,7 +278,7 @@
   <footer>
     <div class="footer-logo"><img src="logo.png" alt="Learning Block" style="height:28px;vertical-align:middle;margin-right:6px;">Learning Block</div>
     <a href="index.html">← Back to home</a>
-    <a href="#" onclick="klaro.show();return false;" style="font-size:14px;font-weight:700;color:var(--purple);text-decoration:none;opacity:0.6;">Cookie settings</a>
+    <a href="#" onclick="if(typeof klaro!=='undefined'){klaro.show();}return false;" style="font-size:14px;font-weight:700;color:var(--purple);text-decoration:none;opacity:0.6;">Cookie settings</a>
     <p>© 2026 Learning Block Ltd. All rights reserved.</p>
   </footer>
 
