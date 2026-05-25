@@ -7,6 +7,39 @@
   <meta name="description" content="Privacy Policy for Learning Block — the iPad maths quiz app for children.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Klaro consent config -->
+  <script>
+  var klaroConfig = {
+    version: 1, storageMethod: 'cookie', cookieName: 'lb_consent', cookieExpiresAfterDays: 365,
+    privacyPolicy: '/privacy.html', default: false, mustConsent: false, acceptAll: true, hideDeclineAll: false, lang: 'en',
+    translations: { en: {
+      privacyPolicyUrl: '/privacy.html',
+      consentNotice: { description: 'We use cookies to understand how parents find Learning Block and to improve our ads. You can choose what you allow below.', learnMore: 'Manage cookies' },
+      consentModal: { title: 'Cookie settings', description: 'Choose which cookies Learning Block can use.', privacyPolicy: { text: 'Read our {privacyPolicy}.', name: 'privacy policy' } },
+      acceptAll: 'Accept all', declineAll: 'Decline all', acceptSelected: 'Save choices', close: 'Close',
+      googleAnalytics: { title: 'Google Analytics', description: 'Helps us understand how many parents visit the site and which pages they read.' },
+      metaPixel: { title: 'Meta Pixel', description: 'Helps us measure whether our ads lead to app downloads.' }
+    }},
+    services: [
+      { name: 'googleAnalytics', title: 'Google Analytics', purposes: ['analytics'],
+        onAccept: function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);} window.gtag = gtag;
+          gtag('js', new Date()); gtag('config', 'G-GKDQC0BLFQ');
+          var s = document.createElement('script'); s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-GKDQC0BLFQ'; document.head.appendChild(s);
+        }, onDecline: function() {} },
+      { name: 'metaPixel', title: 'Meta Pixel', purposes: ['marketing'],
+        onAccept: function() {
+          !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init','1406693714605672');fbq('track','PageView');
+        }, onDecline: function() {} }
+    ]
+  };
+  </script>
+  <script defer src="https://cdn.kiprotect.com/klaro/v0.7/klaro.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -194,9 +227,34 @@
 
     <hr class="divider">
 
-    <!-- SECTION 5 — YOUR RIGHTS -->
+    <!-- SECTION 5 — WEBSITE COOKIES -->
     <div class="policy-section">
-      <h2><span class="section-number">5</span> Your rights</h2>
+      <h2><span class="section-number">5</span> Website cookies &amp; analytics</h2>
+      <p>Our website at learningblock.app uses cookies and third-party analytics tools to help us understand how parents find and navigate the site. These only apply to the website — the Learning Block app itself contains no analytics or tracking of any kind.</p>
+
+      <h2 style="margin-top:28px;font-size:20px;">What we use</h2>
+      <ul>
+        <li><strong>Google Analytics (GA4)</strong> — helps us understand how many parents visit the site, which pages they read, and whether they click through to the App Store. Google may process data on servers outside the UK. Google LLC is certified under the EU-US Data Privacy Framework.</li>
+        <li><strong>Meta Pixel</strong> — helps us measure whether our Facebook and Instagram ads result in App Store visits. No personal data is sold or shared with advertisers beyond what is needed to measure campaign performance.</li>
+      </ul>
+
+      <div class="highlight-box yellow">
+        <p>Both tools are only activated after you give explicit consent via our cookie banner. If you decline, neither tool fires — no data is collected from your visit.</p>
+      </div>
+
+      <h2 style="margin-top:28px;font-size:20px;">Managing your preferences</h2>
+      <p>When you first visit learningblock.app, a consent banner allows you to accept or decline each cookie category individually. You can change your preferences at any time using the Cookie settings link in the footer of any page on our website.</p>
+      <p>Your consent choice is stored in a cookie named <code style="font-family:monospace;background:#f0f0f0;padding:2px 6px;border-radius:4px;">lb_consent</code> for 365 days. Clearing your browser cookies will reset your preference and show the banner again on your next visit.</p>
+
+      <h2 style="margin-top:28px;font-size:20px;">Legal basis</h2>
+      <p>We rely on your explicit consent (UK GDPR Article 6(1)(a)) to process data via Google Analytics and Meta Pixel. You may withdraw consent at any time via the Cookie settings link in our footer.</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 6 — YOUR RIGHTS (renumbered) -->
+    <div class="policy-section">
+      <h2><span class="section-number">6</span> Your rights</h2>
       <p>Learning Block Ltd complies with UK GDPR. You have the right to:</p>
       <ul>
         <li>Access the personal data we hold about you</li>
@@ -219,6 +277,7 @@
   <footer>
     <div class="footer-logo"><img src="logo.png" alt="Learning Block" style="height:28px;vertical-align:middle;margin-right:6px;">Learning Block</div>
     <a href="index.html">← Back to home</a>
+    <a href="#" onclick="klaro.show();return false;" style="font-size:14px;font-weight:700;color:var(--purple);text-decoration:none;opacity:0.6;">Cookie settings</a>
     <p>© 2026 Learning Block Ltd. All rights reserved.</p>
   </footer>
 
