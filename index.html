@@ -1,6 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Klaro consent config — must come before klaro.js -->
+<script>
+var klaroConfig = {
+  version: 1,
+  elementID: 'klaro',
+  storageMethod: 'cookie',
+  cookieName: 'lb_consent',
+  cookieExpiresAfterDays: 365,
+  privacyPolicy: '/privacy.html',
+  default: false,
+  mustConsent: false,
+  acceptAll: true,
+  hideDeclineAll: false,
+  lang: 'en',
+  translations: {
+    en: {
+      privacyPolicyUrl: '/privacy.html',
+      consentNotice: {
+        description: 'We use cookies to understand how parents find Learning Block and to improve our ads. You can choose what you allow below.',
+        learnMore: 'Manage cookies'
+      },
+      consentModal: {
+        title: 'Cookie settings',
+        description: 'Choose which cookies Learning Block can use. Analytics helps us improve the site. Marketing helps us reach more parents.',
+        privacyPolicy: { text: 'Read our {privacyPolicy}.', name: 'privacy policy' }
+      },
+      acceptAll: 'Accept all',
+      declineAll: 'Decline all',
+      acceptSelected: 'Save choices',
+      close: 'Close',
+      googleAnalytics: {
+        title: 'Google Analytics',
+        description: 'Helps us understand how many parents visit the site, which pages they read, and whether they click through to the App Store. No personal data is shared.'
+      },
+      metaPixel: {
+        title: 'Meta Pixel',
+        description: 'Helps us measure whether our Facebook and Instagram ads lead to app downloads. No personal data is sold.'
+      }
+    }
+  },
+  services: [
+    {
+      name: 'googleAnalytics',
+      title: 'Google Analytics',
+      purposes: ['analytics'],
+      onAccept: function() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-GKDQC0BLFQ');
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-GKDQC0BLFQ';
+        document.head.appendChild(s);
+      },
+      onDecline: function() {}
+    },
+    {
+      name: 'metaPixel',
+      title: 'Meta Pixel',
+      purposes: ['marketing'],
+      onAccept: function() {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window,document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1406693714605672');
+        fbq('track', 'PageView');
+      },
+      onDecline: function() {}
+    }
+  ],
+  styling: {
+    theme: ['light']
+  }
+};
+</script>
+<script defer src="https://cdn.kiprotect.com/klaro/v0.7/klaro.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Learning Block | Kids Maths App — Earn Screen Time | KS1 & KS2 for iPad</title>
@@ -756,7 +839,7 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
 
 <footer>
   <a href="/" class="footer-logo"><img src="https://learningblock.app/logo.png" alt="Learning Block">Learning Block</a>
-  <ul class="footer-links"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="#faq">FAQ</a></li><li><a href="mailto:hello@learningblock.app">Contact</a></li></ul>
+  <ul class="footer-links"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="#faq">FAQ</a></li><li><a href="mailto:hello@learningblock.app">Contact</a></li><li><a href="#" onclick="klaro.show();return false;">Cookie settings</a></li></ul>
   <div style="display:flex;flex-direction:column;gap:.25rem;text-align:right">
     <span class="footer-copy">© 2026 Learning Block Ltd. All rights reserved.</span>
     <span class="footer-copy" style="opacity:.55">Have feedback? Reach out at <a href="mailto:hello@learningblock.app" style="color:var(--dark);opacity:1;text-decoration:underline;text-underline-offset:2px;">hello@learningblock.app</a></span>
@@ -877,6 +960,23 @@ function htCopy(){
     setTimeout(function(){b.textContent='📋 Copy code';b.style.color='rgba(255,255,255,0.7)';b.style.borderColor='rgba(255,255,255,0.2)';},2000);
   });
 }
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      var section = link.closest('section') ? link.closest('section').id || 'unknown_section' : 'nav';
+      if (typeof gtag === 'function') {
+        gtag('event', 'app_store_click', {
+          'event_category': 'conversion',
+          'event_label': section
+        });
+      }
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', { content_name: 'app_store_click', content_category: section });
+      }
+    });
+  });
+});
 </script>
 </body>
 </html>
