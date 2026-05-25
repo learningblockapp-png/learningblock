@@ -961,7 +961,8 @@ function htCopy(){
     setTimeout(function(){b.textContent='📋 Copy code';b.style.color='rgba(255,255,255,0.7)';b.style.borderColor='rgba(255,255,255,0.2)';},2000);
   });
 }
-<script>
+
+// App Store click tracking — fires GA + Meta Pixel events when user clicks any App Store link
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(link) {
     link.addEventListener('click', function() {
