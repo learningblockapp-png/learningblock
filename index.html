@@ -122,19 +122,19 @@ section{position:relative;z-index:1}
 .hero h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.05;margin-bottom:1.25rem}
 .hero h1 span{color:var(--purple-dark);position:relative;display:inline-block}
 .hero h1 span::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:8px;background:var(--yellow);border-radius:4px;z-index:-1}
-.hero-sub{font-size:1.1rem;font-weight:600;opacity:.65;max-width:460px;line-height:1.7;margin-bottom:1.75rem}
+.hero-sub{font-size:1.1rem;font-weight:600;opacity:.65;max-width:460px;line-height:1.7;margin-bottom:1rem}
 .hero-buttons{display:flex;flex-direction:row;gap:1rem;flex-wrap:wrap}
 .hero-trial-note{font-size:.82rem;font-weight:700;color:var(--purple-dark);margin-top:.85rem;opacity:.8}
 
 /* Unified hero primary CTA — one button, device-adaptive text */
-.hero-cta-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;margin-top:1.5rem}
-.hero-primary-btn{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:1rem 2rem;text-decoration:none;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;text-align:center;cursor:pointer}
+.hero-cta-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;margin-top:.5rem}
+.hero-primary-btn{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;line-height:1.2;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:1.1rem 2rem 1rem;text-decoration:none;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;text-align:center;cursor:pointer}
 .hero-primary-btn:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--dark)}
 .hero-demo-link{font-family:'Fredoka',sans-serif;font-weight:700;font-size:.92rem;color:var(--purple-dark);text-decoration:underline;text-underline-offset:3px;opacity:.85}
 .hero-demo-link:hover{opacity:1}
 @media(max-width:768px){
   .hero-cta-wrap{align-items:stretch;width:100%}
-  .hero-primary-btn{width:100%;justify-content:center;font-size:1.05rem;padding:.9rem 1.5rem;border-radius:14px}
+  .hero-primary-btn{width:100%;justify-content:center;font-size:1.05rem;padding:1rem 1.5rem .9rem;border-radius:14px}
   .hero-demo-link{text-align:center;font-size:.88rem}
 }
 
@@ -373,17 +373,12 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   .nav-logo img{height:28px}
   .hero{min-height:auto;padding:1.5rem 1.25rem 2rem;gap:1.5rem}
   .hero h1{font-size:2.4rem}
-  .hero-sub{font-size:.95rem;margin-bottom:1.25rem;line-height:1.6}
+  .hero-sub{font-size:.95rem;margin-bottom:.5rem;line-height:1.6}
   .hero-badge{font-size:.75rem;padding:.3rem .75rem}
-  .hero-buttons{flex-direction:column;align-items:center;width:100%;gap:.75rem}
-  .btn-primary,.btn-secondary{width:100%;justify-content:center;text-align:center;font-size:1rem;padding:.8rem 1.5rem;border-radius:14px}
   .hero-badge.live{display:none}
   .hero-badges{margin-bottom:.75rem}
   .hero-stars-inline{display:flex}
-  .hero-buttons{display:none}
-  .hero-trial-note{display:none}
-  .hero-dl-btn-mobile{display:block}
-  .hero-demo-link-mobile{display:block}
+  .hero-trial-note{font-size:.78rem;text-align:center;margin-top:.6rem;width:100%}
   .send-ipad-btn{font-size:.78rem;padding:.32rem .85rem}
   .hero-visual{flex-direction:row;align-items:center;justify-content:center;gap:.6rem}
   .hero-visual .ipad-primary{width:52%}
@@ -552,7 +547,7 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
       <!-- Single adaptive primary CTA — text and behaviour set by JS based on device -->
       <div class="hero-cta-wrap">
         <a id="hero-primary-cta" href="https://apps.apple.com/gb/app/learning-block/id6761186962?platform=ipad" target="_blank" rel="noopener" class="hero-primary-btn">
-          <span id="hero-primary-text">📲 Free download on App Store</span>
+          <span id="hero-primary-text">Free download on App Store</span>
         </a>
       </div>
       <p id="hero-context-note" class="hero-trial-note">✨ Install on your child's iPad — takes 2 minutes to set up</p>
@@ -891,7 +886,7 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
       html: '<strong>You\'re on an iPad. Perfect.</strong> Tap below to install free from the App Store.'
     };
     ctaConfig = {
-      text: '📲 Free download on App Store',
+      text: 'Free download on App Store',
       href: 'https://apps.apple.com/gb/app/learning-block/id6761186962?platform=ipad',
       isModal: false,
       note: '✨ Takes 2 minutes to set up — no payment required'
@@ -902,7 +897,7 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
       html: '<strong>On iPhone?</strong> Try it on your phone first to see how it works, then install on your child\'s iPad.'
     };
     ctaConfig = {
-      text: '📲 Try it on your iPhone',
+      text: 'Try it on your iPhone',
       href: 'https://apps.apple.com/gb/app/learning-block/id6761186962',
       isModal: false,
       note: '✨ Or <a href="#" onclick="openSendModal();return false;" style="color:var(--purple-dark);text-decoration:underline">send link to your child\'s iPad →</a>'
@@ -913,7 +908,7 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
       html: '<strong>On Android?</strong> Learning Block runs on your child\'s iPad. Tap below to send the link.'
     };
     ctaConfig = {
-      text: '📲 Send link to your iPad',
+      text: 'Send link to your iPad',
       isModal: true,
       note: '✨ We\'ll text or email you the App Store link'
     };
@@ -923,7 +918,7 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
       html: '<strong>Browsing on desktop?</strong> Learning Block installs on your child\'s iPad. We\'ll send you the link.'
     };
     ctaConfig = {
-      text: '📲 Send link to your iPad',
+      text: 'Send link to your iPad',
       isModal: true,
       note: '✨ We\'ll text or email you the App Store link'
     };
