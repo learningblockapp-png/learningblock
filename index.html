@@ -159,9 +159,39 @@ section{position:relative;z-index:1}
 .send-modal-input button:hover{transform:translateY(2px);box-shadow:0 1px 0 var(--dark)}
 .send-success{display:none;font-size:.88rem;font-weight:700;color:#1a7a54;margin-top:.75rem;padding:.5rem .9rem;background:#f0fff8;border:2px solid #4FCDA3;border-radius:10px}
 
-.hero-visual{flex:0 0 auto;animation:fadeUp .6s .3s ease both;display:flex;gap:1.25rem;align-items:center}
-.hero-visual .ipad-primary{width:260px}
-.hero-visual .ipad-secondary{width:220px;transform:translateY(40px)}
+.hero-visual{flex:0 0 auto;animation:fadeUp .6s .3s ease both;display:flex;align-items:center;justify-content:center}
+/* Real iPad mini photo frame — transparent screen punched out */
+.ipad-video-frame{
+  width:350px;
+  position:relative;
+  flex-shrink:0;
+  filter:drop-shadow(0 20px 48px rgba(45,38,64,.28));
+}
+/* The video sits behind the frame image */
+.ipad-video-frame .ipad-screen{
+  position:absolute;
+  left:7.002%;
+  top:4.819%;
+  width:85.995%;
+  height:90.362%;
+  overflow:hidden;
+  border-radius:1.5%;
+  background:#000;
+}
+.ipad-video-frame video{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+/* The frame image sits on top, with the transparent hole revealing the video */
+.ipad-video-frame .ipad-frame-img{
+  position:relative;
+  display:block;
+  width:100%;
+  z-index:2;
+  pointer-events:none;
+}
 .btn-primary{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:var(--yellow);color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:.9rem 2rem;text-decoration:none;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;justify-content:center;gap:.5rem}
 .btn-primary:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--dark)}
 .btn-secondary{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;background:#fff;color:var(--dark);border:2.5px solid var(--dark);border-radius:16px;padding:.9rem 2rem;text-decoration:none;box-shadow:0 5px 0 var(--dark);transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;justify-content:center}
@@ -333,9 +363,7 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   .hero-text{max-width:100%;display:flex;flex-direction:column;align-items:center}
   .hero-sub{max-width:500px}
   .hero-buttons{justify-content:center}
-  .hero-visual{gap:.75rem}
-  .hero-visual .ipad-primary{width:200px}
-  .hero-visual .ipad-secondary{width:170px;transform:translateY(30px)}
+  .ipad-video-frame{width:280px}
   .showcase-row,.showcase-row.reverse{flex-direction:column;gap:2rem;text-align:center}
   .showcase-visual{flex:0 0 auto;max-width:260px;margin:0 auto}
   .curriculum-header{flex-direction:column;text-align:center}
@@ -380,11 +408,7 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
   .hero-stars-inline{display:flex}
   .hero-trial-note{font-size:.78rem;text-align:center;margin-top:.6rem;width:100%}
   .send-ipad-btn{font-size:.78rem;padding:.32rem .85rem}
-  .hero-visual{flex-direction:row;align-items:center;justify-content:center;gap:.6rem}
-  .hero-visual .ipad-primary{width:52%}
-  .hero-visual .ipad-secondary{width:42%;transform:translateY(20px)}
-  .hero-visual .ipad-bezel{border-radius:16px;padding:6px;box-shadow:0 10px 30px rgba(45,38,64,.18)}
-  .hero-visual .ipad-bezel img{border-radius:10px}
+  .ipad-video-frame{width:68vw;max-width:300px}
   .section-inner{padding:3.5rem 1.25rem}
   .section-title{font-size:1.8rem}
   .section-subtitle{font-size:.95rem;margin-bottom:2rem}
@@ -553,8 +577,20 @@ footer{border-top:2.5px solid var(--dark);padding:1.75rem 2rem;display:flex;alig
       <p id="hero-context-note" class="hero-trial-note">✨ Install on your child's iPad — takes 2 minutes to set up</p>
     </div>
     <div class="hero-visual">
-      <div class="ipad-wrap ipad-lg ipad-primary"><div class="ipad-bezel"><img src="https://learningblock.app/screen-locked.png" alt="iPad locked, complete a quiz to unlock"></div></div>
-      <div class="ipad-wrap ipad-lg ipad-secondary"><div class="ipad-bezel"><img src="https://learningblock.app/screen-earned.png" alt="Screen time earned, 29 minutes remaining"></div></div>
+      <div class="ipad-video-frame">
+        <div class="ipad-screen">
+          <video
+            src="/hero-demo.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            poster="https://learningblock.app/screen-locked.png"
+            aria-label="Learning Block app demo: iPad locked screen, child completes a maths quiz, screen time unlocked"
+          ></video>
+        </div>
+        <img class="ipad-frame-img" src="/ipad-frame.png" alt="">
+      </div>
     </div>
   </section>
 
